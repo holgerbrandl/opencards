@@ -1,0 +1,211 @@
+<info.opencards.core.FlashCardCollection serialization="custom">
+    <unserializable-parents/>
+    <list>
+        <default>
+            <size>9</size>
+        </default>
+        <int>10</int>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Apricot</cardTitle>
+            <cardID>873170178</cardID>
+            <cardIndex>2</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Walnut</cardTitle>
+            <cardID>-1711322741</cardID>
+            <cardIndex>3</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Kiwi</cardTitle>
+            <cardID>2339024</cardID>
+            <cardIndex>4</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Blueberry</cardTitle>
+            <cardID>-339035428</cardID>
+            <cardIndex>5</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Apple</cardTitle>
+            <cardID>63476538</cardID>
+            <cardIndex>6</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Tamarillo</cardTitle>
+            <cardID>885756183</cardID>
+            <cardIndex>7</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Peach</cardTitle>
+            <cardID>76986961</cardID>
+            <cardIndex>8</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Pear</cardTitle>
+            <cardID>2483462</cardID>
+            <cardIndex>9</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+        <info.opencards.core.FlashCard>
+            <cardTitle>Banana</cardTitle>
+            <cardID>1982479237</cardID>
+            <cardIndex>10</cardIndex>
+            <revPolicy>REVERSE</revPolicy>
+        </info.opencards.core.FlashCard>
+    </list>
+    <info.opencards.core.FlashCardCollection>
+        <default>
+            <itColls>
+                <entry>
+                    <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
+                    <info.opencards.learnstrats.ltm.LTMCollection serialization="custom">
+                        <unserializable-parents/>
+                        <list>
+                            <default>
+                                <size>9</size>
+                            </default>
+                            <int>10</int>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[2]"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[3]"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[4]"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[5]"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[6]"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[7]"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[8]"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[9]"/>
+                                <itemProps>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </itemProps>
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2011-09-29 22:45:12.491 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                        </list>
+                        <info.opencards.core.ItemCollection>
+                            <default>
+                                <props>
+                                    <entry>
+                                        <string>retPolicy</string>
+                                        <int>80</int>
+                                    </entry>
+                                </props>
+                            </default>
+                        </info.opencards.core.ItemCollection>
+                    </info.opencards.learnstrats.ltm.LTMCollection>
+                </entry>
+            </itColls>
+            <properties>
+                <entry>
+                    <string>reversePolicy</string>
+                    <info.opencards.core.ReversePolicy>REVERSE</info.opencards.core.ReversePolicy>
+                </entry>
+            </properties>
+            <syncStates>
+                <entry>
+                    <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
+                    <boolean>true</boolean>
+                </entry>
+            </syncStates>
+        </default>
+    </info.opencards.core.FlashCardCollection>
+</info.opencards.core.FlashCardCollection>
