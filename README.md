@@ -1,5 +1,7 @@
-Description
+OpenCards
 -----------
+
+OpenCards is a free flashcard learning software for ppt-files
 
 OpenCards is a free award-winning flashcard learning software. The basic idea of OpenCards
 is to use PowerPoint presentations (*.ppt) as flashcard sets. Thereby, slide-titles are
@@ -27,11 +29,14 @@ If you're NOT running MacOS you have to uncomment the exclude tag in the compile
     java -Xmx512m -jar opencards.jar
 
 
-Contributors & Guidelines
+How to contribute?
 -------------------------
 
 Feel welcome to suggest changes or pull requests.
 
+We still have some unmigrated in the old google-code ticket system (https://code.google.com/p/opencards/issues/list)
+
 http://www.opencards.info/about-us/
+
 http://www.opencards.info/how-to-contribute/
 
