@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=false
-Name=OpenCards
-Comment=A free flashcard learning software for ppt-files
-Exec=/usr/share/opencards/OpenCards.sh
-Icon=/usr/share/opencards/oclogo.png
-Categories=Education;Java

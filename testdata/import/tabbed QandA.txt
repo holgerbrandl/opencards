@@ -1,9 +1,0 @@
-What is the capital of Australia?	Canberra
-Who is the enemy of Wesley Snipes in Blade Trinity?	Dracula
-7 * 6	42
-
-this	line	is	invalid
-this line is also invalid and empty lines are also invalid
-
-what is the greatest flashcard app on earth?	OpenCards <hihi>
-
