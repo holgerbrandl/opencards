@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="339.183"
+   id="svg3734"
+   inkscape:version="0.46"
+   sodipodi:docbase="/datas/Projs/Cliparts Stocker/tmp/AIGA"
+   sodipodi:docname="tagSelectionAsQuestion.svg"
+   sodipodi:version="0.32"
+   width="338.879"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+   inkscape:export-xdpi="26.104633"
+   inkscape:export-ydpi="26.104633">
+  <metadata
+     id="metadata3">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>AIGA_Symbol_Signs</dc:title>
+        <dc:description>EPS converted from  http://aiga.org</dc:description>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>symbol</rdf:li>
+            <rdf:li>mapsym</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://www.openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Jean-Victor Balin</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>Jean-Victor Balin</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:date />
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://web.resource.org/cc/PublicDomain" />
+        <dc:language>en</dc:language>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://web.resource.org/cc/PublicDomain">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     bordercolor="#666666"
+     borderopacity="1.0"
+     id="base"
+     inkscape:current-layer="svg3734"
+     inkscape:cx="-375.62092"
+     inkscape:cy="-133.34691"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:window-height="1031"
+     inkscape:window-width="1680"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:zoom="0.64"
+     pagecolor="#ffffff"
+     showgrid="false" />
+  <defs
+     id="defs3736">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2392">
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0"
+         id="stop2394" />
+      <stop
+         style="stop-color:#ffff00;stop-opacity:1"
+         offset="1"
+         id="stop2396" />
+    </linearGradient>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 169.59151 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="338.879 : 169.59151 : 1"
+       inkscape:persp3d-origin="169.4395 : 113.061 : 1"
+       id="perspective13" />
+    <marker
+       id="ArrowEnd"
+       markerHeight="3"
+       markerUnits="strokeWidth"
+       markerWidth="4"
+       orient="auto"
+       refX="0"
+       refY="5"
+       viewBox="0 0 10 10">
+      <path
+         d="M 0 0 L 10 5 L 0 10 z"
+         id="path3739" />
+    </marker>
+    <marker
+       id="ArrowStart"
+       markerHeight="3"
+       markerUnits="strokeWidth"
+       markerWidth="4"
+       orient="auto"
+       refX="10"
+       refY="5"
+       viewBox="0 0 10 10">
+      <path
+         d="M 10 0 L 0 5 L 10 10 z"
+         id="path3742" />
+    </marker>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2392"
+       id="linearGradient2398"
+       x1="-95.712135"
+       y1="-0.052705973"
+       x2="260.61432"
+       y2="371.90155"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <text
+     xml:space="preserve"
+     style="font-size:14.72642040000000000px;font-style:normal;font-weight:normal;fill:url(#linearGradient2398);fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans"
+     x="25.13875"
+     y="372.8006"
+     id="text2386"
+     transform="matrix(1.3386549,1.4654556e-2,-9.5727353e-3,0.7469137,0,0)"><tspan
+       sodipodi:role="line"
+       id="tspan2388"
+       x="25.13875"
+       y="372.8006"
+       style="font-size:368.16061400999996000px;font-weight:bold;fill:url(#linearGradient2398);-inkscape-font-specification:Bitstream Vera Sans Bold;fill-opacity:1">?</tspan></text>
+  <rect
+     style="opacity:1;fill:#00807c;fill-opacity:1;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1"
+     id="rect2390"
+     width="65.402374"
+     height="69.63475"
+     x="269.89734"
+     y="261.0188"
+     inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+     inkscape:export-xdpi="26.104633"
+     inkscape:export-ydpi="26.104633" />
+  <rect
+     style="opacity:1;fill:#00807c;fill-opacity:1;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1"
+     id="rect2392"
+     width="65.402374"
+     height="69.63475"
+     x="9.4990301"
+     y="7.2799163"
+     inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+     inkscape:export-xdpi="26.104633"
+     inkscape:export-ydpi="26.104633" />
+  <rect
+     style="opacity:1;fill:#00807c;fill-opacity:1;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1"
+     id="rect2394"
+     width="65.402374"
+     height="69.63475"
+     x="9.4990301"
+     y="262.41153"
+     inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+     inkscape:export-xdpi="26.104633"
+     inkscape:export-ydpi="26.104633" />
+  <rect
+     style="opacity:1;fill:#00807c;fill-opacity:1;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1"
+     id="rect2396"
+     width="65.402374"
+     height="69.63475"
+     x="269.89734"
+     y="7.2799163"
+     inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+     inkscape:export-xdpi="26.104633"
+     inkscape:export-ydpi="26.104633" />
+  <path
+     style="fill:#00807c;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1;display:inline"
+     d="M 82.829824,42.097291 L 261.96892,42.097291"
+     id="path2400"
+     inkscape:connector-type="polyline"
+     inkscape:connection-end="#rect2396"
+     inkscape:connection-start="#rect2392"
+     inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+     inkscape:export-xdpi="26.104633"
+     inkscape:export-ydpi="26.104633" />
+  <path
+     style="fill:#00807c;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1"
+     d="M 302.59853,84.843087 L 302.59853,253.09038"
+     id="path2402"
+     inkscape:connector-type="polyline"
+     inkscape:connection-start="#rect2396"
+     inkscape:connection-end="#rect2390"
+     inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+     inkscape:export-xdpi="26.104633"
+     inkscape:export-ydpi="26.104633" />
+  <path
+     style="fill:#00807c;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1;display:inline"
+     d="M 261.96892,296.05348 L 82.829824,297.0116"
+     id="path2408"
+     inkscape:connector-type="polyline"
+     inkscape:connection-end="#rect2394"
+     inkscape:connection-start="#rect2390"
+     inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+     inkscape:export-xdpi="26.104633"
+     inkscape:export-ydpi="26.104633" />
+  <path
+     style="fill:#00807c;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:20;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1;display:inline"
+     d="M 42.200217,84.843087 L 42.200217,254.48311"
+     id="path2410"
+     inkscape:connector-type="polyline"
+     inkscape:connection-end="#rect2394"
+     inkscape:connection-start="#rect2392"
+     inkscape:export-filename="O:\resources\icons\tagSelectionAsQuestion.png"
+     inkscape:export-xdpi="26.104633"
+     inkscape:export-ydpi="26.104633" />
+</svg>
