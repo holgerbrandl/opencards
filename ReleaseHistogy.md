@@ -1,16 +1,13 @@
-﻿The release history of OpenCards
+﻿The release history of OpenCards.
 
-A more polished but slighty reduced version (targetting end-users rather than developers) can be found at
-http://opencards.info/tag/release/
-
-OpenCards 2.2 (22.2.2012)
+## Opencards 2.2 (22.2.2012)
 * Added Simplified Chinese translation (thanks to Lee Darren)
 * Added Japanese translation (thanks to Eberhard Herzog)
 * More smooth (=antialiased) slide rendering on windows and linux
 * Fixed issue 24: Incorrect rendering of text-shape bounding boxes
 * Stability improvements based on community feedback
 
-OpenCards 2.1 (1.11.2011)
+## Opencards 2.1 (1.11.2011)
 * fixed inocorrect email-addrees for automatic bug-reporting
 * Improved synchronization with ppt-files
 * Added drag-and-drop support for ppt-files into OpenCards
@@ -19,18 +16,18 @@ OpenCards 2.1 (1.11.2011)
 * Open current slide during learning in PowerPoint by double-clicking it
 
 
-OpenCards 2.0.0 (30.9.2011)
+## Opencards 2.0.0 (30.9.2011)
 - update notfication when version of OpenCards are released (issue 19)
 - example card sets in category model to flatten learning curve for new OC-users (issue 22)
 
 
-OpenCards 2b3 (29.9.2011)
+## Opencards 2b3 (29.9.2011)
 * CSV-Importer (issue 1)
 * fixed many rough edges in the macos integration
 * proper windwos executable
 * finished porting of all major v1.5 functionality
 
-OpenCards 2b2 (26.9.2011)
+## Opencards 2b2 (26.9.2011)
 * Changed from OpenOffice plugin to standalone application that uses PowerPoint files as major file-format
 * Most other features (categorization, scheduler, ltm-learning) have been ported
 * Temporarily removed features: Reversed cards-sides
@@ -40,10 +37,10 @@ OpenCards 2b2 (26.9.2011)
 ------------------------------------------------------------------------------------------------------
 OpenCards4Impress release history (no longer developed or maintained)
 
-OpenCards 1.5.1 (2.9.2009)
+## Opencards 1.5.1 (2.9.2009)
 * Fixed problem when removing last card-set from category
 
-OpenCards 1.5 (aka OpenCards 2 beta1, 20.5.2009)
+## Opencards 1.5 (aka OpenCards 2 beta1, 20.5.2009)
 * increased minimal system requirements to java6 and OpenOffice3.0
 * tag arbitrary shapes as questions
 * automatic parsing of directory structures into a the category model sub-tree
@@ -54,7 +51,7 @@ OpenCards 1.5 (aka OpenCards 2 beta1, 20.5.2009)
 * persistent divider-locations for LTM-Manager
 
 
-OpenCards 1.0.1 (19.1.2008)
+## Opencards 1.0.1 (19.1.2008)
 * new: notification about exceeded maximal new items limitation
 * improved: replaced logging monitor with log-file
 * fixed: OC crashes on missing question mode
@@ -62,21 +59,21 @@ OpenCards 1.0.1 (19.1.2008)
 * improved: introduced short delay before hiding slide-pane to avoid occasional crashes
 
 
-OpenCards 1.0 (25.9.2008)
+## Opencards 1.0 (25.9.2008)
 * fixed: crash when remove title when there's no title
 * fixed: slide sorter hiding does not work in OpenOffice3
 * improved: OpenOffice3 integration
 * dev: updated build.xml to OpenOffice3-package structure
 
 
-OpenCards 0.16.3  (aka OpenCards 1.0 RC 6) (23.9.2008)
+## Opencards 0.16.3  (aka OpenCards 1.0 RC 6) (23.9.2008)
 * fixed: Keyboard shortcuts are broken when recently found items are being processed
 * fixed: Drag'n'Drop seems to be broken quite often
 * removed: Untranslated dialog that appeared after the end of each last-minute learning session
 * More verbose error messages in crash dialog
 
 
-OpenCards 0.16.2  (aka OpenCards 1.0 RC 5) (8.9.2008)
+## Opencards 0.16.2  (aka OpenCards 1.0 RC 5) (8.9.2008)
 * Adaptive learning dialog layout depending on height/width-ratio
 * Custom field delimiters when importing flashcards (feature request 2054529)
 * Bulgarian translation (thx to Stefan Stefanov)
@@ -84,15 +81,15 @@ OpenCards 0.16.2  (aka OpenCards 1.0 RC 5) (8.9.2008)
 * fixed: session skipping is broken
 
 
-OpenCards 0.16.1  (aka OpenCards 1.0 RC 4) (11.8.2008)
+## Opencards 0.16.1  (aka OpenCards 1.0 RC 4) (11.8.2008)
 * fixed: OC crashes after preferences have been reseted (bug 2037976 )
 * fixed: Preferences dialog could be more compact (bug 2039120 )
 * fixed: OC crashes if last slide is deleted during learning presentation when this slide is shown in question mode
 
 
-OpenCards 0.16  (aka OpenCards 1.0 RC 3) (23.7.2008)
+## Opencards 0.16  (aka OpenCards 1.0 RC 3) (23.7.2008)
 * Automatic guessing of character encoding when importing flashcards from csv-files
-* Started OpenCards manual. It's implemented in docbook to allow an easy compilation into pdf, html, java help or ooo-help 
+* Started OpenCards manual. It's implemented in docbook to allow an easy compilation into pdf, html, java help or ooo-help
 * New learning mode: When CTRL is hold while a new learning session is started in the LTM-Manager OC will include all new items. This overrides the default behavior which just incrementally includes new items into the learning process. Refer to the manual for details.
 * CTRL+C opens configuration dialog for the current slide when being in a learning session
 * fixed: Refreshing mode included new (unseen) items
@@ -100,26 +97,26 @@ OpenCards 0.16  (aka OpenCards 1.0 RC 3) (23.7.2008)
 * fixed: Warning on Impress shutdown is shown more than once
 
 
-OpenCards 0.15.2  (aka OpenCards 1.0 RC 2) (27.6.2008)
+## Opencards 0.15.2  (aka OpenCards 1.0 RC 2) (27.6.2008)
 * fixed: oc crashes on double-ESC (bug 1997180)
 
 
-OpenCards 0.15.1 (aka OpenCards 1.0 RC 1) (15.6.2008)
+## Opencards 0.15.1 (aka OpenCards 1.0 RC 1) (15.6.2008)
 * Added (optional and by default inactive) logging monitor that should ease to issue-reporting. This monitor can be activated under Preferences->Advanced
 * improved in-session file-transitions (which should also increase stability)
 * fixed: OC hangs forever occassionally when startingW/terminating learning sessions
 
 
-OpenCards 0.15 (29.5.2008)
+## Opencards 0.15 (29.5.2008)
 * Automatic hiding of the slide sorter pane during learning (feature request 1890815)
 * Added Italian translation (thx to Silvio Gavagnin)
 * Added Greek translation (thx to Akis Vassiliadis)
 * Added Portuguese translation (thx to Ricardo Umpierre)
 * fixed: OC-toolbar-icons don't look too nice (bug 1915621)
 * cosmetics: Toolbar is now named "OpenCards" now and not anymore "Add-on 1"
- 
 
-OpenCards 0.14 (28.4.2008)
+
+## Opencards 0.14 (28.4.2008)
 * GZip compression of serialized flascard-data
 - smaller files (~25%)
 - 100x faster (no joke!): much faster loading of presentations containing open cards-data (for 600 cards Spanish.odp loadtime was
@@ -139,9 +136,9 @@ OpenCards 0.14 (28.4.2008)
 * fixed: the file-chooser on "add card-file" does not appear
 
 
-OpenCards 0.13 (24.3.2008)
+## Opencards 0.13 (24.3.2008)
 * New logo for OpenCards (bug 1791943)
-* Much better long-term scheduling algorithm (bug 1912235)                                        
+* Much better long-term scheduling algorithm (bug 1912235)
 * Learning success is now visualized instead of 'number of repetitions' (which was buggy anyway) in ltm-manager
 * Forced refreshment of flashcards (feature requests 1907526, 1880284)
 * Current slide becomes recentered in Impress if 'Home' is pressed or the learn-progress-bar is double-clicked (feature request 1922573)
@@ -153,11 +150,11 @@ OpenCards 0.13 (24.3.2008)
 * fixed: OpenCards crashes if all but one item in the last-minute learning were skipped
 * fixed: scheduling broken after midnight (bug 1908379)
 
-OpenCards 0.12.1 (24.2.2008)
+## Opencards 0.12.1 (24.2.2008)
 * fixed: Auto-Discovery dead-lock
 * improved: AboutDialog updated to 2008
 
-OpenCards 0.12. (22.2.2008)
+## Opencards 0.12. (22.2.2008)
 * Integrated OpenCards into context-menu of Impress slide-pane which allows to configure single flashcards (feature request 1895484)
 * Monitoring of flashcard-directories: Auto-discovery of uncategorized flashcard-files (feature request 1896374)
 * Customizable flashcard-retention, which is used to scale the spacing intervals between scheduled reviews
@@ -165,20 +162,20 @@ OpenCards 0.12. (22.2.2008)
 * improved: New color-scheme for last-minute cardbox-view which highights the current flashcard (bug 1876302)
 * improved: Session-persistent random-reverse-states for ltm-learning (bug 1875864)
 * improved: Cardfile settings dialog is now fully localized
-* fixed: There is a probability >0 that flashcards within a file obtain the same OpenCardsID  
+* fixed: There is a probability >0 that flashcards within a file obtain the same OpenCardsID
 * fixed: OpenCards is blocked after LastMinute-Learning was started once using the file-context menu in the LTM-Manager
 * improved: use more fields of OOo extension framework (publisher, release notes, display name)
 
-OpenCards 0.11.3 (26.1.2008)
+## Opencards 0.11.3 (26.1.2008)
 * fixed: links to help-page and contribution-page are broken
 
-OpenCards 0.11.2 (20.1.2008)
+## Opencards 0.11.2 (20.1.2008)
 * fixed: cards which were scheduled for tomorrow yesterday are scheduled for tomorrow also today
 
-OpenCards 0.11.1 (14.1.2008)
+## Opencards 0.11.1 (14.1.2008)
 * urgent bugfixes
 
-OpenCards 0.11 (13.1.2008)
+## Opencards 0.11 (13.1.2008)
 * Added icons to context-menu of file-view in the Long-Term memorization manager
 * Added link to the OpenCards-flashcard repository to the OpenCards-menu
 * LTM-Manager becomes invisible if a card-file is double-clicked
@@ -189,7 +186,7 @@ OpenCards 0.11 (13.1.2008)
 * fixed: the result of a forced syun-operation is not serialized
 
 
-OpenCards 0.10 (21.12.2007)
+## Opencards 0.10 (21.12.2007)
 * Insession Ultra-Short-Time Rescheduling
 * Statistics-panel are updated on selection-changes in the file-table
 * New menu-structure
@@ -210,16 +207,16 @@ OpenCards 0.10 (21.12.2007)
 * Flashcard-printing manager which temporarily duplicates all slides to contain on the duplicated slide the question/keyword of each slide only
 
 
-OpenCards 0.9.3 (6.12.2007)
+## Opencards 0.9.3 (6.12.2007)
 * fixed: scheduling dates in LTM-Manager are not updated correctly
 
-OpenCards 0.9.2 (5.12.2007)
+## Opencards 0.9.2 (5.12.2007)
 * fixed: context-menu for categories and cardfiles does not appear under linux
 
-OpenCards 0.9.1 (5.12.2007)
+## Opencards 0.9.1 (5.12.2007)
 * fixed: category-tree serialization failed under linux and winXP
 
-OpenCards 0.9 (4.12.2007)
+## Opencards 0.9 (4.12.2007)
 * First beta of OpenCards :-)
 * Auto-synchronization on changes, insertions and deletions of slides while being in learning mode
 * Streamlined keyboard control interface by using arrow-keys only
@@ -232,15 +229,15 @@ OpenCards 0.9 (4.12.2007)
 * Fixed: STM* and LTM-learning can be started within a single Impress-frame in parallel
 * Various minor stability and usability improvements
 
-OpenCards 0.8.1
+## Opencards 0.8.1
 
 * urgent bugfixes
 * fixed: start learning in empty ltm-manager failed
 * fixed: wrong intial box in leitner system
 
-OpenCards 0.8
+## Opencards 0.8
 
-* Import of flashcards from csv-files 
+* Import of flashcards from csv-files
 * Simplified long-term learning manager
 * Improved overall stability, by taking more care of OpenOffice-events
 * Improved long-term learning algorithm
@@ -250,7 +247,7 @@ OpenCards 0.8
 * Unified API of different learning apporoaches
 * Bug-fixes
 
-OpenCards 0.7
+## Opencards 0.7
 
 * new artwork
 * flashcard-category management
@@ -262,9 +259,9 @@ OpenCards 0.7
 * improved presentation of flashcards
 * bug-fixes
 * fully compatible with OpenOffice 2.3
-    
 
-OpenCards 0.6
+
+## Opencards 0.6
 
 * keyboard mapping for learn-dialog
 * settings management
@@ -276,7 +273,7 @@ OpenCards 0.6
 * bug report dialog in case of exceptions
 * presentation dependent learn-settings
 
-Opencards 0.5
+## Opencards 0.5
 
 * Leitner flashcard learning
 * Different learning strategies
