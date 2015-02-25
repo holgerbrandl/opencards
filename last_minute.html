@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>OpenCards</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]>
+    <script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+<!-- Static navbar -->
+<div class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">OpenCards</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="faq.html">FAQ</a></li>
+
+                <li><a href="about.html">About us</a></li>
+                <li><a href="contribute.html">Contribute</a></li>
+                <li class="dropdown">
+                    <a href="help.html" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="category.html">Category View</a></li>
+                        <li><a href="ltm.html">Long Term Learning</a></li>
+                        <li><a href="last_minute.html">Last Minute Learning</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-6">
+            <div id="content"><h1 class="pagetitle">Last Minute learning</h1>
+
+                <div class="entry page clear">
+                    <p>Even if the <a title="Long Term&nbsp;Learning"
+                                      href="ltm.html">LTM-learning mode</a> in
+                        OpenCards is the most efficient tool to memorize facts and figures, sometimes a more simplistic
+                        learning scheme is more appropriate. Just imagine an exam with many pointless facts the
+                        professor wants you to memorize. Or an upcoming trip to some far away country for which you want
+                        to learn the basic vocabulary as fast as possible. For such situations OpenCards implements a
+                        short term&nbsp;memorization&nbsp;scheme based on the well known&nbsp;<a
+                                href="http://en.wikipedia.org/wiki/Leitner_system" target="_blank">Leitner system</a>.
+                    </p>
+
+                    <p>The basic idea of the last minute learning mode is to assume a set of virtual boxes. All new
+                        flashcards start in the leftmost box and are shifted rightwards if the student can recall them
+                        correctly. If the student fails to recall an item, it is put back into the next left box (or the
+                        leftmost box if you set this option in the OpenCards preferences). The learning process ends, if
+                        all items are in the rightmost box. By learning this way you can quickly memorize new facts, but
+                        don’t expect this knowledge to last forever.</p>
+
+                    <p style="text-align:center;"><img class="aligncenter"
+                                                       src="images/help/lastmin/Flashcard.png"
+                                                       alt="" width="230" height="123" scale="2"></p>
+
+                    <h1>How does the LastMinute mode work in OpenCards?</h1>
+
+                    <p>When you invoke the “Last Minute” mode for a cardset selection in the <a
+                            title="Category&nbsp;View" href="category.html">category
+                        view</a>, the&nbsp;<strong>LastMinute Configuration Dialog</strong>&nbsp;will show up. There you
+                        can choose between three different last-minute learning configurations</p>
+                    <ul>
+                        <li>You can learn until all cards have been recalled 5 times in a row successfully and are all
+                            moved to the final <strong>last &nbsp;box</strong>.
+                        </li>
+                        <li>You learn each file in your selection for a <strong>predefined number of minutes</strong>
+                        </li>
+                        <li>You can <strong>limit the number of recalls</strong>. So choosing 100 will cause OpenCards
+                            to probe 100 flashcards (including repetitions if necessary, if flashcard are not yet in the
+                            final 5th box)
+                        </li>
+                    </ul>
+                    <p style="text-align:center;"><a
+                            class="aligncenter" title="last_minute_configuration"
+                            src="images/help/lastmin/last_minute_configuration.png"
+                            alt="" width="497" height="332" originalw="497" originalh="332"
+                            scale="2"></a></p>
+
+                    <p>Once, you selected a learning mode, you need to press<strong>&nbsp;Start Learning</strong>&nbsp;to
+                        start the learning mode. The learning mode works as the long-term memorization mode, but has a
+                        limited set of feedback buttons</p>
+                    <ul>
+                        <li><strong>Perfectly</strong>: Press this button, if you could recall the item. This will cause
+                            the current card to be moved to the next higher box.
+                        </li>
+                        <li><strong>Not at all</strong>: Press this button, if you could not recall the item. The card
+                            will be moved to the next lower box. Cards in the first box will remain where they are.
+                        </li>
+                    </ul>
+                    <div>Below the feedback buttons the current state of the box-model of the current file is displayed.
+                        The current card is displayed in&nbsp;red, new not yet queried cards are shown in&nbsp;blue&nbsp;and
+                        previously successfully recalled cards are depicted in&nbsp;green.
+                    </div>
+                    <p style="text-align:center;">
+                        <img src="images/help/lastmin/last_minute_learning1.png"
+                             class="aligncenter" title="last_minute_learning"
+                             alt="" width="497" height="468" originalw="497" originalh="468"
+                             scale="2"></p>
+
+                    <h1></h1>
+
+                    <h1>Questions?</h1>
+
+                    <p>If you’ve found this help section to be incomplete or confusing, feel welcome to ask questions
+                        and to suggest improvements in our&nbsp;<a
+                                href="https://groups.google.com/forum/#!forum/opencards">discussion forum</a>.</p>
+
+                    <div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled">
+                        <div class="sharedaddy sd-sharing-enabled">
+                            <div class="robots-nocontent sd-block sd-social sd-social-icon-text sd-sharing"><h3
+                                    class="sd-title">Share this:</h3>
+
+                                <div class="sd-content">
+                                    <ul>
+                                        <li class="share-press-this"><a rel="nofollow"
+                                                                        class="share-press-this sd-button share-icon"
+                                                                        href="https://opencards2.wordpress.com/help/last-minute-learning/?share=press-this&amp;nb=1"
+                                                                        title="Click to Press This!"><span>Press This</span></a>
+                                        </li>
+                                        <li class="share-twitter"><a rel="nofollow"
+                                                                     class="share-twitter sd-button share-icon"
+                                                                     href="https://opencards2.wordpress.com/help/last-minute-learning/?share=twitter&amp;nb=1"
+                                                                     title="Click to share on Twitter"
+                                                                     id="sharing-twitter-297"><span>Twitter</span></a>
+                                        </li>
+                                        <li class="share-facebook"><a rel="nofollow"
+                                                                      class="share-facebook sd-button share-icon"
+                                                                      href="https://opencards2.wordpress.com/help/last-minute-learning/?share=facebook&amp;nb=1"
+                                                                      title="Share on Facebook"
+                                                                      id="sharing-facebook-297"><span>Facebook</span></a>
+                                        </li>
+                                        <li class="share-end"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <footer>
+        <p>&copy; Holger Brandl</p>
+    </footer>
+
+</div>
+
+<!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

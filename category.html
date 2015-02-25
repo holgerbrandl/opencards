@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+
+    <title>OpenCards</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]>
+    <script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+<!-- Static navbar -->
+<div class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">OpenCards</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="faq.html">FAQ</a></li>
+
+                <li><a href="about.html">About us</a></li>
+                <li><a href="contribute.html">Contribute</a></li>
+                <li class="dropdown">
+                    <a href="help.html" class="dropdown-toggle" data-toggle="dropdown">Help <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="category.html">Category View</a></li>
+                        <li><a href="ltm.html">Long Term Learning</a></li>
+                        <li><a href="last_minute.html">Last Minute Learning</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+        <div id="content"><h1 class="pagetitle">Category View</h1>
+
+            <div class="entry page clear">
+                <p>The category view in OpenCards allows to group flashcard sets into meaningful categories. Basically
+                    the view works like a file manager: You can organize your flashcard files into categories which you
+                    can browse by clicking on the categories in the tree.</p>
+
+                <p>In the picture shown below we’ve highlighted the most important aspects of the view.</p>
+
+                <p style="text-align:center;"><img
+                        class="aligncenter size-full wp-image-267" title="OpenCards - Category View"
+                        src="images/help/category/opencards-category-view1.png"
+                        alt="" width="497" height="349" originalw="497" originalh="349"
+                        scale="2"></p>
+
+                <h2>Category Tree</h2>
+
+                <p>The categories that are present when you start OpenCards for the first time are just an example. Feel
+                    free to create a tree which reflects the categorization that you consider to be appropriate for your
+                    cardsets. Some users of OpenCards prefer more fine-granular categories with sub-categories, and some
+                    prefer to keep all their cardsets simply in the ‘All’ category.</p>
+
+                <p>You can change the category tree by using the context menu on any of the categories.</p>
+
+                <p style="text-align:center;"><img
+                        class="aligncenter size-full wp-image-271" title="category tree context menu"
+                        src="images/help/category/category-tree-context-menu.png" alt=""
+                        originalw="497" width="359" height="350" scale="2"></p>
+
+                <p style="text-align:left;">These are the possible actions from the context menu</p>
+                <ul>
+                    <li><strong>Create new category</strong>: Allows to create a new sub-categories with a custom name.
+                        This new category will become a child-category of the category on which the context menu had
+                        been opened.
+                    </li>
+                    <li><strong>Add card-set</strong>: Allows to add a new ppt-flashcard file to a category. A file
+                        selection dialog will show up where you can navigate to your cardsets and select one or multiple
+                        (just keep Ctrls/Apple key pressed while selecting files) files
+                    </li>
+                    <li><strong>Cut, Copy, Paste</strong>: Works like coping files in a file manager. It’s the same
+                        concept applied to&nbsp;categories&nbsp;in the tree.
+                    </li>
+                    <li><strong>Delete</strong>: Deletes the current category. This will <strong>NOT </strong>delete any
+                        flashcard-sets being part of the category.
+                    </li>
+                    <li><strong>Include subcategories</strong>: If checked, the card table will include not just the
+                        cardets of the category, but also all cardsets of child-categories.
+                    </li>
+                </ul>
+                <h2>Cardset details table</h2>
+
+                <p style="text-align:center;">This table shows all cardsets in the currently selected category. If
+                    “Include subcatgories” is enabled in the context menu of the category view, this will include all
+                    cardsets of all child-categories of the currently selected category.<br>
+                    <img
+                            class="aligncenter size-full wp-image-273" style="margin-top:10px;margin-bottom:10px;"
+                            title="OpenCards - cardset table"
+                            src="images/help/category/opencards-cardet-table.png" alt=""
+                            originalw="497" width="497" height="146"
+                            scale="2"></p>
+
+                <p>The meaning of the columns in the table is a follows:</p>
+                <ul>
+                    <li><strong>Name</strong>: This is simply the name of ppt-file of the cardset. If you hover with the
+                        mouse over it, you’ll see the complete path of the file.
+                    </li>
+                    <li><strong>On schedule for</strong>: Tells you about the next date when some items of the cardsets
+                        are scheduled a review. The numbers in brackers can be read as follows:&nbsp;Today (11+2) == 11
+                        items will be repeasted today, and 2 new items will be presented for the first time. Tomorrow
+                        (12) == 12 items need to be reviewed tomorrow
+                    </li>
+                    <li><strong># new cards</strong>: Indicates the number of not yet reviewed flashcard in this set
+                    </li>
+                    <li><strong># cards</strong>: Denotes the total number of flashcard (==slides) in the flashcard
+                        ppt-file
+                    </li>
+                </ul>
+                <p>Instead of learning all cardsets of the current category, you can sub-select card-files for review,
+                    by clicking on them in the table view. You can even subselect multiple card-sets from a category for
+                    a learning session: You just need to keep the Control (for Windows and Linux) /Apple (for Macos) key
+                    pressed when selecting cardsets.</p>
+
+                <h2>Cardset settings</h2>
+
+                <p style="text-align:left;">By right-clicking on a presentation you configure some cardset-specifc
+                    settings:</p>
+
+                <p style="text-align:center;"><img
+                        class="aligncenter size-full wp-image-360" title="configure_cardset"
+                        src="images/help/category/configure_cardset.png"
+                        alt="" width="497" height="267" originalw="497" originalh="267"
+                        scale="2"></p>
+
+                <p style="text-align:left;">Currently, OpenCards has just 2 possible settings:</p>
+                <ul>
+                    <li><strong>Question Mode</strong>: This allows to specify what OpenCards considers as card
+                        question. You can either use the slide title as question, the slide content, or a random mode
+                        which will choose either title or content to be the question randomly (ie. one day title, next
+                        day contents, etc.).
+                    </li>
+                    <li><strong>Desired retention</strong>: This parameter allows to fine-tune the LTM-scheduling for
+                        this cardset. Higher values will cause OpenCards to query flashcards of this set more&nbsp;frequently&nbsp;(to
+                        ensure that you’re really, really able to recall them)
+                    </li>
+                </ul>
+                <h2>Schedule &amp; Progress graphs</h2>
+
+                <p>This view will show some statistics about the current cardset&nbsp;selection.</p>
+
+                <p>The <strong>schedule graph</strong> gives an overview about the number of items which are scheduled
+                    for the upcoming week.</p>
+
+                <p>The <strong>progress graph</strong> gives some idea about how well you’ve already memorized your
+                    flashcards. It is calculated based on the number of reviews of the flashcards in the current
+                    selection.</p>
+
+                <h2>“Start Learning” Button</h2>
+
+                <p>By pressing the button, OpenCards will start a new <a title="Learning&nbsp;View"
+                                                                         href="category.html">learning
+                    session</a> for the currently selected set of flashcard sets.</p>
+
+                <p>OpenCards allows to modify the way an <a title="Long Term&nbsp;Learning"
+                                                            href="ltm.html">LTM
+                    learning</a> session is started:</p>
+                <ul>
+                    <li>Refreshment: This variation of the <a title="Long Term&nbsp;Learning"
+                                                              href="last_minute.html">LTM
+                        mode</a> becomes activated when the Shift key is pressed before the “Start Learning”-&nbsp;button
+                        is about to be pressed. OpenCards will indicate the changed mode by altering the button&nbsp;label
+                        to “Start refreshing”. When using this learning scheme OpenCards presents not only scheduled&nbsp;items
+                        of the selected card files, but all items found in these files. This gives you the possibility
+                        to&nbsp;refresh your knowledge in immediate preparation to an exam.
+                        <br>
+                        <img class="aligncenter size-full wp-image-322" title="refresh-learning"
+                             src="images/help/category/refresh-learning.png" alt=""
+                             originalw="497" width="257" height="189" scale="2"><br>
+                        If you score items with “well” or “perfectly” their internal state won’t be changed at all. If
+                        your recall&nbsp;ability was less
+                        than “well” these items will be rescheduled accordingly.
+                    </li>
+                    <li>Force New Cards: Normally, OpenCards restricts the number of new cards to be&nbsp;learnt
+                        according to your setting in the Preferences-&gt;LTM Learning (default = 30). But when using
+                        this&nbsp;scheme OpenCards will include all new flashcards into the LTM learning session to be
+                        started.&nbsp;This mode becomes activated when the Ctrl is pressed when the “Start Learning”-&nbsp;button
+                        is about to be pressed. OpenCards will indicate the changed mode by altering the button&nbsp;label
+                        to “Start Learning (+New)”.
+                    </li>
+                </ul>
+                <h1>Questions?</h1>
+
+                <p>If you’ve found this help section to be incomplete or confusing, feel welcome to ask questions and to
+                    suggest improvements in our&nbsp;<a href="https://groups.google.com/forum/#!forum/opencards">discussion
+                        forum</a>.</p>
+
+
+            </div>
+            <!--end entry-->
+            <!-- You can start editing here. -->
+            <div id="comments">
+            </div>
+            <!--end comments-->
+
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; Holger Brandl</p>
+    </footer>
+
+</div>
+
+<!-- /container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
