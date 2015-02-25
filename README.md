@@ -34,9 +34,13 @@ How to contribute?
 
 Feel welcome to suggest changes or pull requests.
 
-We still have some unmigrated in the old google-code ticket system (https://code.google.com/p/opencards/issues/list)
-
-http://www.opencards.info/about-us/
+There's a discussion forum to get in touch with us https://groups.google.com/forum/#!forum/opencards
 
 http://www.opencards.info/how-to-contribute/
+
+
+About
+------------------------
+
+http://www.opencards.info/about-us/
 
