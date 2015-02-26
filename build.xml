@@ -11,7 +11,7 @@
     <property name="bin.dir" location="${basedir}/bin"/>
 
     <property name="project.name" value="opencards"/>
-    <property name="project.version" value="2.2"/>
+    <property name="project.version" value="2.2.1" />
 
 
     <!--    <condition property="isMac">
@@ -65,60 +65,104 @@
     </target>
 
 
-    <target name="deploy.mac" depends="create-jar" description="creates a macos app for the opencards">
+    <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" />
+
+    <!-- deploy appbundle for mountain lion-->
+    <!--http://java.net/downloads/appbundler/appbundler.html-->
+    <!--http://docs.oracle.com/javase/7/docs/technotes/guides/jweb/packagingAppsForMac.html-->
+    <target name="deploy.macos" depends="create-jar" description="creates an app-bundle for macos">
         <mkdir dir="${dist.dir}"/>
+        <delete file="${dist.dir}/Movito.app" />
 
-        <!--readd this if you want an icon icon="rmicon.icns"-->
-        <jarbundler dir="${dist.dir}"
-                    name="OpenCards"
-                    shortname="OpenCards"
-                    mainclass="info.opencards.util.macos.OpenCardsWrapper4MacOSX"
-                    icon="deployment/opencards.icns"
-                    jvmversion="1.6+"
-                    version="${project.version}"
-                    vmoptions="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xmx1024m -Xms512m -Dcom.apple.macos.useScreenMenuBar=true -Dapple.laf.useScreenMenuBar=true">
+        <fileset dir="${basedir}" id="myjars">
+            <include name="lib/**/*.jar" />
+            <include name="opencards.jar" />
+        </fileset>
 
-            <!--<javaproperty name="WorkingDirectory" value="$APP_PACKAGE/Contents/Resources/Java/"/>-->
+        <!--suppress AntResolveInspection -->
+        <bundleapp outputdirectory="${dist.dir}" name="OpenCards" displayname="OpenCards"
+            identifier="info.movito.opencards" shortversion="${project.version}" icon="deployment/opencards.icns"
+            applicationCategory="public.app-category.developer-tools"
+            mainclassname="info/opencards/util/macos/OpenCardsWrapper4MacOSX">
+            <!--<runtime dir="${env.JAVA_HOME}"/>-->
+            <classpath refid="myjars" />
 
-            <jarfileset dir="${basedir}">
-                <include name="lib/**/*.jar"/>
-                <include name="opencards.jar"/>
-            </jarfileset>
+            <option value="-Dcom.apple.macos.useScreenMenuBar=true" />
+            <option value="-Dapple.laf.useScreenMenuBar=true" />
+            <option value="-Dapple.awt.showGrowBox=true" />
+            <option value="-Dapple.awt.graphics.EnableQ2DX=true" />
+            <option value="-Dcom.apple.mrj.application.apple.menu.about.name=OpenCARDS" />
+            <!--known to not work-->
+            <option value="-DNSHighResolutionCapable=true" />
 
-            <!--<resourcefilelist dir="lib/" files="plugins/*" />-->
-            <javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
-            <javaproperty name="apple.awt.brushMetal" value="true"/>
-            <javaproperty name="apple.awt.showGrowBox" value="false"/>
-            <javaproperty name="apple.awt.graphics.EnableQ2DX" value="true"/>
-
-        </jarbundler>
-
-        <!--<property name="maczip" value="${dist.dir}/${project.name}-${project.version}-macos.zip"/>-->
-
-        <!--<zip destfile="${maczip}">-->
-        <!--&lt;!&ndash;<zip destfile="${maczip}">&ndash;&gt;-->
-        <!--<zipfileset dir="${dist.dir}" includes="OpenCards.app/Contents/MacOS/JavaApplicationStub" filemode="755"/>-->
-        <!--</zip>-->
-
-        <!--<zip basedir="${dist.dir}" destfile="${maczip}" update="TRUE">-->
-        <!--<include name="OpenCards.app/**"/>-->
-        <!--&lt;!&ndash;<zipfileset dir="deployment" includes="OpenCards.app/**/JavaApplicationStub" filemode="755"/>&ndash;&gt;-->
-        <!--</zip>-->
-
-        <!--<zip destfile="${maczip}" update="TRUE" >-->
-        <!--&lt;!&ndash;<zip destfile="${maczip}">&ndash;&gt;-->
-        <!--<zipfileset dir="${dist.dir}" includes="OpenCards.app/Contents/MacOS/JavaApplicationStub" filemode="755"/>-->
-        <!--</zip>-->
+            <argument value="-Xmx512m" />
+            <argument value=" -Xms256m" />
+            <argument value="-Xdock:name=Movito" />
+        </bundleapp>
 
         <exec executable="hdiutil" os="Mac OS X">
-            <arg value="create"/>
-            <arg value="-srcfolder"/>
-            <arg value="${dist.dir}/OpenCards.app"/>
-            <arg value="-ov"/>
-            <arg value="${dist.dir}/${project.name}-${project.version}-macos.dmg"/>
+            <arg value="create" />
+            <arg value="-srcfolder" />
+            <arg value="${dist.dir}/OpenCards.app" />
+            <arg value="-ov" />
+            <arg value="${dist.dir}/OpenCards-${project.version}.dmg" />
         </exec>
-
     </target>
+
+    <!--<target name="deploy.mac" depends="create-jar" description="creates a macos app for the opencards">-->
+    <!--<mkdir dir="${dist.dir}"/>-->
+
+    <!--&lt;!&ndash;readd this if you want an icon icon="rmicon.icns"&ndash;&gt;-->
+    <!--<jarbundler dir="${dist.dir}"-->
+    <!--name="OpenCards"-->
+    <!--shortname="OpenCards"-->
+    <!--mainclass="info.opencards.util.macos.OpenCardsWrapper4MacOSX"-->
+    <!--icon="deployment/opencards.icns"-->
+    <!--jvmversion="1.6+"-->
+    <!--version="${project.version}"-->
+    <!--vmoptions="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xmx1024m -Xms512m -Dcom.apple.macos.useScreenMenuBar=true -Dapple.laf.useScreenMenuBar=true">-->
+
+    <!--&lt;!&ndash;<javaproperty name="WorkingDirectory" value="$APP_PACKAGE/Contents/Resources/Java/"/>&ndash;&gt;-->
+
+    <!--<jarfileset dir="${basedir}">-->
+    <!--<include name="lib/**/*.jar"/>-->
+    <!--<include name="opencards.jar"/>-->
+    <!--</jarfileset>-->
+
+    <!--&lt;!&ndash;<resourcefilelist dir="lib/" files="plugins/*" />&ndash;&gt;-->
+    <!--<javaproperty name="apple.laf.useScreenMenuBar" value="true"/>-->
+    <!--<javaproperty name="apple.awt.brushMetal" value="true"/>-->
+    <!--<javaproperty name="apple.awt.showGrowBox" value="false"/>-->
+    <!--<javaproperty name="apple.awt.graphics.EnableQ2DX" value="true"/>-->
+
+    <!--</jarbundler>-->
+
+    <!--&lt;!&ndash;<property name="maczip" value="${dist.dir}/${project.name}-${project.version}-macos.zip"/>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<zip destfile="${maczip}">&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<zip destfile="${maczip}">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;<zipfileset dir="${dist.dir}" includes="OpenCards.app/Contents/MacOS/JavaApplicationStub" filemode="755"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;</zip>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<zip basedir="${dist.dir}" destfile="${maczip}" update="TRUE">&ndash;&gt;-->
+    <!--&lt;!&ndash;<include name="OpenCards.app/**"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<zipfileset dir="deployment" includes="OpenCards.app/**/JavaApplicationStub" filemode="755"/>&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;</zip>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<zip destfile="${maczip}" update="TRUE" >&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash;<zip destfile="${maczip}">&ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;<zipfileset dir="${dist.dir}" includes="OpenCards.app/Contents/MacOS/JavaApplicationStub" filemode="755"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;</zip>&ndash;&gt;-->
+
+    <!--<exec executable="hdiutil" os="Mac OS X">-->
+    <!--<arg value="create"/>-->
+    <!--<arg value="-srcfolder"/>-->
+    <!--<arg value="${dist.dir}/OpenCards.app"/>-->
+    <!--<arg value="-ov"/>-->
+    <!--<arg value="${dist.dir}/${project.name}-${project.version}-macos.dmg"/>-->
+    <!--</exec>-->
+
+    <!--</target>-->
 
 
     <target name="deploy.linux" depends="create-jar" description="creates a macos app for the opencards">
@@ -159,8 +203,9 @@
     <!-- Create a Debian package-->
     <!---->
     <path id="ant-deb.classpath">
-        <fileset dir="/Users/brandl/ant-deb-task-read-only/lib" includes="*.jar"/>
+        <fileset dir="deployment" includes="ant-deb.jar" />
     </path>
+
 
     <taskdef name="deb" classname="com.googlecode.ant_deb_task.Deb" classpathref="ant-deb.classpath"/>
 
@@ -209,7 +254,7 @@
     </target>
 
 
-    <target name="deploy.all" depends="deploy.linux, deploy.mac, deploy.win, deploy.debian"
+    <target name="deploy.all" depends="deploy.linux, deploy.macos, deploy.win, deploy.debian"
             description="Creates a release for all platforms"/>
 
 </project>
