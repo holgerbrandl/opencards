@@ -36,11 +36,11 @@ Feel welcome to suggest changes or pull requests.
 
 There's a discussion forum to get in touch with us https://groups.google.com/forum/#!forum/opencards
 
-http://www.opencards.info/how-to-contribute/
+http://opencards.info/contribute.html
 
 
 About
 ------------------------
 
-http://www.opencards.info/about-us/
+http://opencards.info/about.html
 
