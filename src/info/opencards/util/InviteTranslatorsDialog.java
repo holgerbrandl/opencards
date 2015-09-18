@@ -70,7 +70,7 @@ public class InviteTranslatorsDialog extends JDialog {
 
 
     private void tellMeMoreButtonActionPerformed() {
-        new URLAction("translateit", AboutDialog.OC_WEBSITE + "/how-to-contribute/#translate").actionPerformed(null);
+        new URLAction("translateit", AboutDialog.OC_WEBSITE + "/contribute.html/#translate").actionPerformed(null);
         cancelButtonActionPerformed();
     }
 

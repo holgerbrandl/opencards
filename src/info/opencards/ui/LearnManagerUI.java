@@ -85,7 +85,7 @@ public class LearnManagerUI extends JPanel implements CardFileSelectionListener 
 
         catTree.addCardFilesSelectionListener(selectionManager);
 
-        helpButton.setAction(new HelpAction("help/category-view"));
+        helpButton.setAction(new HelpAction("category.html"));
 
         selectionManager.addCardFileSelectionListener(this);
 

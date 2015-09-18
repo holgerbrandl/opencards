@@ -13,16 +13,16 @@ public class HelpAction extends URLAction {
 
 
     public HelpAction() {
-        this("help");
-    }
-
-
-    public HelpAction(String helpSection) {
-        this(Utils.getRB().getString("General.help"), helpSection);
+        this("help.html");
     }
 
 
     private HelpAction(String actionName, String helpItem) {
         super(actionName, AboutDialog.OC_WEBSITE + helpItem);
+    }
+
+
+    public HelpAction(String helpSection) {
+        this(Utils.getRB().getString("General.help"), helpSection);
     }
 }

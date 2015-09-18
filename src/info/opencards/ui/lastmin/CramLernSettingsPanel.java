@@ -42,7 +42,7 @@ public class CramLernSettingsPanel extends JPanel {
         stratPanelPanel.add(defStratPanel);
         stratPanelPanel.validate();
 
-        helpButton.setAction(new HelpAction("help/last-minute-learning/"));
+        helpButton.setAction(new HelpAction("last_minute.html"));
 
 
 //        CardFilePropsAction propsAction = new CardFilePropsAction(defStratPanel, false, Utils.getRB().getString("CramLernSettingsPanel.fileProperties") + "...");

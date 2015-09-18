@@ -40,7 +40,7 @@ public class LeitnerLearnDialog extends AbstractLearnDialog {
 
     @Override
     protected HelpAction getHelpAction() {
-        return new HelpAction("help/last-minute-learning");
+        return new HelpAction("last_minute.html");
     }
 
 

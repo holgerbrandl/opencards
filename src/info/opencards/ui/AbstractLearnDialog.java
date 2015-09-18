@@ -80,7 +80,7 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
 
 
     protected HelpAction getHelpAction() {
-        return new HelpAction("help/long-term-learning");
+        return new HelpAction("ltm.html");
     }
 
 
