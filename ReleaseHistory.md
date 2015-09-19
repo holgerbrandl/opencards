@@ -1,5 +1,11 @@
 ﻿The release history of OpenCards.
 
+## Opencards 2.3 (18.9.2015)
+* Added Dutch translation (thanks to  Rutger Scholtens)
+* Improved german translation
+* Fixed links to help
+* Improved Rendering of Cards (using POI v3.12)
+
 ## Opencards 2.2 (22.2.2012)
 * Added Simplified Chinese translation (thanks to Lee Darren)
 * Added Japanese translation (thanks to Eberhard Herzog)

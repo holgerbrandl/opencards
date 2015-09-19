@@ -11,7 +11,7 @@
     <property name="bin.dir" location="${basedir}/bin"/>
 
     <property name="project.name" value="opencards"/>
-    <property name="project.version" value="2.2.1" />
+    <property name="project.version" value="2.3.0" />
 
 
     <!--    <condition property="isMac">

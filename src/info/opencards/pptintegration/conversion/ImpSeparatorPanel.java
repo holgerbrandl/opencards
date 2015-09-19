@@ -121,6 +121,7 @@ class ImpSeparatorPanel extends JPanel {
             tabRadioButton.setText("TAB");
             tabRadioButton.setSelected(true);
             tabRadioButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     separatorChanged();
                 }
@@ -130,6 +131,7 @@ class ImpSeparatorPanel extends JPanel {
             //---- semRadioButton ----
             semRadioButton.setText(";");
             semRadioButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     separatorChanged();
                 }
@@ -139,6 +141,7 @@ class ImpSeparatorPanel extends JPanel {
             //---- spaceRadioButton ----
             spaceRadioButton.setText("\" \"");
             spaceRadioButton.addActionListener(new ActionListener() {
+                @Override
                 public void actionPerformed(ActionEvent e) {
                     separatorChanged();
                 }
@@ -176,13 +179,13 @@ class ImpSeparatorPanel extends JPanel {
         //---- enterRadioButton ----
         enterRadioButton.setText("ENTER");
         enterRadioButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 separatorChanged();
             }
         });
 
         //---- sepRadios ----
-        sepRadios = new ButtonGroup();
         sepRadios.add(tabRadioButton);
         sepRadios.add(semRadioButton);
         sepRadios.add(spaceRadioButton);

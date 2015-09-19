@@ -15,6 +15,7 @@ import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public class ImportManager {
 
 
             public String getDescription() {
-                return "Text with tab separated Q/A (*.csv, *.txt)";
+                return "Text (*.csv, *.txt)";
             }
         };
 
@@ -124,8 +125,9 @@ public class ImportManager {
 
 
     public static Map<String, String> readCsvFile(File selectedFile, String separatorString) {
-        if (selectedFile.isDirectory())
-            return null;
+        if (selectedFile.isDirectory()) {
+            return Collections.emptyMap();
+        }
 
         try {
 

@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 public class AboutDialog extends JDialog {
 
 
-    public static final String OPENCARDS_VERSION = "2.2";
+    public static final String OPENCARDS_VERSION = "2.3";
     public static final String OC_WEBSITE = "http://opencards.info/";
 
 
