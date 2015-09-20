@@ -232,7 +232,7 @@
              homepage="http://www.opencards.info"
              depends="openjdk-7-jre | openjdk-7-jdk">
             <version upstream="${project.version}"/>
-            <maintainer name="Holger Brandl" email="opencards4ppt@gmail.com"/>
+            <maintainer name="Holger Brandl" email="support@opencards.info" />
             <description synopsis="OpenCards is a free flashcard learning software for ppt-files">
                 OpenCards is a free award-winning flashcard learning software. The basic idea of OpenCards is to use
                 PowerPoint presentations (*.ppt) as flashcard sets. Thereby, slide-titles are considered as questions

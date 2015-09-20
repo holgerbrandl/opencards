@@ -44,7 +44,7 @@ public class ExceptionDialog extends JDialog {
                 "Dear OpenCards-team,\n\nthe following problem occurred while I was using OpenCards:" +
                         " \n\n" + longErrorMsg + "\n\nAdd more comments here if necessary!!\n\n Best, ...");
 
-        String mailToArg = "mailto:opencards4ppt@gmail.com?subject=" + subject + "&body=" + body;
+        String mailToArg = "mailto:support@opencards.info?subject=" + subject + "&body=" + body;
 
         try {
             URI reportURI = new URI(mailToArg);
