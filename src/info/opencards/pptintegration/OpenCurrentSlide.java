@@ -3,7 +3,7 @@ package info.opencards.pptintegration;
 import info.opencards.OpenCards;
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
-import org.apache.poi.hslf.model.Slide;
+import org.apache.poi.sl.usermodel.Slide;
 
 import javax.swing.*;
 import java.awt.*;

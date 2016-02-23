@@ -3,8 +3,11 @@ package info.opencards.pptintegration;
 import info.opencards.OpenCards;
 import info.opencards.Utils;
 import info.opencards.core.*;
-import org.apache.poi.hslf.model.Slide;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
+import org.apache.poi.sl.usermodel.Slide;
+import org.apache.poi.sl.usermodel.SlideShow;
+
+import java.util.List;
 
 
 /**
@@ -29,7 +32,7 @@ public class PPTImageProxy implements PresenterProxy {
         // note:
         // The random-reverse mode is encoded directly in the flashcard in order to make its policy temporary
         // persistent during the todaysltm-sessions
-        Slide curSlide = slideShow.getSlides()[cardIndex - 1];
+        Slide curSlide = ((HSLFSlideShow) slideShow).getSlides().get(cardIndex - 1);
 
         switch (cardRevPolicy) {
             case NORMAL:
@@ -57,7 +60,7 @@ public class PPTImageProxy implements PresenterProxy {
 
 
     public boolean showCompleteCard(Item item) {
-        Slide curSlide = slideShow.getSlides()[item.getFlashCard().getCardIndex() - 1];
+        Slide curSlide = ((HSLFSlideShow) slideShow).getSlides().get(item.getFlashCard().getCardIndex() - 1);
         getSlidePanel().configure(curSlide, true, true);
 
         return true;
@@ -144,11 +147,12 @@ public class PPTImageProxy implements PresenterProxy {
      * Test if item is in sync with given slide-show instance
      */
     private boolean isItemOutOfSync(Item item, SlideShow slideShow) {
-        final Slide[] allSlides = slideShow.getSlides();
+        final List<? extends Slide> allSlides = ((HSLFSlideShow) slideShow).getSlides();
+
         final int itemCardIndex = item.getFlashCard().getCardIndex();
 
-        return itemCardIndex < 0 || (allSlides.length < itemCardIndex - 1)
-                || allSlides[itemCardIndex - 1].getTitle() == null
-                || allSlides[itemCardIndex - 1].getTitle().hashCode() != item.getFlashCard().getCardID();
+        return itemCardIndex < 0 || (allSlides.size() < itemCardIndex - 1)
+                || allSlides.get(itemCardIndex - 1).getTitle() == null
+                || allSlides.get(itemCardIndex - 1).getTitle().hashCode() != item.getFlashCard().getCardID();
     }
 }

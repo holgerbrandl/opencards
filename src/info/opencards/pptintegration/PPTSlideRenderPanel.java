@@ -2,11 +2,10 @@ package info.opencards.pptintegration;
 
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
-import org.apache.poi.hslf.model.AutoShape;
-import org.apache.poi.hslf.model.MasterSheet;
-import org.apache.poi.hslf.model.Shape;
-import org.apache.poi.hslf.model.Slide;
 import org.apache.poi.hslf.record.TextHeaderAtom;
+import org.apache.poi.hslf.usermodel.*;
+import org.apache.poi.sl.usermodel.AutoShape;
+import org.apache.poi.sl.usermodel.Slide;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +22,7 @@ import java.awt.geom.AffineTransform;
 public class PPTSlideRenderPanel extends JPanel {
 
 
-    private Slide slide;
+    private HSLFSlide slide;
     private boolean showTitleShape;
     private boolean showContent;
 
@@ -44,22 +43,25 @@ public class PPTSlideRenderPanel extends JPanel {
     }
 
 
-    private void drawSlidesPartially(Graphics2D graphics, Slide slide) {
-        MasterSheet master = slide.getMasterSheet();
-        if (slide.getFollowMasterBackground()) master.getBackground().draw(graphics);
+    private void drawSlidesPartially(Graphics2D graphics, HSLFSlide slide) {
+        HSLFSlideMaster master = (HSLFSlideMaster) slide.getMasterSheet();
+
+        if (slide.getFollowMasterBackground()) ((HSLFBackground) master.getBackground()).draw(graphics);
+
         if (slide.getFollowMasterObjects()) {
-            org.apache.poi.hslf.model.Shape[] sh = master.getShapes();
-            for (org.apache.poi.hslf.model.Shape aSh : sh) {
-                if (MasterSheet.isPlaceholder(aSh)) continue;
+
+            java.util.List<HSLFShape> sh = master.getShapes();
+            for (HSLFShape aSh : sh) {
+                if (aSh.isPlaceholder()) continue;
 
                 aSh.draw(graphics);
             }
         }
 
 
-        Shape titleShape = getTitleShape(slide);
+        HSLFShape titleShape = getTitleShape(slide);
 
-        for (Shape shape : slide.getShapes()) {
+        for (HSLFShape shape : slide.getShapes()) {
             boolean isTitleShape = shape.getShapeId() == titleShape.getShapeId();
 
             if (isTitleShape && showTitleShape) {
@@ -69,24 +71,32 @@ public class PPTSlideRenderPanel extends JPanel {
             if (!isTitleShape && showContent) {
                 shape.draw(graphics);
             }
+
+            shape.draw(graphics);
+
         }
     }
 
 
-    Shape getTitleShape(Slide slide) {
+    HSLFShape getTitleShape(HSLFSlide slide) {
         String slideTitle = slide.getTitle();
 
-        for (org.apache.poi.hslf.model.Shape shape : slide.getShapes()) {
+        for (HSLFShape shape : slide.getShapes()) {
             if (shape instanceof AutoShape) {
-                AutoShape autoShape = (AutoShape) shape;
+                HSLFAutoShape autoShape = (HSLFAutoShape) shape;
                 if (autoShape.getText() != null && autoShape.getText().equals(slideTitle)) {
-                    int type = autoShape.getTextRun().getRunType();
+                    int type = autoShape.getRunType();
+
                     if (type == TextHeaderAtom.CENTER_TITLE_TYPE || type == TextHeaderAtom.TITLE_TYPE) {
                         return shape;
                     }
                 }
             }
         }
+
+//  When you have a XSLFSlide object you can use .getShapes() to get all shapes in the slide. If the shape is a
+// XSLFTextShape you can use .getTextType() to check if it's a title, .getTextParagraphs() to get the paragraphs and
+// .getTextRuns() on the paragraphs to get the text runs with the text. That should give you
 
         return null;
 
@@ -124,6 +134,7 @@ public class PPTSlideRenderPanel extends JPanel {
 //        System.err.println("baseSize: " + baseSize);
 //        System.err.println("scaling: " + slideScaleTransform);
 
+        // todo optionally preserve aspect ratio here
         AffineTransform slideScaleTransform = new AffineTransform();
         double xScale = getWidth() / baseSize.getWidth();
         double yScale = getHeight() / baseSize.getHeight();
@@ -135,7 +146,7 @@ public class PPTSlideRenderPanel extends JPanel {
 
 
     public void configure(Slide slide, boolean showTitle, boolean showContent) {
-        this.slide = slide;
+        this.slide = (HSLFSlide) slide;
 
         this.showTitleShape = showTitle;
         this.showContent = showContent;

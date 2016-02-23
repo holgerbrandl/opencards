@@ -4,7 +4,8 @@ package info.opencards.core;
 import info.opencards.core.categories.Category;
 import info.opencards.pptintegration.PPTSerializer;
 import info.opencards.ui.AbstractLearnDialog;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
+import org.apache.poi.sl.usermodel.SlideShow;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,7 +52,7 @@ public class CardFile {
     public static SlideShow getSlideShow(CardFile cardFile) {
         try {
             FileInputStream is = new FileInputStream(cardFile.getFileLocation());
-            return new SlideShow(is);
+            return new HSLFSlideShow(is);
         } catch (IOException e) {
             e.printStackTrace();
         }

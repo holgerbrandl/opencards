@@ -7,8 +7,8 @@ import info.opencards.core.CardFileSerializer;
 import info.opencards.core.FlashCard;
 import info.opencards.core.FlashCardCollection;
 import info.opencards.util.InvalidCardFileFormatException;
-import org.apache.poi.hslf.model.Slide;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.usermodel.HSLFSlide;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 
 import java.io.*;
 
@@ -28,9 +28,9 @@ public class PPTSerializer implements CardFileSerializer {
         FlashCardCollection fc = new FlashCardCollection();
         try {
             FileInputStream is = new FileInputStream(cardFile.getFileLocation());
-            SlideShow ppt = new SlideShow(is);
+            HSLFSlideShow ppt = new HSLFSlideShow(is);
 
-            for (Slide xslfSlide : ppt.getSlides()) {
+            for (HSLFSlide xslfSlide : ppt.getSlides()) {
                 String slideTitle = xslfSlide.getTitle();
                 if (slideTitle == null)
                     continue;
