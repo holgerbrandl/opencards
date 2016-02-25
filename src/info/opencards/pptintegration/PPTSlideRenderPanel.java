@@ -3,7 +3,11 @@ package info.opencards.pptintegration;
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
 import org.apache.poi.hslf.record.TextHeaderAtom;
-import org.apache.poi.hslf.usermodel.*;
+import org.apache.poi.hslf.usermodel.HSLFAutoShape;
+import org.apache.poi.hslf.usermodel.HSLFShape;
+import org.apache.poi.hslf.usermodel.HSLFSlide;
+import org.apache.poi.hslf.usermodel.HSLFSlideMaster;
+import org.apache.poi.sl.draw.DrawFactory;
 import org.apache.poi.sl.usermodel.AutoShape;
 import org.apache.poi.sl.usermodel.Slide;
 
@@ -46,7 +50,10 @@ public class PPTSlideRenderPanel extends JPanel {
     private void drawSlidesPartially(Graphics2D graphics, HSLFSlide slide) {
         HSLFSlideMaster master = (HSLFSlideMaster) slide.getMasterSheet();
 
-        if (slide.getFollowMasterBackground()) ((HSLFBackground) master.getBackground()).draw(graphics);
+        if (slide.getFollowMasterBackground()) {
+//            master.getBackground().draw(graphics);
+            factoryDraw(graphics, master.getBackground());
+        }
 
         if (slide.getFollowMasterObjects()) {
 
@@ -65,16 +72,23 @@ public class PPTSlideRenderPanel extends JPanel {
             boolean isTitleShape = shape.getShapeId() == titleShape.getShapeId();
 
             if (isTitleShape && showTitleShape) {
-                shape.draw(graphics);
+//                shape.draw(graphics);
+                factoryDraw(graphics, shape);
             }
 
             if (!isTitleShape && showContent) {
-                shape.draw(graphics);
+//                shape.draw(graphics);
+                factoryDraw(graphics, shape);
             }
 
             shape.draw(graphics);
 
         }
+    }
+
+
+    private void factoryDraw(Graphics2D graphics, HSLFShape shape) {
+        DrawFactory.getInstance(graphics).getDrawable(shape).draw(graphics);
     }
 
 
