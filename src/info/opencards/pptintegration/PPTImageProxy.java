@@ -3,8 +3,16 @@ package info.opencards.pptintegration;
 import info.opencards.OpenCards;
 import info.opencards.Utils;
 import info.opencards.core.*;
+import org.apache.poi.ddf.EscherComplexProperty;
+import org.apache.poi.ddf.EscherProperty;
+import org.apache.poi.hslf.extractor.PowerPointExtractor;
+import org.apache.poi.hslf.model.Shape;
 import org.apache.poi.hslf.model.Slide;
 import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.util.StringUtil;
+
+import java.io.File;
+import java.io.IOException;
 
 
 /**
@@ -150,5 +158,67 @@ public class PPTImageProxy implements PresenterProxy {
         return itemCardIndex < 0 || (allSlides.length < itemCardIndex - 1)
                 || allSlides[itemCardIndex - 1].getTitle() == null
                 || allSlides[itemCardIndex - 1].getTitle().hashCode() != item.getFlashCard().getCardID();
+    }
+
+//    http://apache-poi.1045710.n5.nabble.com/Extracting-alt-text-from-images-using-HWPF-td5665041.html
+
+
+    public static void main(String[] args) throws IOException {
+        CardFile cardFile = new CardFile(new File("/Users/holger/projects/opencards/oc2/testdata/test_praesi_with_alt_text.ppt"));
+        SlideShow slideShow = CardFile.getSlideShow(cardFile);
+        Slide slide = slideShow.getSlides()[0];
+        Shape[] allShapes = slide.getShapes();
+        System.out.println();
+
+        allShapes[2].getEscherOptRecord().getEscherProperties();
+
+        String[] myArgs = new String[]{"/Users/holger/projects/opencards/oc2/testdata/test_praesi_with_alt_text.ppt"};
+        PowerPointExtractor.main(myArgs);
+        for (EscherProperty property : allShapes[2].getEscherOptRecord().getEscherProperties()) {
+            System.out.println(property.getId());
+//            allShapes[2].getEscherChild(511)
+
+//            if(EscherProperties.GROUPSHAPE__DESCRIPTION != property.getPropertyNumber())
+//                return;
+
+            if (!(property instanceof EscherComplexProperty))
+                continue;
+
+
+            byte[] complexData = ((EscherComplexProperty) property).getComplexData();
+            String reformatData = StringUtil.getFromUnicodeLE(complexData);
+
+//            byte[] altTextData = new byte[(complexData.length/2)-1];
+//            for(int i = 0; i<altTextData.length; i++) {
+//                altTextData[i] = complexData[i * 2];
+//            }
+
+            System.out.println("alt name is " + reformatData);
+
+        }
+//        for(EscherRecord escherRecord : allShapes[2].getEscherOptRecord){
+//            if(escherRecord instanceof EscherOptRecord){
+//                EscherOptRecord escherOptRecord =
+//                        (EscherOptRecord) escherRecord;
+//                for(EscherProperty property :
+//                        escherOptRecord.getEscherProperties()){
+//                    if(EscherProperties.
+//                            GROUPSHAPE__DESCRIPTION == property.getPropertyNumber()){
+//                        byte[] complexData =
+//                                ((EscherComplexProperty)property).getComplexData();
+//                        byte[] altTextData = new byte
+//                                [(complexData.length/2)-1];
+//                        for(int i=0; i<altTextData.length
+//                                ;i++){
+//                            altTextData[i] =
+//                                    complexData[i*2];
+//                        }
+//
+//                        return new String(altTextData);
+//                    }
+//                }
+//            }
+//        }
+
     }
 }
