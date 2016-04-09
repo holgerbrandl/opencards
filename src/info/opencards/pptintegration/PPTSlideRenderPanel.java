@@ -50,8 +50,8 @@ public class PPTSlideRenderPanel extends JPanel {
     private void drawSlidesPartially(Graphics2D graphics, HSLFSlide slide) {
         HSLFSlideMaster master = (HSLFSlideMaster) slide.getMasterSheet();
 
-        if (slide.getFollowMasterBackground()) {
-//            master.getBackground().draw(graphics);
+        if (slide.getFollowMasterBackground() && master.getBackground() != null) {
+//            master.getBackground().draw(graphics, null);
             factoryDraw(graphics, master.getBackground());
         }
 
@@ -61,7 +61,7 @@ public class PPTSlideRenderPanel extends JPanel {
             for (HSLFShape aSh : sh) {
                 if (aSh.isPlaceholder()) continue;
 
-                aSh.draw(graphics);
+                aSh.draw(graphics, null);
             }
         }
 
@@ -81,8 +81,7 @@ public class PPTSlideRenderPanel extends JPanel {
                 factoryDraw(graphics, shape);
             }
 
-            shape.draw(graphics);
-
+//            shape.draw(graphics, null);
         }
     }
 

@@ -1,0 +1,53 @@
+<info.opencards.core.FlashCardCollection serialization="custom">
+    <unserializable-parents />
+    <list>
+        <default>
+            <size>1</size>
+        </default>
+        <int>1</int>
+        <info.opencards.core.FlashCard>
+            <cardTitle>&lt;h2 md-src-pos=&quot;1..41&quot;&gt;Best Flascard Learning App ever?
+                [qa]&lt;/h2&gt;</cardTitle>
+            <cardID>-1367240607</cardID>
+            <cardIndex>1</cardIndex>
+            <revPolicy>NORMAL</revPolicy>
+        </info.opencards.core.FlashCard>
+    </list>
+    <info.opencards.core.FlashCardCollection>
+        <default>
+            <itColls>
+                <entry>
+                    <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
+                    <info.opencards.learnstrats.ltm.LTMCollection serialization="custom">
+                        <unserializable-parents />
+                        <list>
+                            <default>
+                                <size>1</size>
+                            </default>
+                            <int>1</int>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard" />
+                                <itemProps />
+                                <easiness>1.3</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2016-04-09 16:12:05.169 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                        </list>
+                        <info.opencards.core.ItemCollection>
+                            <default>
+                                <props />
+                            </default>
+                        </info.opencards.core.ItemCollection>
+                    </info.opencards.learnstrats.ltm.LTMCollection>
+                </entry>
+            </itColls>
+            <properties />
+            <syncStates>
+                <entry>
+                    <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
+                    <boolean>true</boolean>
+                </entry>
+            </syncStates>
+        </default>
+    </info.opencards.core.FlashCardCollection>
+</info.opencards.core.FlashCardCollection>

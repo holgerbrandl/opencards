@@ -156,7 +156,7 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
 
     public void prepareFileSession(CardFile cardFile) {
         // get an appropriate slide manager
-        this.presProxy = CardFileBackend.getBackend().getSlideManager(cardFile);
+        presProxy = CardFileBackend.getBackend().getSlideManager(cardFile);
 
         presProxy.openCardFile(cardFile);
     }
@@ -208,7 +208,9 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
 
 
     public void finishedLearnSession() {
-        presProxy.stopLearnSession();
+        if (presProxy != null) {
+            presProxy.stopLearnSession();
+        }
 
         KeyboardFocusManager.getCurrentKeyboardFocusManager().removeKeyEventPostProcessor(this);
     }

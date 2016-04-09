@@ -77,7 +77,7 @@ public class ImportManager {
 
                 HSLFTextBox txt = new HSLFTextBox();
                 txt.setText(title2contents.get(slideTitle));
-                Rectangle titleAnchor = titleShape.getAnchor();
+                Rectangle titleAnchor = titleShape.getAnchor().getBounds();
                 txt.setAnchor(new Rectangle((int) titleAnchor.getX(), (int) titleAnchor.getY() + 200, (int) titleAnchor.getWidth(), (int) titleAnchor.getHeight()));
 
 //use RichTextRun to work with the text format

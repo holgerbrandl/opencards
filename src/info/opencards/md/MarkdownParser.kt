@@ -8,6 +8,7 @@ import org.intellij.markdown.parser.LinkMap
 import org.intellij.markdown.parser.MarkdownParser
 import java.io.File
 import java.io.IOException
+import java.net.URI
 import java.nio.charset.Charset
 import java.nio.file.Files
 import java.nio.file.Paths
@@ -39,13 +40,13 @@ fun parseMD(file: File): List<MarkdownFlashcard> {
     parsedTree.children[0]
 
 
-    val html = makeHtml(parsedTree, text)
+    val html = makeHtml(parsedTree, text, file.toURI())
     System.err.println("html is :\n" + html)
 
-    parsedTree.children.filter { it is CompositeASTNode }.forEach { println("$it : ${makeHtml(it, text)}") }
+    parsedTree.children.filter { it is CompositeASTNode }.forEach { println("$it : ${makeHtml(it, text, file.toURI())}") }
 
     var blockCounter = 0
-    val sections = parsedTree.children.map { makeHtml(it, text) }.groupBy {
+    val sections = parsedTree.children.map { makeHtml(it, text, file.toURI()) }.groupBy {
         if (it.startsWith("<h")) {
             blockCounter += 1
         }
@@ -63,8 +64,8 @@ fun parseMD(file: File): List<MarkdownFlashcard> {
     return cards
 }
 
-internal fun makeHtml(parsedTree: ASTNode, text: String): String {
-    val htmlGeneratingProviders = GFMFlavourDescriptor().createHtmlGeneratingProviders(LinkMap.buildLinkMap(parsedTree, text), File(".").toURI())
+internal fun makeHtml(parsedTree: ASTNode, text: String, baseURI: URI): String {
+    val htmlGeneratingProviders = GFMFlavourDescriptor().createHtmlGeneratingProviders(LinkMap.buildLinkMap(parsedTree, text), baseURI)
 
     val html = HtmlGenerator(text, parsedTree, htmlGeneratingProviders, true).generateHtml()
     return html
