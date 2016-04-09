@@ -14,7 +14,7 @@ answer with `inline code`
 * cool stuff **foo**
 * adf
 
-# final question?
+# final question?  [qa]:
 
 final answer
 

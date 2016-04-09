@@ -1,7 +1,10 @@
 <project name="OpenCards" default="create-jar" basedir=".">
 
-    <!--define the jarbundler-task-->
-    <taskdef name="jarbundler" classname="net.sourceforge.jarbundler.JarBundler"/>
+
+    <!--define kotlin compiler plugin-->
+    <property name="kotlin_lib_dir" value="/Users/brandl/projects/jb/intellij-community/build/kotlinc/lib" />
+    <typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin_lib_dir}/kotlin-ant.jar" />
+
 
     <property name="src.dir" location="${basedir}/src"/>
     <property name="resources.dir" location="${basedir}/resources"/>
@@ -11,12 +14,8 @@
     <property name="bin.dir" location="${basedir}/bin"/>
 
     <property name="project.name" value="opencards"/>
-    <property name="project.version" value="2.3.0" />
+    <property name="project.version" value="2.4.0" />
 
-
-    <!--    <condition property="isMac">
-        <os family="mac"/>
-    </condition>-->
 
     <path id="classpath">
 
@@ -25,16 +24,28 @@
         </fileset>
     </path>
 
+    <condition property="notMac">
+        <not>
+            <os family="mac" />
+        </not>
+    </condition>
+
+
     <target name="compile" description="compile all sources">
         <mkdir dir="${classes.dir}"/>
 
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="true"
-               debuglevel="lines,source">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="true" debuglevel="lines,source">
+
+            <withKotlin />
+
             <classpath refid="classpath"/>
+
+            <!--fix hidden eawt dependencies http://mail.openjdk.java.net/pipermail/macosx-port-dev/2011-September/000864.html -->
+            <compilerarg value="-XDignore.symbol.file" />
 
             <!--<if id="isMac">-->
             <!-- enable the next line if you want to compile on other platforms than macos-->
-            <!--<exclude name="info/opencards/util/macos/OpenCardsWrapper4MacOSX.java"/>-->
+            <exclude if="notMac" name="info/opencards/util/macos/OpenCardsWrapper4MacOSX.java" />
             <!--</if>-->
         </javac>
     </target>
@@ -56,16 +67,20 @@
             <manifest>
                 <attribute name="Built-By" value="Holger Brandl. All rights reserverd, 2011"/>
                 <attribute name="Main-Class" value="info.opencards.OpenCards"/>
-                <!-- this listing of jars can be created with find . | grep lib-->
+                <!-- this listing of jars can be created with find .  -name '*jar' | grep lib  | xargs echo -->
                 <attribute name="Class-Path"
-                    value="lib/jcommon-1.0.10.jar lib/jfreechart-1.0.6.jar lib/junit-4.12.jar lib/poi/commons-codec-1.9.jar lib/poi/commons-logging-1.1.jar lib/poi/dom4j-1.6.1.jar lib/poi/junit-3.8.1.jar lib/poi/log4j-1.2.17.jar lib/poi/poi-3.12-20150511.jar lib/poi/poi-excelant-3.12-20150511.jar lib/poi/poi-ooxml-3.12-20150511.jar lib/poi/poi-ooxml-schemas-3.12-20150511.jar lib/poi/poi-scratchpad-3.12-20150511.jar lib/poi/stax-api-1.0.1.jar lib/poi/xmlbeans-2.6.0.jar lib/xmlpull-1.1.3.1.jar lib/xpp3_min-1.1.4c.jar lib/xstream-1.4.8.jar" />
+                    value="./lib/idea_rt.jar ./lib/intellij-markdown.jar ./lib/jcommon-1.0.10.jar ./lib/jfreechart-1.0.6.jar ./lib/junit-4.12.jar ./lib/kotlin-runtime.jar ./lib/poi/commons-codec-1.9.jar ./lib/poi/commons-logging-1.1.jar ./lib/poi/dom4j-1.6.1.jar ./lib/poi/junit-3.8.1.jar ./lib/poi/log4j-1.2.17.jar ./lib/poi/poi-3.14-20160307.jar ./lib/poi/poi-excelant-3.14-20160307.jar ./lib/poi/poi-ooxml-3.14-20160307.jar ./lib/poi/poi-ooxml-schemas-3.14-20160307.jar ./lib/poi/poi-scratchpad-3.14-20160307.jar ./lib/poi/stax-api-1.0.1.jar ./lib/poi/xmlbeans-2.6.0.jar ./lib/xmlpull-1.1.3.1.jar ./lib/xpp3_min-1.1.4c.jar ./lib/xstream-1.4.8.jar" />
                 <!--<attribute name="SplashScreen-Image" value="Logo.gif"/>-->
             </manifest>
         </jar>
     </target>
 
 
-    <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask" />
+    <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask">
+        <classpath>
+            <pathelement location="${basedir}/deployment/appbundler-1.0ea.jar" />
+        </classpath>
+    </taskdef>
 
     <!-- deploy appbundle for mountain lion-->
     <!--http://java.net/downloads/appbundler/appbundler.html-->
@@ -202,12 +217,11 @@
     <!---->
     <!-- Create a Debian package-->
     <!---->
-    <path id="ant-deb.classpath">
-        <fileset dir="deployment" includes="ant-deb.jar" />
-    </path>
-
-
-    <taskdef name="deb" classname="com.googlecode.ant_deb_task.Deb" classpathref="ant-deb.classpath"/>
+    <taskdef name="deb" classname="com.googlecode.ant_deb_task.Deb">
+        <classpath>
+            <pathelement location="${basedir}/deployment/ant-deb.jar" />
+        </classpath>
+    </taskdef>
 
     <!--<taskdef name="desktopentry" classname="com.googlecode.ant_deb_task.DesktopEntry" classpathref="ant-deb.classpath"/>-->
     <!--<target name="create-desktop-entry">-->
