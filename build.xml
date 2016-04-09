@@ -2,8 +2,10 @@
 
 
     <!--define kotlin compiler plugin-->
-    <property name="kotlin_lib_dir" value="/Users/brandl/projects/jb/intellij-community/build/kotlinc/lib" />
-    <typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin_lib_dir}/kotlin-ant.jar" />
+    <!--http://www.jguru.com/faq/view.jsp?EID=476788-->
+    <property environment="env" />
+    <!--suppress AntResolveInspection -->
+    <typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${env.kotlin_lib_dir}/kotlin-ant.jar" />
 
 
     <property name="src.dir" location="${basedir}/src"/>

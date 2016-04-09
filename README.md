@@ -20,14 +20,18 @@ Just grab a binary package for your platform from http://opencards.info
 How to build and run it from the sources
 --------------------------------
 
-If you're NOT running MacOS you have to uncomment the exclude tag in the compile-target in the build.xml which will exclude some macos specific classes.
+Make sure to jave kotlin installed. Install sdkman to install it with `sdk install kotlin` if necssary.
 
-    # build it
-    ant create-jar
+Build open cards with
+```
+export kotlin_lib_dir=$(dirname $(which kotlin))/../lib/
 
-    # run it
-    java -Xmx512m -jar opencards.jar
+# build it
+ant create-jar
 
+# run it
+java -Xmx512m -jar opencards.jar
+```
 
 How to contribute?
 -------------------------
