@@ -154,7 +154,12 @@ public class PPTSlideRenderPanel extends JPanel {
         slideScaleTransform.scale(xScale, yScale);
 
         g2d.setTransform(slideScaleTransform);
-        drawSlidesPartially(g2d, slide);
+
+        if (showContent && showTitleShape) {
+            slide.draw(g2d);
+        } else {
+            drawSlidesPartially(g2d, slide);
+        }
     }
 
 
