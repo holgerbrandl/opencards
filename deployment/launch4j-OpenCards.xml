@@ -8,7 +8,7 @@
     <chdir>.</chdir>
     <priority>normal</priority>
     <downloadUrl>http://java.com/download</downloadUrl>
-    <supportUrl>http://www.opencards.info</supportUrl>
+    <supportUrl>http://opencards.info</supportUrl>
     <customProcName>false</customProcName>
     <stayAlive>false</stayAlive>
     <manifest></manifest>

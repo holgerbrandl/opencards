@@ -46,7 +46,7 @@ public class AboutDialog extends JDialog {
         String text = "<html><p><b>Version: " + OPENCARDS_VERSION +
                 "</b></p>" +
                 "</p></p>" +
-                "<p><br>Homepage:     http://www.opencards.info</p>" +
+                "<p><br>Homepage:     http://opencards.info</p>" +
                 "<p></p>" +
                 "<p>OpenCards is published under BSD-style license.</p>" +
                 "<p>Copyright © 2016 Holger Brandl and contributors.</p>" +

@@ -1,9 +1,9 @@
-## what is kotlin
+## what is kotlin?
 
-ad
+Something like java but  better
 
 ```
-code
+println("Hello World!")
 ```
 
 
@@ -11,7 +11,7 @@ code
 
 answer with `inline code`
 * asdf
-* asdf
+* cool stuff **foo**
 * adf
 
 # final question?
@@ -19,6 +19,11 @@ answer with `inline code`
 final answer
 
 
-## who is standing next to me [qa]
+## Best Flascard Learning App ever? [qa]
 
-andrej
+
+[OpenCards](http://opencards.info)
+
+## How does the kotlin icon look like? [qa]
+
+![](.kotlin_qa.images/kotlin_250x250.png)

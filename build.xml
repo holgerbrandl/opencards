@@ -228,8 +228,7 @@
         <deb package="opencards"
              todir="../oc-deployed"
              section="misc"
-             priority="optional"
-             homepage="http://www.opencards.info"
+             priority="optional" homepage="http://opencards.info"
              depends="openjdk-7-jre | openjdk-7-jdk">
             <version upstream="${project.version}"/>
             <maintainer name="Holger Brandl" email="support@opencards.info" />

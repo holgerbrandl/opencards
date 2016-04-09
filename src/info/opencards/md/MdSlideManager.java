@@ -5,18 +5,35 @@ import info.opencards.OpenCards;
 import info.opencards.Utils;
 import info.opencards.core.*;
 import javafx.application.Platform;
-import javafx.collections.ObservableList;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.events.Event;
+import org.w3c.dom.events.EventListener;
+import org.w3c.dom.events.EventTarget;
+import org.w3c.dom.html.HTMLAnchorElement;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
+/**
+ * Nice general oveview about how to integrate javafx into swing app
+ * http://what-when-how.com/javafx-2/embedding-javafx-scenes-in-swing-and-swt-applications-collections-and-concurrency/
+ * <p>
+ * Automatix rescaling?
+ * http://java-no-makanaikata.blogspot.de/2012/10/javafx-webview-size-trick.html
+ */
 public class MdSlideManager extends AbstractSlideManager {
     private WebEngine webEngine;
     private JFXPanel jfxPanel;
@@ -54,7 +71,46 @@ public class MdSlideManager extends AbstractSlideManager {
 
     private void renderHtml(String content) {
         // http://stackoverflow.com/questions/21083945/how-to-avoid-not-on-fx-application-thread-currentthread-javafx-application-th
-        Platform.runLater(() -> webEngine.loadContent("<body>" + content + "</body≈>"));
+        Platform.runLater(() -> {
+                    webEngine.loadContent("<body>" + content + "</body≈>");
+                    redirectLinksToBrowser(webEngine);
+                }
+        );
+    }
+
+
+    // http://www.java2s.com/Code/Java/JavaFX/WebEngineLoadListener.htm
+    // http://stackoverflow.com/questions/15555510/javafx-stop-opening-url-in-webview-open-in-browser-instead
+    private static void redirectLinksToBrowser(WebEngine webEngine) {
+        webEngine.getLoadWorker().stateProperty().addListener(
+                (ov, oldState, newState) -> {
+                    // adjust link handling
+                    if (webEngine.getDocument() == null)
+                        return;
+
+                    NodeList nodeList = webEngine.getDocument().getElementsByTagName("a");
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        Node node = nodeList.item(i);
+                        EventTarget eventTarget = (EventTarget) node;
+
+                        eventTarget.addEventListener("click", new EventListener() {
+                            @Override
+                            public void handleEvent(Event evt) {
+                                EventTarget target = evt.getCurrentTarget();
+                                HTMLAnchorElement anchorElement = (HTMLAnchorElement) target;
+                                String href = anchorElement.getHref();
+
+                                //handle opening URL outside JavaFX WebView
+                                try {
+                                    Desktop.getDesktop().browse(new URI(href));
+                                } catch (IOException | URISyntaxException e) {
+                                    e.printStackTrace();
+                                }
+                                evt.preventDefault();
+                            }
+                        }, false);
+                    }
+                });
     }
 
 
@@ -84,6 +140,15 @@ public class MdSlideManager extends AbstractSlideManager {
         renderContainer.removeAll();
         renderContainer.add(jfxPanel);
         renderContainer.invalidate();
+        renderContainer.repaint();
+
+        renderContainer.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                jfxPanel.setPreferredSize(renderContainer.getPreferredSize());
+//                jfxPanel.repaint();
+            }
+        });
     }
 
 
@@ -95,40 +160,37 @@ public class MdSlideManager extends AbstractSlideManager {
 
 
     private void createScene() {
-        PlatformImpl.startup(new Runnable() {
-            @Override
-            public void run() {
-                Stage stage;
-                WebView browser;
-                stage = new Stage();
+        PlatformImpl.startup(() -> {
+            Stage stage;
+            WebView browser;
+            stage = new Stage();
 
-                stage.setTitle("Hello Java FX");
-                stage.setResizable(true);
+            stage.setTitle("Hello Java FX");
+            stage.setResizable(true);
 
-                Group root = new Group();
-                Scene scene = new Scene(root, 80, 20);
-                stage.setScene(scene);
+            Group root = new Group();
+            Scene scene = new Scene(root, 80, 20);
+            stage.setScene(scene);
 
-                // Set up the embedded browser:
-                browser = new WebView();
-                webEngine = browser.getEngine();
+            // Set up the embedded browser:
+            browser = new WebView();
+            webEngine = browser.getEngine();
 //                webEngine.load("http://heise.de");
 
 
 //                ScrollPane scrollPane = new ScrollPane();
 //                scrollPane.setContent(browser);
-                webEngine.loadContent("<b>asdf</b>");
+            webEngine.loadContent("<b>asdf</b>");
 
 //                root.getChildren().addAll(scrollPane);
 //                scene.setRoot(root);
 //                stage.setScene(scene);
 
 
-                ObservableList<Node> children = root.getChildren();
-                children.add(browser);
+            root.getChildren().add(browser);
+//                children.add(browser);
 
-                jfxPanel.setScene(scene);
-            }
+            jfxPanel.setScene(scene);
         });
 
         while (webEngine == null) {
