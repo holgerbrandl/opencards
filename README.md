@@ -20,9 +20,9 @@ Just grab a binary package for your platform from http://opencards.info
 How to build and run it from the sources
 --------------------------------
 
-Make sure to jave kotlin installed. Install sdkman to install it with `sdk install kotlin` if necssary.
+Make sure to jave [Kotlin](https://kotlinlang.org/) installed. Install [sdkman](http://sdkman.io/) to install it with `sdk install kotlin` if necessary.
 
-Build open cards with
+Build OpenCards with
 ```
 export kotlin_lib_dir=$(dirname $(which kotlin))/../lib/
 

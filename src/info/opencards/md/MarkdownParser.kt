@@ -54,12 +54,24 @@ fun parseMD(file: File): List<MarkdownFlashcard> {
         blockCounter
     }.map { it.value }
 
+    // check if some are tagged as [qa]
+    val isQA = sections.find { it.first().contains("[qa]") } != null
+
+
     // try to extract the questions
     val cards = sections.
             // rermove empty sections
             filter { it.size > 1 }.
+
+            // remove non-QA elements when being in qa mode
+            filter { isQA && it.first().contains("[qa]") }.
+
             // create question to answer map
-            map { MarkdownFlashcard(it.first(), it.drop(1).joinToString("\n")) }
+            map {
+                // normalize question size to be h2 and remove optional [qa] in header
+                val question = it.first().replace("[qa]", "").replace("<h[1234]".toRegex(), "<h1").replace("h[1234]>".toRegex(), "h1>").trim()
+                MarkdownFlashcard(question, it.drop(1).joinToString("\n"))
+            }
 
     return cards
 }

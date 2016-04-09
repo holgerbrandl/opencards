@@ -27,3 +27,7 @@ final answer
 ## How does the kotlin icon look like? [qa]
 
 ![](.kotlin_qa.images/kotlin_250x250.png)
+
+
+
+
