@@ -139,14 +139,20 @@ public class MdSlideManager extends AbstractSlideManager {
         JPanel renderContainer = OpenCards.getInstance().getLearnPanel().getSlideRenderPanel();
         renderContainer.removeAll();
         renderContainer.add(jfxPanel);
-        renderContainer.invalidate();
+        renderContainer.validate();
         renderContainer.repaint();
 
         renderContainer.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 jfxPanel.setPreferredSize(renderContainer.getPreferredSize());
-//                jfxPanel.repaint();
+                jfxPanel.repaint();
+            }
+
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+                jfxPanel.repaint();
             }
         });
     }
