@@ -40,11 +40,52 @@
                         </info.opencards.core.ItemCollection>
                     </info.opencards.learnstrats.ltm.LTMCollection>
                 </entry>
+                <entry>
+                    <java-class>info.opencards.learnstrats.leitner.LeitnerItem</java-class>
+                    <info.opencards.learnstrats.leitner.LeitnerSystem serialization="custom">
+                        <unserializable-parents />
+                        <list>
+                            <default>
+                                <size>1</size>
+                            </default>
+                            <int>1</int>
+                            <info.opencards.learnstrats.leitner.LeitnerItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard" />
+                                <itemProps />
+                                <itemState>-100</itemState>
+                            </info.opencards.learnstrats.leitner.LeitnerItem>
+                        </list>
+                        <info.opencards.core.ItemCollection>
+                            <default>
+                                <props />
+                            </default>
+                        </info.opencards.core.ItemCollection>
+                        <info.opencards.learnstrats.leitner.LeitnerSystem>
+                            <default>
+                                <initBox>0</initBox>
+                                <boxes>
+                                    <list>
+                                        <info.opencards.learnstrats.leitner.LeitnerItem
+                                            reference="../../../../../list/info.opencards.learnstrats.leitner.LeitnerItem" />
+                                    </list>
+                                    <list />
+                                    <list />
+                                    <list />
+                                    <list />
+                                </boxes>
+                            </default>
+                        </info.opencards.learnstrats.leitner.LeitnerSystem>
+                    </info.opencards.learnstrats.leitner.LeitnerSystem>
+                </entry>
             </itColls>
             <properties />
             <syncStates>
                 <entry>
                     <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
+                    <boolean>true</boolean>
+                </entry>
+                <entry>
+                    <java-class>info.opencards.learnstrats.leitner.LeitnerItem</java-class>
                     <boolean>true</boolean>
                 </entry>
             </syncStates>

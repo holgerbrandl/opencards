@@ -42,6 +42,60 @@
         <default>
             <itColls>
                 <entry>
+                    <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
+                    <info.opencards.learnstrats.ltm.LTMCollection serialization="custom">
+                        <unserializable-parents />
+                        <list>
+                            <default>
+                                <size>5</size>
+                            </default>
+                            <int>5</int>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard" />
+                                <itemProps />
+                                <easiness>1.42</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2016-04-09 11:25:47.484 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[2]" />
+                                <itemProps />
+                                <easiness>1.42</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2016-04-09 11:25:46.10 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[3]" />
+                                <itemProps />
+                                <easiness>1.3</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2016-04-09 11:25:53.299 UTC</lastQuery>
+                                <skipUntil>2016-04-09 16:52:52.359 UTC</skipUntil>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[4]" />
+                                <itemProps />
+                                <easiness>1.42</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2016-04-09 11:25:49.66 UTC</lastQuery>
+                                <skipUntil>2016-04-09 16:52:53.705 UTC</skipUntil>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                            <info.opencards.learnstrats.ltm.LTMItem>
+                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[5]" />
+                                <itemProps />
+                                <easiness>2.5</easiness>
+                                <numRepetition>0</numRepetition>
+                                <lastQuery>2016-04-09 16:33:05.28 UTC</lastQuery>
+                            </info.opencards.learnstrats.ltm.LTMItem>
+                        </list>
+                        <info.opencards.core.ItemCollection>
+                            <default>
+                                <props />
+                            </default>
+                        </info.opencards.core.ItemCollection>
+                    </info.opencards.learnstrats.ltm.LTMCollection>
+                </entry>
+                <entry>
                     <java-class>info.opencards.learnstrats.leitner.LeitnerItem</java-class>
                     <info.opencards.learnstrats.leitner.LeitnerSystem serialization="custom">
                         <unserializable-parents />
@@ -106,68 +160,16 @@
                         </info.opencards.learnstrats.leitner.LeitnerSystem>
                     </info.opencards.learnstrats.leitner.LeitnerSystem>
                 </entry>
-                <entry>
-                    <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
-                    <info.opencards.learnstrats.ltm.LTMCollection serialization="custom">
-                        <unserializable-parents />
-                        <list>
-                            <default>
-                                <size>5</size>
-                            </default>
-                            <int>5</int>
-                            <info.opencards.learnstrats.ltm.LTMItem>
-                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard" />
-                                <itemProps />
-                                <easiness>1.42</easiness>
-                                <numRepetition>0</numRepetition>
-                                <lastQuery>2016-04-09 11:25:47.484 UTC</lastQuery>
-                            </info.opencards.learnstrats.ltm.LTMItem>
-                            <info.opencards.learnstrats.ltm.LTMItem>
-                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[2]" />
-                                <itemProps />
-                                <easiness>1.42</easiness>
-                                <numRepetition>0</numRepetition>
-                                <lastQuery>2016-04-09 11:25:46.10 UTC</lastQuery>
-                            </info.opencards.learnstrats.ltm.LTMItem>
-                            <info.opencards.learnstrats.ltm.LTMItem>
-                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[3]" />
-                                <itemProps />
-                                <easiness>1.3</easiness>
-                                <numRepetition>0</numRepetition>
-                                <lastQuery>2016-04-09 11:25:53.299 UTC</lastQuery>
-                            </info.opencards.learnstrats.ltm.LTMItem>
-                            <info.opencards.learnstrats.ltm.LTMItem>
-                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[4]" />
-                                <itemProps />
-                                <easiness>1.42</easiness>
-                                <numRepetition>0</numRepetition>
-                                <lastQuery>2016-04-09 11:25:49.66 UTC</lastQuery>
-                            </info.opencards.learnstrats.ltm.LTMItem>
-                            <info.opencards.learnstrats.ltm.LTMItem>
-                                <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[5]" />
-                                <itemProps />
-                                <easiness>2.5</easiness>
-                                <numRepetition>0</numRepetition>
-                                <lastQuery>2016-04-09 16:33:05.28 UTC</lastQuery>
-                            </info.opencards.learnstrats.ltm.LTMItem>
-                        </list>
-                        <info.opencards.core.ItemCollection>
-                            <default>
-                                <props />
-                            </default>
-                        </info.opencards.core.ItemCollection>
-                    </info.opencards.learnstrats.ltm.LTMCollection>
-                </entry>
             </itColls>
             <properties />
             <syncStates>
                 <entry>
-                    <java-class>info.opencards.learnstrats.leitner.LeitnerItem</java-class>
+                    <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
                     <boolean>true</boolean>
                 </entry>
                 <entry>
-                    <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
-                    <boolean>false</boolean>
+                    <java-class>info.opencards.learnstrats.leitner.LeitnerItem</java-class>
+                    <boolean>true</boolean>
                 </entry>
             </syncStates>
         </default>

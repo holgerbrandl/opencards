@@ -226,9 +226,7 @@
     <!-- unarchive a deb file on macos/linux with: ar vx my.deb -->
     <target name="deploy.debian" depends="create-jar" description="Creates a debian package">
         <deb package="opencards"
-             todir="../oc-deployed"
-             section="misc"
-             priority="optional" homepage="http://opencards.info"
+             todir="../oc-deployed" section="misc" priority="optional" homepage="http://opencards.info"
              depends="openjdk-7-jre | openjdk-7-jdk">
             <version upstream="${project.version}"/>
             <maintainer name="Holger Brandl" email="support@opencards.info" />

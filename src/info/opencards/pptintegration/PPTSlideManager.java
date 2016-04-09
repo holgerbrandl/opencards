@@ -110,7 +110,7 @@ public class PPTSlideManager extends AbstractSlideManager {
      * XDrawPage which oc-cardID differs from the flashcard associated to the item.
      *
      * @return <code>true</code> if the syncing was sucessful. A non-sucessfull sync is always due to the fact that a
-     *         slide was deleted.
+     * slide was deleted.
      */
     private boolean doOptionalSync(Item item) {
         if (item == null || getCurCardFile() == null) {
