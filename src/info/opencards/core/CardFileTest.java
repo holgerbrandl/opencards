@@ -19,7 +19,7 @@ public class CardFileTest {
 
     @Test
     public void loadHugeFile() {
-        CardFileSerializer serializer = CardFileBackend.getBackend().getSerializer();
+        LearnStatusSerializer serializer = CardFileBackend.getBackend().getSerializer();
 
         CardFile hugeCardFile = new CardFile(new File("testdata/Spanish1700.ppt"));
         FlashCardCollection flashCardCollection = serializer.readFlashcardsFromFile(hugeCardFile);
@@ -29,7 +29,7 @@ public class CardFileTest {
 
     @Test
     public void readInvalidFile() {
-        CardFileSerializer serializer = CardFileBackend.getBackend().getSerializer();
+        LearnStatusSerializer serializer = CardFileBackend.getBackend().getSerializer();
         try {
             CardFile hugeCardFile = new CardFile(new File("testdata/chinese1.odp"));
             serializer.readFlashcardsFromFile(hugeCardFile);
@@ -45,7 +45,7 @@ public class CardFileTest {
 
     @Test
     public void readInvalidFile2() {
-        CardFileSerializer serializer = CardFileBackend.getBackend().getSerializer();
+        LearnStatusSerializer serializer = CardFileBackend.getBackend().getSerializer();
 
         try {
             CardFile cardFile = new CardFile(new File("testdata/import/flashcards_ansi.txt"));
@@ -62,7 +62,7 @@ public class CardFileTest {
 
     @Test
     public void readPPTXInsteadOfPPT() {
-        CardFileSerializer serializer = CardFileBackend.getBackend().getSerializer();
+        LearnStatusSerializer serializer = CardFileBackend.getBackend().getSerializer();
 
         try {
             CardFile cardFile = new CardFile(new File("testdata/pptx_with_ppt_suffix.ppt"));

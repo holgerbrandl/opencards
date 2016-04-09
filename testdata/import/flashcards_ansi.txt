@@ -3,5 +3,5 @@ Best flashcard app?	OpenCards
 Best office app?	OpenOffice
 Best programming language?	Java
 Best OS ever?	Ubuntu 8.04
-Most interesting website?	www.opencards.info
+Most interesting website?	http://opencards.info
 Sorry	no unicode here!!  

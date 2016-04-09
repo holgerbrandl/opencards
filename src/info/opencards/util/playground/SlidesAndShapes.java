@@ -43,11 +43,11 @@ public class SlidesAndShapes {
         r1.setItalic(true);
         r1.setFontColor(Color.yellow);
         r1.setFontFamily("Arial");
-        r1.setFontSize(24);
+        r1.setFontSize(24.);
         r1.setText("Apache");
         XSLFTextRun r2 = textBox.addNewTextParagraph().addNewTextRun();
         r2.setStrikethrough(true);
-        r2.setUnderline(true);
+        r2.setUnderlined(true);
         r2.setText("POI\u2122");
         XSLFTextRun r3 = textBox.addNewTextParagraph().addNewTextRun();
         r3.setFontFamily("Wingdings");
@@ -65,8 +65,8 @@ public class SlidesAndShapes {
         Rectangle rect = new Rectangle(150, 150, 300, 300);
         GeneralPath path = new GeneralPath(rect);
         path.append(new Ellipse2D.Double(200, 200, 100, 50), false);
-        shape3.setPath(path);
-        shape3.setAnchor(path.getBounds2D());
+//        shape3.setPath(path);
+        shape3.setAnchor(path.getBounds2D().getBounds());
         shape3.setLineColor(Color.black);
         shape3.setFillColor(Color.lightGray);
 

@@ -1,7 +1,7 @@
 package info.opencards.util.playground;
 
-import org.apache.poi.hslf.model.Slide;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.usermodel.HSLFSlide;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -23,16 +23,16 @@ public class ConvertPPT2PNG {
         FileInputStream is = new FileInputStream("/Users/brandl/Dropbox/private/oc2/testdata/experimental design.ppt");
 //        FileInputStream is = new FileInputStream("/Users/brandl/Dropbox/private/oc2/testdata/Presentation5.ppt");
 
-        SlideShow ppt = new SlideShow(is);
+        HSLFSlideShow ppt = new HSLFSlideShow(is);
 
 
         is.close();
 
         Dimension pgsize = ppt.getPageSize();
 
-        Slide[] slide = ppt.getSlides();
+        java.util.List<HSLFSlide> slides = ppt.getSlides();
 
-        for (int i = 0; i < slide.length; i++) {
+        for (int i = 0; i < slides.size(); i++) {
 
             BufferedImage img = new BufferedImage(pgsize.width, pgsize.height,
                     BufferedImage.TYPE_INT_RGB);
@@ -42,7 +42,7 @@ public class ConvertPPT2PNG {
             graphics.fill(new Rectangle2D.Float(0, 0, pgsize.width, pgsize.height));
 
             //render
-            Slide slide1 = slide[i];
+            HSLFSlide slide1 = slides.get(i);
 
             slide1.draw(graphics);
 

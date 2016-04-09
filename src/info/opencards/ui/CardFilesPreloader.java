@@ -2,7 +2,7 @@ package info.opencards.ui;
 
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
-import info.opencards.core.CardFileSerializer;
+import info.opencards.core.LearnStatusSerializer;
 import info.opencards.core.categories.Category;
 import info.opencards.ui.catui.CategoryTreeSelectionListener;
 import info.opencards.util.InvalidCardFileFormatException;
@@ -26,10 +26,10 @@ public class CardFilesPreloader implements CategoryTreeSelectionListener {
 
 
     private final Container awtOwner;
-    private final CardFileSerializer serializer;
+    private final LearnStatusSerializer serializer;
 
 
-    public CardFilesPreloader(Container awtOwner, CardFileSerializer serializer) {
+    public CardFilesPreloader(Container awtOwner, LearnStatusSerializer serializer) {
         this.awtOwner = awtOwner;
         this.serializer = serializer;
     }

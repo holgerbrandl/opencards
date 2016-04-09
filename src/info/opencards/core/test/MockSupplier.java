@@ -13,7 +13,7 @@ import java.util.Arrays;
  *
  * @author Holger Brandl
  */
-public class MockSupplier implements PresenterProxy, CardFileSerializer {
+public class MockSupplier implements SlideManager, LearnStatusSerializer {
 
 
     private static final FlashCardCollection mockItems = new FlashCardCollection();

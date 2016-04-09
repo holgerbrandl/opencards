@@ -1,7 +1,7 @@
 package info.opencards.util.playground;
 
-import org.apache.poi.hslf.model.Slide;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.usermodel.HSLFSlide;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,9 +19,9 @@ public class ExtractSlidesFromPPT {
 //        XMLSlideShow ppt = new XMLSlideShow();
 //        FileInputStream is = new FileInputStream("/Users/brandl/Dropbox/private/oc2/testdata/experimental design.ppt");
         FileInputStream is = new FileInputStream("testdata/testdata 1 reordered slides.ppt");
-        SlideShow ppt = new SlideShow(is);
+        HSLFSlideShow ppt = new HSLFSlideShow(is);
 
-        for (Slide slide : ppt.getSlides()) {
+        for (HSLFSlide slide : ppt.getSlides()) {
             String slideTitle = slide.getTitle();
 
             System.err.println("-----------");

@@ -4,7 +4,8 @@ package info.opencards.core;
 import info.opencards.core.categories.Category;
 import info.opencards.pptintegration.PPTSerializer;
 import info.opencards.ui.AbstractLearnDialog;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
+import org.apache.poi.sl.usermodel.SlideShow;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +23,7 @@ import java.util.List;
  * <p/>
  * The implementation itself is not bounded to a specific card-file-format. Instead the necessary API to extract the
  * flashcard information from the file is encapsulated in an <code>CardFileSerializer</code> which need to be specified
- * using {@link CardFile#setSerializer(info.opencards.core.CardFileSerializer)} during runtime.
+ * using {@link CardFile#setSerializer(LearnStatusSerializer)} during runtime.
  *
  * @author Holger Brandl
  */
@@ -38,7 +39,7 @@ public class CardFile {
     private Date lastSync = null;
 
     private transient FlashCardCollection fileItems;
-    private transient CardFileSerializer serializer = new PPTSerializer();
+    private transient LearnStatusSerializer serializer = new PPTSerializer();
 
 
     public CardFile(File cardFileLocation) {
@@ -51,7 +52,7 @@ public class CardFile {
     public static SlideShow getSlideShow(CardFile cardFile) {
         try {
             FileInputStream is = new FileInputStream(cardFile.getFileLocation());
-            return new SlideShow(is);
+            return new HSLFSlideShow(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,7 +126,7 @@ public class CardFile {
     }
 
 
-    public void setSerializer(CardFileSerializer serializer) {
+    public void setSerializer(LearnStatusSerializer serializer) {
         if (this.serializer != null && this.serializer.equals(serializer))
             return;
 
@@ -134,7 +135,7 @@ public class CardFile {
     }
 
 
-    public CardFileSerializer getSerializer() {
+    public LearnStatusSerializer getSerializer() {
         return serializer;
     }
 

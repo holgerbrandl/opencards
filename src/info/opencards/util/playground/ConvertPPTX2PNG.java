@@ -1,7 +1,7 @@
 package info.opencards.util.playground;
 
-import org.apache.poi.hslf.model.Slide;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.usermodel.HSLFSlide;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xslf.usermodel.XMLSlideShow;
@@ -27,21 +27,21 @@ public class ConvertPPTX2PNG {
         FileInputStream is = new FileInputStream("/Users/brandl/Dropbox/private/oc2/testdata/experimental design.pptx");
 
         XMLSlideShow ppt2 = new XMLSlideShow(OPCPackage.open("/Users/brandl/Dropbox/private/oc2/testdata/experimental design.pptx"));
-        XSLFSlide slide1 = ppt2.getSlides()[0];
+        XSLFSlide slide1 = ppt2.getSlides().get(0);
 //        slide1.get
 
-        SlideShow ppt = new SlideShow(is);
+        HSLFSlideShow ppt = new HSLFSlideShow(is);
 //
-        Slide slide2 = ppt.getSlides()[1];
+        HSLFSlide slide2 = ppt.getSlides().get(1);
 
 
         is.close();
 
         Dimension pgsize = ppt.getPageSize();
 
-        Slide[] slide = ppt.getSlides();
+        java.util.List<HSLFSlide> slides = ppt.getSlides();
 
-        for (int i = 0; i < slide.length; i++) {
+        for (int i = 0; i < slides.size(); i++) {
 
             BufferedImage img = new BufferedImage(pgsize.width, pgsize.height,
                     BufferedImage.TYPE_INT_RGB);
@@ -51,7 +51,7 @@ public class ConvertPPTX2PNG {
             graphics.fill(new Rectangle2D.Float(0, 0, pgsize.width, pgsize.height));
 
             //render
-            slide[i].draw(graphics);
+            slides.get(i).draw(graphics);
 
             //save the output
             FileOutputStream out = new FileOutputStream("slide-" + (i + 1) + ".png");

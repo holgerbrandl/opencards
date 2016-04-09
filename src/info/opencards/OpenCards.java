@@ -64,7 +64,7 @@ public class OpenCards extends JFrame {
         instance = this;
         initComponents();
 
-//        if (!System.getProperty("user.name", "franz").equals("brandl"))
+        if (!System.getProperty("user.name", "franz").equals("holger"))
         Thread.setDefaultUncaughtExceptionHandler(new GlobalExceptionHandler());
 
 

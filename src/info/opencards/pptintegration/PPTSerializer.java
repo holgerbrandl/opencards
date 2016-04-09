@@ -3,14 +3,17 @@ package info.opencards.pptintegration;
 import com.thoughtworks.xstream.XStream;
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
-import info.opencards.core.CardFileSerializer;
 import info.opencards.core.FlashCard;
 import info.opencards.core.FlashCardCollection;
+import info.opencards.core.LearnStatusSerializer;
+import info.opencards.md.MarkdownFlashcard;
+import info.opencards.md.MarkdownParserKt;
 import info.opencards.util.InvalidCardFileFormatException;
-import org.apache.poi.hslf.model.Slide;
-import org.apache.poi.hslf.usermodel.SlideShow;
+import org.apache.poi.hslf.usermodel.HSLFSlide;
+import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 
 import java.io.*;
+import java.util.List;
 
 
 /**
@@ -19,7 +22,7 @@ import java.io.*;
  *
  * @author Holger Brandl
  */
-public class PPTSerializer implements CardFileSerializer {
+public class PPTSerializer implements LearnStatusSerializer {
 
 
     public FlashCardCollection readFlashcardsFromFile(CardFile cardFile) {
@@ -27,20 +30,36 @@ public class PPTSerializer implements CardFileSerializer {
 
         FlashCardCollection fc = new FlashCardCollection();
         try {
-            FileInputStream is = new FileInputStream(cardFile.getFileLocation());
-            SlideShow ppt = new SlideShow(is);
+            if (cardFile.getFileLocation().getName().endsWith(".ppt")) {
 
-            for (Slide xslfSlide : ppt.getSlides()) {
-                String slideTitle = xslfSlide.getTitle();
-                if (slideTitle == null)
-                    continue;
+                FileInputStream is = new FileInputStream(cardFile.getFileLocation());
+                HSLFSlideShow ppt = new HSLFSlideShow(is);
 
-                // old OC1.x approach to create a unique card-id
+                for (HSLFSlide xslfSlide : ppt.getSlides()) {
+                    String slideTitle = xslfSlide.getTitle();
+                    if (slideTitle == null)
+                        continue;
+
+                    // old OC1.x approach to create a unique card-id
 //                int cardID = Utils.getRandGen().nextInt(Integer.MAX_VALUE);
 
-                fc.add(new FlashCard(slideTitle.hashCode(), slideTitle, xslfSlide.getSlideNumber()));
-            }
+                    fc.add(new FlashCard(slideTitle.hashCode(), slideTitle, xslfSlide.getSlideNumber()));
+                }
 
+
+            } else {
+                List<MarkdownFlashcard> flashcards = MarkdownParserKt.parseMD(cardFile.getFileLocation());
+                for (int i = 0; i < flashcards.size(); i++) {
+                    MarkdownFlashcard card = flashcards.get(i);
+                    String question = card.getQuestion();
+                    if (question.trim().isEmpty()) {
+                        continue;
+                    }
+
+                    fc.add(new FlashCard(question.hashCode(), question, i + 1));
+
+                }
+            }
 
         } catch (IOException e) {
             // rephrase IO problem into something more specific
