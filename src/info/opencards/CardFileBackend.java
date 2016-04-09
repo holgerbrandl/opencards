@@ -1,9 +1,11 @@
 package info.opencards;
 
-import info.opencards.core.CardFileSerializer;
-import info.opencards.core.PresenterProxy;
-import info.opencards.pptintegration.PPTImageProxy;
+import info.opencards.core.CardFile;
+import info.opencards.core.LearnStatusSerializer;
+import info.opencards.core.SlideManager;
+import info.opencards.md.MdSlideManager;
 import info.opencards.pptintegration.PPTSerializer;
+import info.opencards.pptintegration.PPTSlideManager;
 
 
 /**
@@ -18,11 +20,11 @@ import info.opencards.pptintegration.PPTSerializer;
 public class CardFileBackend {
 
 
-    private final PresenterProxy presProxy;
-    private final CardFileSerializer cfSerializer;
+    private final SlideManager presProxy;
+    private final LearnStatusSerializer cfSerializer;
 
 
-    public CardFileBackend(PresenterProxy presenter, CardFileSerializer serializer) {
+    public CardFileBackend(SlideManager presenter, LearnStatusSerializer serializer) {
         this.presProxy = presenter;
         this.cfSerializer = serializer;
     }
@@ -32,17 +34,18 @@ public class CardFileBackend {
      * Creates an PPT file presentation and serialization backend.
      */
     public static synchronized CardFileBackend getBackend() {
-        PresenterProxy presenterProxy = new PPTImageProxy();
-        return new CardFileBackend(presenterProxy, new PPTSerializer());
+        return new CardFileBackend(null, new PPTSerializer());
     }
 
 
-    public PresenterProxy getPresProxy() {
-        return presProxy;
+    public SlideManager getSlideManager(CardFile cardFile) {
+        if (presProxy != null) return presProxy; // to support mocking
+
+        return cardFile.getFileLocation().getName().endsWith(".ppt") ? new PPTSlideManager() : new MdSlideManager();
     }
 
 
-    public CardFileSerializer getSerializer() {
+    public LearnStatusSerializer getSerializer() {
         return cfSerializer;
     }
 }

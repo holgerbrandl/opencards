@@ -156,8 +156,7 @@ public class ExceptionDialog extends JDialog {
         sb.append("Java Version: " + System.getProperty("java.version", "Unkown Java version") + " - " + System.getProperty("java.vendor", "Unkown VM-vendor"));
 
         String msg = "\n\n" + t.toString() + "\n\n" + e + "\n\n";
-//        for (int i = 0; i < e.getStackTrace().length; i++) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < Math.min(10, e.getStackTrace().length); i++) {
             StackTraceElement traceElement = e.getStackTrace()[i];
             msg += traceElement.toString() + "\n";
         }

@@ -5,7 +5,7 @@ package info.opencards.core;
  *
  * @author Holger Brandl
  */
-public interface PresenterProxy {
+public interface SlideManager {
 
 
     /**

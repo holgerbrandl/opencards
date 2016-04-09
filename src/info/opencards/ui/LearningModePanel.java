@@ -5,7 +5,6 @@
 package info.opencards.ui;
 
 import info.opencards.core.ItemValuater;
-import info.opencards.pptintegration.PPTSlideRenderPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,20 +21,25 @@ public class LearningModePanel extends JPanel {
     }
 
 
-    public PPTSlideRenderPanel getSlideRenderPanel() {
-        return slideRenderPanel;
+    public JPanel getSlideRenderPanel() {
+        return renderPanelContainer;
     }
 
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
-        slideRenderPanel = new PPTSlideRenderPanel();
+        renderPanelContainer = new JPanel();
         controlsPanel = new JPanel();
 
         //======== this ========
         setLayout(new BorderLayout());
-        add(slideRenderPanel, BorderLayout.CENTER);
+
+        //======== renderPanelContainer ========
+        {
+            renderPanelContainer.setLayout(new BorderLayout());
+        }
+        add(renderPanelContainer, BorderLayout.CENTER);
 
         //======== controlsPanel ========
         {
@@ -48,7 +52,7 @@ public class LearningModePanel extends JPanel {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner non-commercial license
-    private PPTSlideRenderPanel slideRenderPanel;
+    private JPanel renderPanelContainer;
     private JPanel controlsPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 

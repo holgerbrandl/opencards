@@ -7,6 +7,7 @@ import org.apache.poi.hslf.usermodel.HSLFSlideShow;
 import org.apache.poi.sl.usermodel.Slide;
 import org.apache.poi.sl.usermodel.SlideShow;
 
+import javax.swing.*;
 import java.util.List;
 
 
@@ -15,11 +16,11 @@ import java.util.List;
  *
  * @author Holger Brandl
  */
-public class PPTImageProxy implements PresenterProxy {
+public class PPTSlideManager extends AbstractSlideManager {
 
 
-    private CardFile curCardFile;
     private SlideShow slideShow;
+    private PPTSlideRenderPanel pptRenderPanel;
 
 
     public boolean showCardQuestion(Item item) {
@@ -68,7 +69,7 @@ public class PPTImageProxy implements PresenterProxy {
 
 
     private PPTSlideRenderPanel getSlidePanel() {
-        return OpenCards.getInstance().getLearnPanel().getSlideRenderPanel();
+        return pptRenderPanel;
     }
 
 
@@ -80,9 +81,16 @@ public class PPTImageProxy implements PresenterProxy {
         Utils.log("started file session");
         slideShow = CardFile.getSlideShow(cardFile);
 
-        PPTSlideRenderPanel rPanel = getSlidePanel();
-        rPanel.setBaseSize(slideShow.getPageSize());
-        rPanel.setCardFile(cardFile);
+        // todo we might want to reuse an existing panel here if it's of the same type
+        pptRenderPanel = new PPTSlideRenderPanel();
+        pptRenderPanel.setBaseSize(slideShow.getPageSize());
+        pptRenderPanel.setCardFile(cardFile);
+
+        JPanel renderContainer = OpenCards.getInstance().getLearnPanel().getSlideRenderPanel();
+
+        renderContainer.removeAll();
+        renderContainer.add(pptRenderPanel);
+        renderContainer.invalidate();
 
         curCardFile = cardFile;
 
@@ -97,20 +105,6 @@ public class PPTImageProxy implements PresenterProxy {
     }
 
 
-    public void stopLearnSession() {
-        // set the current file to null
-        curCardFile = null;
-
-        // conceptually this should be done in stopFileSession but this would cause some flickering when changing between cardsets
-        OpenCards.getInstance().resetWindowTitle();
-    }
-
-
-    public CardFile getCurCardFile() {
-        return curCardFile;
-    }
-
-
     /**
      * Performs a sync operation on the current <code>CardFile</code> if the the item to be shown directs to an
      * XDrawPage which oc-cardID differs from the flashcard associated to the item.
@@ -119,13 +113,13 @@ public class PPTImageProxy implements PresenterProxy {
      *         slide was deleted.
      */
     private boolean doOptionalSync(Item item) {
-        if (item == null || curCardFile == null) {
+        if (item == null || getCurCardFile() == null) {
             Utils.log("Error: Synching not possible because either item (" + item + ") or card-file are null");
             return false;
         }
 
         if (isItemOutOfSync(item, slideShow))
-            curCardFile.synchronize();
+            getCurCardFile().synchronize();
 
 
 //        XDrawPage itemPage = ImpressHelper.getDrawPageByIndex(getXComponent(), item.getFlashCard().getCardIndex());

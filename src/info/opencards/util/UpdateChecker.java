@@ -72,7 +72,7 @@ public class UpdateChecker {
 
     public static String getLatestVersion() {
         try {
-            URL yahoo = new URL("http://dl.dropbox.com/u/422074/opencards/oc_latest_version.txt");
+            URL yahoo = new URL("https://dl.dropboxusercontent.com/u/422074/opencards/oc_latest_version.txt");
 
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(yahoo.openStream()));
             String latestVersion = bufferedReader.readLine().trim();

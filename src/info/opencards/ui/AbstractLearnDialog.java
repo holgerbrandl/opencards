@@ -10,9 +10,9 @@ import info.opencards.core.*;
 import info.opencards.ui.actions.HelpAction;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEventPostProcessor {
 
 
-    private final PresenterProxy presProxy;
+    private SlideManager presProxy;
 
     Item curItem;
 
@@ -53,8 +53,6 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
 
     protected AbstractLearnDialog() {
         initComponents();
-
-        this.presProxy = CardFileBackend.getBackend().getPresProxy();
 
         ResourceBundle bundle = Utils.getRB();
         oneButton.setAction(new ScoreAction(bundle.getString("AbstractLearnDialog.oneButton.text"), SCORE_1));
@@ -132,7 +130,12 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
         boolean showSuccessful = presProxy.showCardQuestion(curItem);
         if (showSuccessful) {
             ((CardLayout) controlContainer.getLayout()).first(controlContainer);
-            titleLabel.setText((Utils.getRB().getString("AbstractLearnDialog.title.choose")));
+//            titleLabel.setText((Utils.getRB().getString("AbstractLearnDialog.title.choose")));
+//            ((TitledBorder)controlContainer.getBorder()).setTitle(Utils.getRB().getString("AbstractLearnDialog.title.choose"));
+//            ((TitledBorder)controlContainer.getBorder()).setTitle("");
+            ((TitledBorder) controlContainer.getBorder()).setTitle(Utils.getRB().getString("AbstractLearnDialog.recall.title"));
+            repaint();
+
             showCompleteCardButton.requestFocusInWindow();
 
         } else {
@@ -152,6 +155,9 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
 
 
     public void prepareFileSession(CardFile cardFile) {
+        // get an appropriate slide manager
+        this.presProxy = CardFileBackend.getBackend().getSlideManager(cardFile);
+
         presProxy.openCardFile(cardFile);
     }
 
@@ -260,7 +266,9 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
     protected void showCompleteCardButtonActionPerformed() {
         boolean wasSuccessful = presProxy.showCompleteCard(curItem);
 
-        titleLabel.setText(Utils.getRB().getString("AbstractLearnDialog.title"));
+        ((TitledBorder) controlContainer.getBorder()).setTitle(Utils.getRB().getString("AbstractLearnDialog.title"));
+        repaint();
+
         ((CardLayout) controlContainer.getLayout()).last(controlContainer);
         invalidate();
 
@@ -333,12 +341,9 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents
         // Generated using JFormDesigner non-commercial license
         ResourceBundle bundle = ResourceBundle.getBundle("info.opencards.translation");
-        panel5 = new JPanel();
-        titleLabel = new JLabel();
         controlContainer = new JPanel();
         JPanel panel1 = new JPanel();
         JPanel panel3 = new JPanel();
-        JPanel panel2 = new JPanel();
         JPanel panel4 = new JPanel();
         progressBar = new JProgressBar();
         panel6 = new JPanel();
@@ -363,26 +368,12 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
         ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 1.0E-4};
         ((GridBagLayout) getLayout()).rowWeights = new double[]{1.0, 0.0, 0.0, 1.0E-4};
 
-        //======== panel5 ========
+        //======== controlContainer ========
         {
-            panel5.setLayout(new GridBagLayout());
-            ((GridBagLayout) panel5.getLayout()).columnWidths = new int[]{0, 0};
-            ((GridBagLayout) panel5.getLayout()).rowHeights = new int[]{0, 0, 0};
-            ((GridBagLayout) panel5.getLayout()).columnWeights = new double[]{1.0, 1.0E-4};
-            ((GridBagLayout) panel5.getLayout()).rowWeights = new double[]{0.0, 1.0, 1.0E-4};
-            panel5.add(titleLabel, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 0), 0, 0));
-
-            //======== controlContainer ========
-            {
-                controlContainer.setLayout(new CardLayout());
-            }
-            panel5.add(controlContainer, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 0), 0, 0));
+            controlContainer.setBorder(new TitledBorder(bundle.getString("LearnDialog.controlContainer.border")));
+            controlContainer.setLayout(new CardLayout());
         }
-        add(panel5, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+        add(controlContainer, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
 
@@ -393,16 +384,6 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
             //======== panel3 ========
             {
                 panel3.setLayout(new BorderLayout());
-
-                //======== panel2 ========
-                {
-                    panel2.setLayout(new GridBagLayout());
-                    ((GridBagLayout) panel2.getLayout()).columnWidths = new int[]{0, 0, 0, 0};
-                    ((GridBagLayout) panel2.getLayout()).rowHeights = new int[]{0, 0};
-                    ((GridBagLayout) panel2.getLayout()).columnWeights = new double[]{1.0, 1.0, 0.0, 1.0E-4};
-                    ((GridBagLayout) panel2.getLayout()).rowWeights = new double[]{1.0, 1.0E-4};
-                }
-                panel3.add(panel2, BorderLayout.CENTER);
 
                 //======== panel4 ========
                 {
@@ -422,20 +403,12 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
 
                         //---- skipCardButton ----
                         skipCardButton.setText(bundle.getString("AbstractLearnDialog.skipCardButton.txt"));
-                        skipCardButton.addActionListener(new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
-                                skipCardButtonActionPerformed();
-                            }
-                        });
+                        skipCardButton.addActionListener(e -> skipCardButtonActionPerformed());
                         panel6.add(skipCardButton);
 
                         //---- button1 ----
                         button1.setText(bundle.getString("LearnDialog.button1.text"));
-                        button1.addActionListener(new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
-                                cancelLearningButtonActionPerformed();
-                            }
-                        });
+                        button1.addActionListener(e -> cancelLearningButtonActionPerformed());
                         panel6.add(button1);
                     }
                     panel4.add(panel6, BorderLayout.EAST);
@@ -494,11 +467,7 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
             //---- showCompleteCardButton ----
             showCompleteCardButton.setText(bundle.getString("AbstractLearnDialog.showCompleteCardButton.text"));
             showCompleteCardButton.setFont(showCompleteCardButton.getFont().deriveFont(showCompleteCardButton.getFont().getSize() + 4f));
-            showCompleteCardButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    showCompleteCardButtonActionPerformed();
-                }
-            });
+            showCompleteCardButton.addActionListener(e -> showCompleteCardButtonActionPerformed());
             showControlsContainer.add(showCompleteCardButton, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));
@@ -506,19 +475,13 @@ public class AbstractLearnDialog extends JPanel implements ItemValuater, KeyEven
 
         //---- cancelLearningButton ----
         cancelLearningButton.setText(bundle.getString("AbstractLearnDialog.cancelLearningButton.text"));
-        cancelLearningButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                cancelLearningButtonActionPerformed();
-            }
-        });
+        cancelLearningButton.addActionListener(e -> cancelLearningButtonActionPerformed());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner non-commercial license
-    private JPanel panel5;
-    private JLabel titleLabel;
     protected JPanel controlContainer;
     protected JProgressBar progressBar;
     private JPanel panel6;

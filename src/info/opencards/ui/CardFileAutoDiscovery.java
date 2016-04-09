@@ -7,7 +7,7 @@ package info.opencards.ui;
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
 import info.opencards.core.CardFileCache;
-import info.opencards.core.CardFileSerializer;
+import info.opencards.core.LearnStatusSerializer;
 import info.opencards.core.categories.Category;
 import info.opencards.core.categories.CategoryUtils;
 import info.opencards.pptintegration.PPTSerializer;
@@ -41,10 +41,10 @@ public class CardFileAutoDiscovery extends JDialog {
     private DefaultTableModel dataModel;
 
     private final Category nullCategory = new Category(Utils.getRB().getString("CardFileAutoDiscovery.selcat"));
-    private static CardFileSerializer serializer;
+    private static LearnStatusSerializer serializer;
 
 
-    private CardFileAutoDiscovery(JFrame owner, CardFileSerializer serializer, List<File> allODPs, Category rootCategory) {
+    private CardFileAutoDiscovery(JFrame owner, LearnStatusSerializer serializer, List<File> allODPs, Category rootCategory) {
         super(owner);
         initComponents();
 
@@ -140,7 +140,7 @@ public class CardFileAutoDiscovery extends JDialog {
     }
 
 
-    public static void run(JFrame owner, Category rootCategory, CardFileSerializer serializer) {
+    public static void run(JFrame owner, Category rootCategory, LearnStatusSerializer serializer) {
         if (!Utils.getPrefs().getBoolean(AdvancedSettings.AUTO_DISCOVER_CARDFILES, AdvancedSettings.AUTO_DISCOVER_CARDFILES_DEFAULT))
             return;
 

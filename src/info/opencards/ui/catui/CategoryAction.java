@@ -133,13 +133,13 @@ class AddCardSetAction extends CategoryAction {
             public boolean accept(File f) {
                 String fileName = f.getName();
 //                return (fileName.endsWith(".odp") || fileName.endsWith(".ppt")) || f.isDirectory();
-                return (fileName.endsWith(".ppt")) || f.isDirectory();
+                return fileName.endsWith(".ppt") || fileName.endsWith(".md") || f.isDirectory();
             }
 
 
             public String getDescription() {
 //                return "Flashcard presentations (*.odp,  *.ppt)";
-                return "PowerPoint Presentations (*.ppt)";
+                return "PowerPoint Presentations (*.ppt), Markdown (*.md";
             }
         });
 

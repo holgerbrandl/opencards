@@ -13,7 +13,6 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.SoftBevelBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
@@ -50,7 +49,7 @@ public class AboutDialog extends JDialog {
                 "<p><br>Homepage:     http://www.opencards.info</p>" +
                 "<p></p>" +
                 "<p>OpenCards is published under BSD-style license.</p>" +
-                "<p>Copyright © 2011 Holger Brandl and contributors.</p>" +
+                "<p>Copyright © 2016 Holger Brandl and contributors.</p>" +
                 "<p></p>" +
                 "<p>Contains XStream © 2003-20011 Joe Walnes.</p>" +
                 "<p>Contains JFreeChart © 2009 Object Refinery Limited</p>" +
@@ -107,11 +106,7 @@ public class AboutDialog extends JDialog {
             //---- closeButton ----
             closeButton.setText(bundle.getString("General.close"));
             closeButton.setFont(null);
-            closeButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    closeButtonActionPerformed(e);
-                }
-            });
+            closeButton.addActionListener(e -> closeButtonActionPerformed(e));
             panel3.add(closeButton, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
                     GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                     new Insets(0, 0, 0, 0), 0, 0));

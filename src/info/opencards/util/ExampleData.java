@@ -5,7 +5,7 @@ import info.opencards.OpenCards;
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
 import info.opencards.core.CardFileCache;
-import info.opencards.core.CardFileSerializer;
+import info.opencards.core.LearnStatusSerializer;
 import info.opencards.core.categories.Category;
 import info.opencards.ui.CardFilesPreloader;
 
@@ -53,7 +53,7 @@ public class ExampleData {
         File ocXMLDir = Utils.getOrCreateHiddenOCDirectory(exDataDir);
 
         try {
-            final CardFileSerializer serializer = CardFileBackend.getBackend().getSerializer();
+            final LearnStatusSerializer serializer = CardFileBackend.getBackend().getSerializer();
             Map<CardFile, Category> preloadBuffer = new HashMap<CardFile, Category>();
 
             // creat a new category for the example data

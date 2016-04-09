@@ -5,7 +5,7 @@ package info.opencards.core;
  *
  * @author Holger Brandl
  */
-public interface CardFileSerializer {
+public interface LearnStatusSerializer {
 
 
     /**

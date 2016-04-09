@@ -26,7 +26,10 @@ fun main(args: Array<String>) {
     parseMD(File("/Users/holger/projects/opencards/oc2/testdata/kotlin_qa.md"))
 }
 
-fun parseMD(file: File): List<Pair<String, String>> {
+
+data class MarkdownFlashcard(val question: String, val answer: String)
+
+fun parseMD(file: File): List<MarkdownFlashcard> {
     val text = readFile(file.absolutePath, Charset.defaultCharset())
 
     val markdownParser = MarkdownParser(GFMFlavourDescriptor())
@@ -55,7 +58,7 @@ fun parseMD(file: File): List<Pair<String, String>> {
             // rermove empty sections
             filter { it.size > 1 }.
             // create question to answer map
-            map { it.first() to it.joinToString("\n") }
+            map { MarkdownFlashcard(it.first(), it.drop(1).joinToString("\n")) }
 
     return cards
 }
