@@ -80,8 +80,6 @@ public class PPTSlideRenderPanel extends JPanel {
 //                shape.draw(graphics);
                 factoryDraw(graphics, shape);
             }
-
-//            shape.draw(graphics, null);
         }
     }
 
@@ -91,7 +89,7 @@ public class PPTSlideRenderPanel extends JPanel {
     }
 
 
-    HSLFShape getTitleShape(HSLFSlide slide) {
+    private HSLFShape getTitleShape(HSLFSlide slide) {
         String slideTitle = slide.getTitle();
 
         for (HSLFShape shape : slide.getShapes()) {
@@ -147,11 +145,32 @@ public class PPTSlideRenderPanel extends JPanel {
 //        System.err.println("baseSize: " + baseSize);
 //        System.err.println("scaling: " + slideScaleTransform);
 
-        // todo optionally preserve aspect ratio here
+
+        double slideRatio = baseSize.getWidth() / baseSize.getHeight();
+        double containerRatio = getSize().getWidth() / getSize().getHeight();
+
         AffineTransform slideScaleTransform = new AffineTransform();
-        double xScale = getWidth() / baseSize.getWidth();
-        double yScale = getHeight() / baseSize.getHeight();
-        slideScaleTransform.scale(xScale, yScale);
+
+        if (slideRatio < containerRatio) {
+//            scaleDim = new Dimension(getWidth(), (int) (getSize().getHeight() / slideRatio));
+            // y is limitting expansionhere
+            double yScale = getSize().getHeight() / baseSize.getHeight();
+            slideScaleTransform.scale(yScale, yScale);
+            slideScaleTransform.translate((getSize().getWidth() - yScale * baseSize.getWidth()) * 0.5 / yScale, 0);
+
+        } else {
+            double xScale = getSize().getWidth() / baseSize.getWidth();
+            slideScaleTransform.scale(xScale, xScale);
+            slideScaleTransform.translate(0, (getSize().getHeight() - xScale * baseSize.getHeight()) * 0.5 / xScale);
+        }
+
+
+        // ...or adjust to full width
+//        double xScale = scaleDim.getWidth() / getWidth();
+//        double yScale = scaleDim.getHeight() / getHeight();
+//
+//        slideScaleTransform.scale(xScale, yScale);
+//        slideScaleTransform.translate(xScale, yScale);
 
         g2d.setTransform(slideScaleTransform);
 
