@@ -137,7 +137,6 @@ public class GeneralSettings extends AbstractSettingsPanel {
         }
 
         //---- skipGroup ----
-        skipGroup = new ButtonGroup();
         skipGroup.add(sesSkipRadio);
         skipGroup.add(nextSesSkipRadio);
         skipGroup.add(tomorrowSkipRadio);

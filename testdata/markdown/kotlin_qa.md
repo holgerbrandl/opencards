@@ -1,4 +1,4 @@
-## best question ever3? [qa]
+## best question ever4 [qa]
 
 best answer ever
 
@@ -19,7 +19,7 @@ answer with `inline code`
 * cool stuff **foo**
 * adf
 
-# final question?  [qa]:
+# final question [qa]:
 
 final answer
 
@@ -29,7 +29,7 @@ final answer
 
 [OpenCards](http://opencards.info)
 
-## How does the kotlin icon look like? [qa]
+## How does the kotlin icon look like?
 
 ![](.kotlin_qa.images/kotlin_250x250.png)
 

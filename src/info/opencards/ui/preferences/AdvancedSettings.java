@@ -12,8 +12,6 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 
@@ -32,6 +30,12 @@ public class AdvancedSettings extends AbstractSettingsPanel {
     public static final String AUTO_DISCOVER_CARDFILES = "advncd.autodiscover";
     public static final Boolean AUTO_DISCOVER_CARDFILES_DEFAULT = false;
 
+    public static final String MARKDOWN_QA_SELECTOR = "md.selector";
+    public static final String MARKDOWN_QA_SELECTOR_DEFAULT = "[?][ ]*</h";
+
+    public static final String MARKDOWN_REMOVE_SELECTOR = "md.selector";
+    public static final Boolean MARKDOWN_REMOVE_SELECTOR_DEFAULT = false;
+
     public static final String CUSTOM_CATTREE_LOCATION = "advncd.custcattreelocation";
 
 
@@ -45,6 +49,8 @@ public class AdvancedSettings extends AbstractSettingsPanel {
         Utils.getPrefs().remove(SHOW_ADVNCD_LTM_STATS);
         Utils.getPrefs().remove(AUTO_DISCOVER_CARDFILES);
         Utils.getPrefs().remove(CUSTOM_CATTREE_LOCATION);
+        Utils.getPrefs().remove(MARKDOWN_QA_SELECTOR);
+        Utils.getPrefs().remove(MARKDOWN_REMOVE_SELECTOR);
 
         loadDefaults();
     }
@@ -55,6 +61,8 @@ public class AdvancedSettings extends AbstractSettingsPanel {
         Utils.getPrefs().putBoolean(SHOW_ADVNCD_LTM_STATS, advndLtmStatsCheckbox.isSelected());
         Utils.getPrefs().putBoolean(AUTO_DISCOVER_CARDFILES, autoDiscoverCheckbox.isSelected());
         Utils.getPrefs().put(CUSTOM_CATTREE_LOCATION, catTreeLocationLabel.getText());
+        Utils.getPrefs().put(MARKDOWN_QA_SELECTOR, mdSelectorPatternField.getText());
+        Utils.getPrefs().putBoolean(MARKDOWN_REMOVE_SELECTOR, removeMdSelectorCheckBox.isSelected());
     }
 
 
@@ -63,6 +71,8 @@ public class AdvancedSettings extends AbstractSettingsPanel {
         advndLtmStatsCheckbox.setSelected(Utils.getPrefs().getBoolean(SHOW_ADVNCD_LTM_STATS, SHOW_ADVNCD_LTM_STATS_DEFAULT));
         autoDiscoverCheckbox.setSelected(Utils.getPrefs().getBoolean(AUTO_DISCOVER_CARDFILES, AUTO_DISCOVER_CARDFILES_DEFAULT));
         catTreeLocationLabel.setText(Utils.getPrefs().get(CUSTOM_CATTREE_LOCATION, getDefaultCatTreeLocation().getAbsolutePath()));
+        mdSelectorPatternField.setText(Utils.getPrefs().get(MARKDOWN_QA_SELECTOR, MARKDOWN_QA_SELECTOR_DEFAULT));
+        removeMdSelectorCheckBox.setSelected(Utils.getPrefs().getBoolean(MARKDOWN_REMOVE_SELECTOR, MARKDOWN_REMOVE_SELECTOR_DEFAULT));
     }
 
 
@@ -86,6 +96,10 @@ public class AdvancedSettings extends AbstractSettingsPanel {
         catTreeLocationbutton = new JButton();
         panel3 = new JPanel();
         writeLogFileCheckbox = new JCheckBox();
+        panel4 = new JPanel();
+        label2 = new JLabel();
+        mdSelectorPatternField = new JTextField();
+        removeMdSelectorCheckBox = new JCheckBox();
         advndLtmStatsCheckbox = new JCheckBox();
 
         //======== this ========
@@ -93,7 +107,7 @@ public class AdvancedSettings extends AbstractSettingsPanel {
         ((GridBagLayout) getLayout()).columnWidths = new int[]{0, 0};
         ((GridBagLayout) getLayout()).rowHeights = new int[]{0, 0, 0, 0};
         ((GridBagLayout) getLayout()).columnWeights = new double[]{1.0, 1.0E-4};
-        ((GridBagLayout) getLayout()).rowWeights = new double[]{0.0, 0.0, 1.0, 1.0E-4};
+        ((GridBagLayout) getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 1.0E-4};
 
         //======== panel6 ========
         {
@@ -126,14 +140,10 @@ public class AdvancedSettings extends AbstractSettingsPanel {
 
             //---- catTreeLocationbutton ----
             catTreeLocationbutton.setText(".");
-            catTreeLocationbutton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    catTreeLocationbuttonActionPerformed();
-                }
-            });
+            catTreeLocationbutton.addActionListener(e -> catTreeLocationbuttonActionPerformed());
             panel6.add(catTreeLocationbutton, new GridBagConstraints(3, 2, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                    new Insets(0, 0, 0, 0), 0, 0));
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 0, 0), 0, 0));
         }
         add(panel6, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -160,6 +170,36 @@ public class AdvancedSettings extends AbstractSettingsPanel {
                 GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                 new Insets(0, 0, 0, 0), 0, 0));
 
+        //======== panel4 ========
+        {
+            panel4.setBorder(new CompoundBorder(
+                    new TitledBorder(null, "Markdown", TitledBorder.LEADING, TitledBorder.TOP),
+                    new EmptyBorder(5, 5, 5, 5)));
+            panel4.setLayout(new GridBagLayout());
+            ((GridBagLayout) panel4.getLayout()).columnWidths = new int[]{0, 0, 0, 0};
+            ((GridBagLayout) panel4.getLayout()).rowHeights = new int[]{0, 0, 0};
+            ((GridBagLayout) panel4.getLayout()).columnWeights = new double[]{0.0, 1.0, 0.0, 1.0E-4};
+            ((GridBagLayout) panel4.getLayout()).rowWeights = new double[]{0.0, 0.0, 1.0E-4};
+
+            //---- label2 ----
+            label2.setText("Selective Question Pattern");
+            panel4.add(label2, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 5, 5), 0, 0));
+            panel4.add(mdSelectorPatternField, new GridBagConstraints(1, 0, 2, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 5, 0), 0, 0));
+
+            //---- removeMdSelectorCheckBox ----
+            removeMdSelectorCheckBox.setText("Remove Selector from Question");
+            panel4.add(removeMdSelectorCheckBox, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                    new Insets(0, 0, 0, 5), 0, 0));
+        }
+        add(panel4, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0,
+                GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                new Insets(0, 0, 0, 0), 0, 0));
+
         //---- advndLtmStatsCheckbox ----
         advndLtmStatsCheckbox.setText("Show advanced LTM-statistics");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
@@ -176,6 +216,10 @@ public class AdvancedSettings extends AbstractSettingsPanel {
     private JButton catTreeLocationbutton;
     private JPanel panel3;
     private JCheckBox writeLogFileCheckbox;
+    private JPanel panel4;
+    private JLabel label2;
+    private JTextField mdSelectorPatternField;
+    private JCheckBox removeMdSelectorCheckBox;
     private JCheckBox advndLtmStatsCheckbox;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
 

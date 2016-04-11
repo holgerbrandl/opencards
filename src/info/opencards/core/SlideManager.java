@@ -10,6 +10,7 @@ public interface SlideManager {
 
     /**
      * Shows the question side of the current item.
+     * @return true if card question could be shown. false if e.g. out of sync.
      */
     public boolean showCardQuestion(Item item);
 

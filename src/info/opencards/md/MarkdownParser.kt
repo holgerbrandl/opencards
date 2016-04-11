@@ -1,5 +1,7 @@
 package info.opencards.md
 
+import info.opencards.Utils
+import info.opencards.ui.preferences.AdvancedSettings.*
 import org.intellij.markdown.ast.ASTNode
 import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
 import org.intellij.markdown.html.HtmlGenerator
@@ -14,15 +16,6 @@ import java.nio.file.Paths
 
 
 fun main(args: Array<String>) {
-    //        String text= "## hellp\n" +
-    //                "content" +
-    //                "\n" +
-    //                "### other section\n" +
-    //                "\n" +
-    //                "more conetnt\n";
-
-    val text = readFile("/Users/holger/projects/opencards/oc2/testdata/kotlin_qa.md", Charset.defaultCharset())
-
     parseMD(File("/Users/holger/projects/opencards/oc2/testdata/kotlin_qa.md"))
 }
 
@@ -53,8 +46,20 @@ fun parseMD(file: File): List<MarkdownFlashcard> {
     }.map { it.value }
 
     // check if some are tagged as [qa]
-    val isQA = sections.find { it.first().contains("[qa]") } != null
+    //    val qaSelector = "[qa]"
 
+    // see http://stackoverflow.com/questions/1140268/how-to-escape-a-square-bracket-for-pattern-compilation
+    //    val qaSelector = Pattern.quote("[qa]")
+    //    val qaSelector= "\\Q[qa]\\E".toRegex()
+    val qaSelector = Utils.getPrefs().get(MARKDOWN_QA_SELECTOR, MARKDOWN_QA_SELECTOR_DEFAULT).toRegex()
+
+    val isQA = sections.find { it.first().contains(qaSelector) } != null
+
+
+    //  Slide title example  |<h2 md-src-pos="0..28">best question ever4? [qa]</h2>
+    //  Slide title example  <h2 md-src-pos="48..66">what is kotlin?</h2>
+
+    val removeSelectorFromTitle = Utils.getPrefs().getBoolean(MARKDOWN_REMOVE_SELECTOR, MARKDOWN_REMOVE_SELECTOR_DEFAULT)
 
     // try to extract the questions
     val cards = sections.
@@ -62,12 +67,17 @@ fun parseMD(file: File): List<MarkdownFlashcard> {
             filter { it.size > 1 }.
 
             // remove non-QA elements when being in qa mode
-            filter { isQA && it.first().contains("[qa]") }.
+            filter { isQA && it.first().contains(qaSelector) }.
 
             // create question to answer map
             map {
-                // normalize question size to be h2 and remove optional [qa] in header
-                val question = it.first().replace("[qa]", "").replace("<h[1234]".toRegex(), "<h1").replace("h[1234]>".toRegex(), "h1>").trim()
+                var question = it.first()
+
+                // optionally remove selector
+                question = if (removeSelectorFromTitle) question.replace(qaSelector, "") else question
+
+                // normalize question size to be h2
+                question = question.replace("<h[1234]".toRegex(), "<h1").replace("h[1234]>".toRegex(), "h1>").trim()
                 MarkdownFlashcard(question, it.drop(1).joinToString("\n"))
             }
 

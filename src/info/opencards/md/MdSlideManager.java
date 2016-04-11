@@ -45,6 +45,7 @@ public class MdSlideManager extends AbstractSlideManager {
     @Override
     public boolean showCardQuestion(Item item) {
         // todo implemnt optional sync
+        if (isItemOutOfSync(item)) return false;
 
         int cardIndex = item.getFlashCard().getCardIndex();
         ReversePolicy cardRevPolicy = item.getFlashCard().getTodaysRevPolicy();
@@ -66,6 +67,17 @@ public class MdSlideManager extends AbstractSlideManager {
         }
 
         return true;
+    }
+
+
+    /**
+     * Test if item is in sync with given slide-show instance
+     */
+    private boolean isItemOutOfSync(Item item) {
+
+        final int itemCardIndex = item.getFlashCard().getCardIndex();
+
+        return itemCardIndex < 0 || slides.size() < itemCardIndex - 1 || slides.get(itemCardIndex - 1).getQuestion().hashCode() != item.getFlashCard().getCardID();
     }
 
 
