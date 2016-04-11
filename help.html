@@ -71,6 +71,65 @@
     <div class="row">
         <div class="col-md-6">
             <div class="entry page clear">
+                <h2>PowerPoint Flashcards </h2>
+
+                <p>OpenCards was born from the idea to use PowerPoint files as flashcard sets. Slides titles are
+                    considered as questions and the slide content is treated as answers.</p>
+
+                <h2 id="markdown">Markdown Flashcards </h2>
+                <p>Building on the idea to use ppt-files as flashcard sets, OpenCards has been extended to also support
+                    markdown files as flashcard sets. The scheme is the same: sections are questions and section content
+                    are answers.</p>
+
+                <p>The advantages of using markdown to organize your flashcards are:
+                </p>
+                <ul>
+                    <li>Plain text format which can be version with git</li>
+                    <li>Better editing power</li>
+                    <li>Allows to mix documenation with questions and answers. OpenCards will by defalit just consider
+                        section that end with a "?" as flashcards. This can be changed in the preferences (->Advanced).
+                    </li>
+                    <li>Better support for equations (e.g. using <a href="https://www.mathjax.org/">MathJax</a></li>
+                    <li>Easier progrmmatic creatino of flashcard sets from content</li>
+                    <li>Faster because works without reading the tough binary ppt-format</li>
+                    <li>More web-friendly since markdown can be converted to html within the browser</li>
+                </ul>
+
+                <p>Example:
+
+                    <pre><code lang="markdown">
+## What is a blocking factor?
+
+
+A blocking factor is a source of variability that is not of primary interest to
+the experimenter
+
+## What is a factorial design?
+
+-   factorial design is used to evaluate two or more factors simultaneously.
+-   The treatments are combinations of levels of the factors.
+–   more efficient – allow interactions to be detected.
+-   Nice example in V&R:p165
+
+
+## What is the code snippet to do XX?
+
+The code snippet is
+
+```
+fancy code here
+```
+
+## General Overview
+ 
+Since Opencards just treats sections with titles ending with ?  as questions we
+can even mix documentation with questions and answers.
+                         
+                    </code></pre>
+                </p>
+
+                <h2>Concept of OpenCards</h2>
+
                 <p>There are many flashcard learning applications&nbsp;<a
                         href="http://en.wikipedia.org/wiki/Spaced_repetition#Computer_software_using_spaced_repetition"
                         target="_blank">available</a>. Some of them implement fancy learning techniques, some of them
