@@ -1,7 +1,6 @@
 package info.opencards.md
 
 import org.intellij.markdown.ast.ASTNode
-import org.intellij.markdown.ast.CompositeASTNode
 import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
 import org.intellij.markdown.html.HtmlGenerator
 import org.intellij.markdown.parser.LinkMap
@@ -40,10 +39,9 @@ fun parseMD(file: File): List<MarkdownFlashcard> {
     parsedTree.children[0]
 
 
-    val html = makeHtml(parsedTree, text, file.toURI())
-    System.err.println("html is :\n" + html)
-
-    parsedTree.children.filter { it is CompositeASTNode }.forEach { println("$it : ${makeHtml(it, text, file.toURI())}") }
+    //    val html = makeHtml(parsedTree, text, file.toURI())
+    //    System.err.println("html is :\n" + html)
+    //    parsedTree.children.filter { it is CompositeASTNode }.forEach { println("$it : ${makeHtml(it, text, file.toURI())}") }
 
     var blockCounter = 0
     val sections = parsedTree.children.map { makeHtml(it, text, file.toURI()) }.groupBy {

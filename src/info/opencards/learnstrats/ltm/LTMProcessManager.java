@@ -45,7 +45,7 @@ public class LTMProcessManager extends LearnProcessManager {
 
         scheduler.clear();
 
-        Utils.log("preparing session");
+//        Utils.log("preparing session");
 
         int maxNumNew = includeAllNew ? Integer.MAX_VALUE : ScheduleUtils.getMaxCardToBeLearntToday();
         int allNew = 0;

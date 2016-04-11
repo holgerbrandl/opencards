@@ -52,10 +52,9 @@ public class UltraShortSM2 extends SM2 {
                 ustmReducedItems.removeAll(ustmScheduler.getAllCurrentItems());
                 assert ustmReducedItems.size() > 0;
 
-
-                Utils.log("ustm reduced items size" + ustmReducedItems.size());
+//                Utils.log("ustm reduced items size" + ustmReducedItems.size());
                 Item nextItem = ustmReducedItems.get(Utils.getRandGen().nextInt(ustmReducedItems.size()));
-                Utils.log("next item " + nextItem);
+//                Utils.log("next item " + nextItem);
 
                 valuater.score(nextItem);
             }

@@ -133,6 +133,8 @@ public class MdSlideManager extends AbstractSlideManager {
     public void openCardFile(CardFile cardFile) {
         slides = MarkdownParserKt.parseMD(cardFile.getFileLocation());
 
+        cardFile.synchronize();
+
         jfxPanel = new JFXPanel();
         createScene();
 
@@ -155,12 +157,16 @@ public class MdSlideManager extends AbstractSlideManager {
                 jfxPanel.repaint();
             }
         });
+
+        curCardFile = cardFile;
+
+        OpenCards.getInstance().setTitle("OpenCards: " + cardFile.getFileLocation().getName());
     }
 
 
     @Override
     public void stopFileSession() {
-        Utils.log("stopped md-file session");
+//        Utils.log("stopped md-file session");
         slides = null;
     }
 
