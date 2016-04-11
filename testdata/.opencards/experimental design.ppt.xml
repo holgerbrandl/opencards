@@ -108,7 +108,7 @@
               <info.opencards.learnstrats.leitner.LeitnerItem>
                 <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[2]" />
                 <itemProps />
-                <itemState>-100</itemState>
+                <itemState>5</itemState>
               </info.opencards.learnstrats.leitner.LeitnerItem>
               <info.opencards.learnstrats.leitner.LeitnerItem>
                 <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[3]" />
@@ -139,15 +139,16 @@
                     <info.opencards.learnstrats.leitner.LeitnerItem
                         reference="../../../../../list/info.opencards.learnstrats.leitner.LeitnerItem" />
                     <info.opencards.learnstrats.leitner.LeitnerItem
-                        reference="../../../../../list/info.opencards.learnstrats.leitner.LeitnerItem[2]" />
-                    <info.opencards.learnstrats.leitner.LeitnerItem
                         reference="../../../../../list/info.opencards.learnstrats.leitner.LeitnerItem[3]" />
                     <info.opencards.learnstrats.leitner.LeitnerItem
                         reference="../../../../../list/info.opencards.learnstrats.leitner.LeitnerItem[4]" />
                     <info.opencards.learnstrats.leitner.LeitnerItem
                         reference="../../../../../list/info.opencards.learnstrats.leitner.LeitnerItem[5]" />
                   </list>
-                  <list />
+                  <list>
+                    <info.opencards.learnstrats.leitner.LeitnerItem
+                        reference="../../../../../list/info.opencards.learnstrats.leitner.LeitnerItem[2]" />
+                  </list>
                   <list />
                   <list />
                   <list />

@@ -1,5 +1,11 @@
 ﻿The release history of OpenCards.
 
+## Opencards 2.4 (11.4.2016)
+* Preserve aspect ratio when rendering slides
+* Support for markdown files as flashcard sets (section titles are questions, section content are answers)
+* Improved Rendering of Cards (using POI v3.14)
+
+
 ## Opencards 2.3 (18.9.2015)
 * Added Dutch translation (thanks to  Rutger Scholtens)
 * Improved german translation
