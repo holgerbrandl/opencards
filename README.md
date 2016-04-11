@@ -23,11 +23,11 @@ How to build and run it from the sources
 Make sure to jave [Kotlin](https://kotlinlang.org/) installed. Install [sdkman](http://sdkman.io/) to install it with `sdk install kotlin` if necessary.
 
 Build OpenCards with
-```
-export kotlin_lib_dir=$(dirname $(which kotlin))/../lib/
+```{bash}
+ kotlin_lib_dir=$(dirname $(which kotlin))/../lib/
 
 # build it
-ant create-jar
+ant -Dkotlin_lib_dir="${kotlin_lib_dir}" create-jar
 
 # run it
 java -Xmx512m -jar opencards.jar
@@ -47,4 +47,5 @@ About
 ------------------------
 
 http://opencards.info/about.html
+
 

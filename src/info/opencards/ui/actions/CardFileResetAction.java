@@ -6,7 +6,6 @@ import info.opencards.core.CardFile;
 import info.opencards.core.Item;
 import info.opencards.learnstrats.ltm.ScheduleUtils;
 import info.opencards.ui.table.CardSetTable;
-import info.opencards.ui.table.CardTableModel;
 import info.opencards.util.ScaleableIcon;
 
 import javax.swing.*;
@@ -59,7 +58,7 @@ public class CardFileResetAction extends AbstractAction {
                 resetCardFile(cardFile);
             }
 
-            ((CardTableModel) cardSetTable.getModel()).fireTableDataChanged();
+            cardSetTable.rebuildWithSelectionRestore();
 
             // we also reset the number of new cards learn't today
             ScheduleUtils.setNumLearntToday(0);

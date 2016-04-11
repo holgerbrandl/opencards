@@ -22,7 +22,7 @@ public class CardSetTable extends JTable {
 
 
     public CardSetTable() {
-        cardTableModel = new CardTableModel();
+        cardTableModel = new CardTableModel(this);
         setModel(cardTableModel);
 
 
@@ -50,6 +50,33 @@ public class CardSetTable extends JTable {
             }
         });
 
+
+//        final int[][] lastSelection = new int[1][1];
+//// Save selected row table
+//        getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//            @Override
+//            public void valueChanged(ListSelectionEvent e) {
+//                lastSelection[0] = getSelectedRows();
+//            }
+//        });
+//
+//// Restore selected raw table
+//        cardTableModel.addTableModelListener(new TableModelListener() {
+//            @Override
+//            public void tableChanged(TableModelEvent e) {
+//                SwingUtilities.invokeLater(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        if(lastSelection.length==0) return;
+//                        for (int selRow : lastSelection[0]) {
+////                            setRowSelectionInterval(selRow, selRow);
+//                            addRowSelectionInterval(selRow, selRow);
+//                        }
+//                    }
+//                });
+//            }
+//        });
+
         // Set the first visible column to 100 pixels wide
 //        setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 //        int vColIndex = 0;
@@ -72,5 +99,26 @@ public class CardSetTable extends JTable {
         int rowIndex = rowAtPoint(p);
         CardFile cardFile = getSortedRowFile(rowIndex);
         return cardFile != null && realColumnIndex == 0 ? cardFile.getFileLocation().getAbsolutePath() : super.getToolTipText(event);
+    }
+
+
+    // see See http://stackoverflow.com/questions/254212/preserve-jtable-selection-across-tablemodel-change
+    public void rebuildWithSelectionRestore() {
+
+        // preserve selection calling fireTableDataChanged()
+        final int[] sel = getSelectedRows();
+        final int numRowsBefore = getRowCount();
+
+        ((CardTableModel) getModel()).fireTableDataChanged();
+
+
+        System.out.println("num rows is " + cardTableModel.getRowCount());
+
+        if (numRowsBefore == cardTableModel.getRowCount()) {
+
+            for (int aSel : sel) {
+                getSelectionModel().addSelectionInterval(aSel, aSel);
+            }
+        }
     }
 }

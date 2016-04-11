@@ -28,12 +28,14 @@ public class CardTableModel extends DefaultTableModel implements CategoryTreeSel
     private List<CardFile> curFiles = new ArrayList<CardFile>();
     private List<Category> curCategories = new ArrayList<Category>();
     private LTMProcessManager dummyLtmManager;
+    private CardSetTable cardSetTable;
 
 
-    public CardTableModel() {
+    public CardTableModel(CardSetTable cardSetTable) {
         super(new Object[][]{}, columnNames);
 
 //        refreshTableData();
+        this.cardSetTable = cardSetTable;
     }
 
 
@@ -113,11 +115,12 @@ public class CardTableModel extends DefaultTableModel implements CategoryTreeSel
 
 
         tableSelectionedChanged(curFiles);
-        fireTableDataChanged();
+        cardSetTable.rebuildWithSelectionRestore();
+//        fireTableDataChanged();
     }
 
 
-    public void tableSelectionedChanged(List<CardFile> selFiles) {
+    public void tableSelectionedChanged(Collection<CardFile> selFiles) {
         // instantiate a dummy process-manager which gives us a preleminary schedule
         dummyLtmManager = new LTMProcessManager(new DummyValuator(), SM2.getFactory());
         dummyLtmManager.setupSchedule(selFiles);
