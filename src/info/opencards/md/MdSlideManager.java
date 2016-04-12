@@ -77,7 +77,7 @@ public class MdSlideManager extends AbstractSlideManager {
 
         final int itemCardIndex = item.getFlashCard().getCardIndex();
 
-        return itemCardIndex < 0 || slides.size() < itemCardIndex - 1 || slides.get(itemCardIndex - 1).getQuestion().hashCode() != item.getFlashCard().getCardID();
+        return itemCardIndex < 0 || slides.size() < itemCardIndex - 1 || slides.isEmpty() || slides.get(itemCardIndex - 1).getQuestion().hashCode() != item.getFlashCard().getCardID();
     }
 
 
@@ -143,9 +143,10 @@ public class MdSlideManager extends AbstractSlideManager {
 
     @Override
     public void openCardFile(CardFile cardFile) {
-        slides = MarkdownParserKt.parseMD(cardFile.getFileLocation());
-
         cardFile.synchronize();
+
+        slides = MarkdownParserKt.parseMD(cardFile.getFileLocation(), cardFile.getFlashCards().useMarkdownSelector());
+
 
         jfxPanel = new JFXPanel();
         createScene();

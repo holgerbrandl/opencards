@@ -48,7 +48,7 @@ public class PPTSerializer implements LearnStatusSerializer {
 
 
             } else {
-                List<MarkdownFlashcard> flashcards = MarkdownParserKt.parseMD(cardFile.getFileLocation());
+                List<MarkdownFlashcard> flashcards = MarkdownParserKt.parseMD(cardFile.getFileLocation(), cardFile.getFlashCards().useMarkdownSelector());
                 for (int i = 0; i < flashcards.size(); i++) {
                     MarkdownFlashcard card = flashcards.get(i);
                     String question = card.getQuestion();

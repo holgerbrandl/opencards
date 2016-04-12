@@ -70,9 +70,7 @@ public class LongTermMemStatsPanel extends JTabbedPane implements CardFileSelect
 
         //======== this ========
         addTab(bundle.getString("LongTermMemStatsPanel.schedulePlanningPanel.tab.title"), schedulePlanningPanel);
-
         addTab(bundle.getString("LongTermMemStatsPanel.learnsuccess.title"), lTMStateGraphPanel);
-
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
 

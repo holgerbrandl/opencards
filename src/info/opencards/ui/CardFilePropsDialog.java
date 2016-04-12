@@ -16,8 +16,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
@@ -29,8 +27,6 @@ import java.util.ResourceBundle;
  */
 public class CardFilePropsDialog extends JDialog {
 
-
-    public static final int REVERSE_POLICY_DEFAULT = 0;
 
     private java.util.List<CardFile> cardFiles;
     private List<FlashCard> applyCards;
@@ -60,6 +56,7 @@ public class CardFilePropsDialog extends JDialog {
     }
 
 
+    @Deprecated
     public CardFilePropsDialog(Dialog owner, CardFile cardFile, List<FlashCard> applyCards) {
         this(owner);
 
@@ -68,6 +65,8 @@ public class CardFilePropsDialog extends JDialog {
             return;
 
         this.applyCards = applyCards;
+
+        //noinspection ArraysAsListWithZeroOrOneArgument
         this.cardFiles = Arrays.asList(cardFile);
         isFileProps = false;
 
@@ -102,6 +101,13 @@ public class CardFilePropsDialog extends JDialog {
         assert !cardFiles.isEmpty() : "what a mess: settings just for fun without any cardfile.";
         this.cardFiles = cardFiles;
 
+
+        if (!cardFiles.get(0).getFileLocation().getName().endsWith(".md")) {
+            useSelectorCheckbox.setEnabled(false);
+        } else {
+            useSelectorCheckbox.setSelected(cardFiles.get(0).getFlashCards().useMarkdownSelector());
+        }
+
         setIsLTMProps(isLTMProps);
 
         // set all settings to the file-settings
@@ -111,8 +117,9 @@ public class CardFilePropsDialog extends JDialog {
             File fileLocation = firstFile.getFileLocation();
             String fileName = fileLocation != null ? fileLocation.getAbsolutePath() : Utils.getRB().getString("CardFilePropsDialgo.unsavedcards");
             setTitle(Utils.getRB().getString("CardFilePropsDialog.settingsof") + " '" + fileName + "'");
-        } else
+        } else {
             setTitle(Utils.getRB().getString("CardFilePropsDialog.multifiles"));
+        }
 
         // extract common file settings
         FlashCardCollection flashCards = firstFile.getFlashCards();
@@ -145,7 +152,14 @@ public class CardFilePropsDialog extends JDialog {
                 // set the global value
                 FlashCardCollection cardCollection = cardFile.getFlashCards();
 
+                boolean changedMdSelectMode = useSelectorCheckbox.isSelected() != cardCollection.useMarkdownSelector();
+                if (changedMdSelectMode) {
+                    cardCollection.setUseMarkdownSelector(useSelectorCheckbox.isSelected());
+                }
+
                 cardCollection.getProps().put(FlashCardCollection.REVERSE_POLICY, selectPolicy);
+
+
                 cardFile.getFlashCards().getLTMItems().setProperty(LTMItem.DESIRED_RETENTION, retentionSpinner.getValue());
 
                 // remove all card specific settings
@@ -162,6 +176,10 @@ public class CardFilePropsDialog extends JDialog {
                 // flush the properties
                 // note: this might be buggy, because we might loose the changes on close (c.f. comment in ImpressSerializer)
                 cardFile.flush();
+
+                if (changedMdSelectMode) {
+                    cardFile.forceSync();
+                }
             }
 
 
@@ -197,7 +215,8 @@ public class CardFilePropsDialog extends JDialog {
         JPanel contentPanel = new JPanel();
         JPanel panel1 = new JPanel();
         JLabel revPolicyLabel = new JLabel();
-        revPolicyComboBox = new JComboBox();
+        revPolicyComboBox = new JComboBox<>();
+        useSelectorCheckbox = new JCheckBox();
         learnTypePropsContainer = new JTabbedPane();
         JPanel buttonBar = new JPanel();
         helpButton = new JButton();
@@ -242,14 +261,20 @@ public class CardFilePropsDialog extends JDialog {
                             new Insets(0, 0, 5, 5), 0, 0));
 
                     //---- revPolicyComboBox ----
-                    revPolicyComboBox.setModel(new DefaultComboBoxModel(new String[]{
+                    revPolicyComboBox.setModel(new DefaultComboBoxModel<>(new String[]{
                             "Normal",
                             "Reverse",
                             "Random reverse"
                     }));
                     panel1.add(revPolicyComboBox, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
-                            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-                            new Insets(0, 0, 5, 0), 0, 0));
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 5, 0), 0, 0));
+
+                    //---- useSelectorCheckbox ----
+                    useSelectorCheckbox.setText(bundle.getString("CardFilePropsDialog.useSelectorCheckbox.text"));
+                    panel1.add(useSelectorCheckbox, new GridBagConstraints(0, 1, 2, 1, 0.0, 0.0,
+                        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+                        new Insets(0, 0, 0, 0), 0, 0));
                 }
                 contentPanel.add(panel1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
@@ -275,23 +300,15 @@ public class CardFilePropsDialog extends JDialog {
 
                 //---- cancelButton ----
                 cancelButton.setText(bundle.getString("General.cancel"));
-                cancelButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        cancelButtonActionPerformed();
-                    }
-                });
+                cancelButton.addActionListener(e -> cancelButtonActionPerformed());
                 buttonBar.add(cancelButton, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 0, 5), 0, 0));
 
                 //---- okButton ----
                 okButton.setText(bundle.getString("General.close"));
-                okButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-                okButton.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        okButtonActionPerformed();
-                    }
-                });
+                okButton.setFont(okButton.getFont().deriveFont(okButton.getFont().getStyle() | Font.BOLD));
+                okButton.addActionListener(e -> okButtonActionPerformed());
                 buttonBar.add(okButton, new GridBagConstraints(3, 0, 1, 1, 0.0, 0.0,
                         GridBagConstraints.CENTER, GridBagConstraints.BOTH,
                         new Insets(0, 0, 0, 0), 0, 0));
@@ -345,7 +362,8 @@ public class CardFilePropsDialog extends JDialog {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables
     // Generated using JFormDesigner non-commercial license
-    private JComboBox revPolicyComboBox;
+    private JComboBox<String> revPolicyComboBox;
+    private JCheckBox useSelectorCheckbox;
     private JTabbedPane learnTypePropsContainer;
     private JButton helpButton;
     private JButton cancelButton;

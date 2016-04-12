@@ -45,7 +45,7 @@ public class LearnManagerUI extends JPanel implements CardFileSelectionListener 
 
 
     private final CardFileBackend backend;
-    private CurFileSelectionManager selectionManager;
+    private FileSelectionManager selectionManager;
 
     private boolean isShiftPressed;
     private boolean isCtrlPressed;
@@ -64,7 +64,7 @@ public class LearnManagerUI extends JPanel implements CardFileSelectionListener 
         if (backend == null)
             return;
 
-        selectionManager = new CurFileSelectionManager(cardfileTable);
+        selectionManager = new FileSelectionManager(cardfileTable);
         selectionManager.addCardFileSelectionListener(ltmStatsPanel);
 
         Category rootCat = CategoryUtils.deserializeCategoryModel(owner);
@@ -219,8 +219,9 @@ public class LearnManagerUI extends JPanel implements CardFileSelectionListener 
     }
 
 
+    @Deprecated
     public void refreshFileViews() {
-        categoryPanel.getCatTree().informCardFileSelectionListeners();
+//        categoryPanel.getCatTree().informCardFileSelectionListeners();
     }
 
 

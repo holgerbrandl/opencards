@@ -11,6 +11,16 @@ Something like java but  better
 println("Hello World!")
 ```
 
+## what is kotlin again?
+
+Something like java but  better
+
+```
+println("Hello World!")
+```
+
+
+
 
 ## other question? [qa]
 

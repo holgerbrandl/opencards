@@ -38,6 +38,7 @@
   </list>
   <info.opencards.core.FlashCardCollection>
     <default>
+      <useMarkdownSelector>false</useMarkdownSelector>
       <itColls>
         <entry>
           <java-class>info.opencards.learnstrats.ltm.LTMItem</java-class>
@@ -65,9 +66,9 @@
               <info.opencards.learnstrats.ltm.LTMItem>
                 <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[3]" />
                 <itemProps />
-                <easiness>2.5</easiness>
-                <numRepetition>0</numRepetition>
-                <lastQuery>2016-04-09 19:51:42.616 UTC</lastQuery>
+                <easiness>2.36</easiness>
+                <numRepetition>1</numRepetition>
+                <lastQuery>2016-04-12 06:59:56.113 UTC</lastQuery>
               </info.opencards.learnstrats.ltm.LTMItem>
               <info.opencards.learnstrats.ltm.LTMItem>
                 <parentCard reference="../../../../../../../../list/info.opencards.core.FlashCard[4]" />

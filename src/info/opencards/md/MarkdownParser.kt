@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
 
 data class MarkdownFlashcard(val question: String, val answer: String)
 
-fun parseMD(file: File): List<MarkdownFlashcard> {
+fun parseMD(file: File, useSelector: Boolean = false): List<MarkdownFlashcard> {
     val text = readFile(file.absolutePath, Charset.defaultCharset())
 
     val markdownParser = MarkdownParser(GFMFlavourDescriptor())
@@ -53,7 +53,9 @@ fun parseMD(file: File): List<MarkdownFlashcard> {
     //    val qaSelector= "\\Q[qa]\\E".toRegex()
     val qaSelector = Utils.getPrefs().get(MARKDOWN_QA_SELECTOR, MARKDOWN_QA_SELECTOR_DEFAULT).toRegex()
 
-    val isQA = sections.find { it.first().contains(qaSelector) } != null
+    // we could auto-detect selector usage here but since there is a checkbox for it we better don't do so
+    //    val isQA = useSelector && sections.find { it.first().contains(qaSelector) } != null
+    val isQA = useSelector //&& sections.find { it.first().contains(qaSelector) } != null
 
 
     //  Slide title example  |<h2 md-src-pos="0..28">best question ever4? [qa]</h2>
@@ -67,7 +69,7 @@ fun parseMD(file: File): List<MarkdownFlashcard> {
             filter { it.size > 1 }.
 
             // remove non-QA elements when being in qa mode
-            filter { isQA && it.first().contains(qaSelector) }.
+            filter { !isQA || it.first().contains(qaSelector) }.
 
             // create question to answer map
             map {

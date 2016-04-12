@@ -18,7 +18,7 @@ import java.util.Set;
  *
  * @author Holger Brandl
  */
-public class CurFileSelectionManager implements ListSelectionListener, CategoryTreeSelectionListener {
+public class FileSelectionManager implements ListSelectionListener, CategoryTreeSelectionListener {
 
 
     private final CardSetTable cardFileTable;
@@ -28,7 +28,7 @@ public class CurFileSelectionManager implements ListSelectionListener, CategoryT
     private List<CardFile> lastSelection;
 
 
-    public CurFileSelectionManager(CardSetTable cardfileTable) {
+    public FileSelectionManager(CardSetTable cardfileTable) {
         this.cardFileTable = cardfileTable;
     }
 

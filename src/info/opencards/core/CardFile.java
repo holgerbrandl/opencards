@@ -141,13 +141,19 @@ public class CardFile {
 
 
     public void flush() {
-        if (fileItems == null)
+        if (fileItems == null) {
             throw new RuntimeException("can not serialize null fileItems");
+        }
 
         // serialize to xml and then gzip the result
         serializer.serializeFileCards(this, fileItems);
     }
 
+
+    public boolean forceSync() {
+        lastSync = null;
+        return synchronize();
+    }
 
     /**
      * Given a serialzer and a this methods merges changes of the deep serialzer into an existing representation.
