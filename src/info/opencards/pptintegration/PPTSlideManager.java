@@ -78,7 +78,6 @@ public class PPTSlideManager extends AbstractSlideManager {
 
 
     public void openCardFile(CardFile cardFile) {
-        Utils.log("started file session");
         slideShow = CardFile.getSlideShow(cardFile);
 
         // todo we might want to reuse an existing panel here if it's of the same type

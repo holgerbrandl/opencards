@@ -48,7 +48,9 @@ public class PPTSerializer implements LearnStatusSerializer {
 
 
             } else {
-                List<MarkdownFlashcard> flashcards = MarkdownParserKt.parseMD(cardFile.getFileLocation(), cardFile.getFlashCards().useMarkdownSelector());
+                boolean useSelector = cardFile.getProperties().useMarkdownSelector();
+                List<MarkdownFlashcard> flashcards = MarkdownParserKt.parseMD(cardFile.getFileLocation(), useSelector);
+
                 for (int i = 0; i < flashcards.size(); i++) {
                     MarkdownFlashcard card = flashcards.get(i);
                     String question = card.getQuestion();
@@ -71,6 +73,7 @@ public class PPTSerializer implements LearnStatusSerializer {
 
 
     public void serializeFileCards(CardFile cardFile, FlashCardCollection fileItems) {
+
         File metaDataFile = getMetaDataFile(cardFile);
 
         try {
@@ -81,8 +84,6 @@ public class PPTSerializer implements LearnStatusSerializer {
             out.flush();
             out.close();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,7 +98,9 @@ public class PPTSerializer implements LearnStatusSerializer {
 
         try {
             BufferedInputStream bis = new BufferedInputStream(new FileInputStream(metaDataFile));
-            return (FlashCardCollection) new XStream().fromXML(bis);
+            XStream xStream = new XStream();
+            xStream.ignoreUnknownElements();
+            return (FlashCardCollection) xStream.fromXML(bis);
         } catch (Throwable e) {
             e.printStackTrace();
         }

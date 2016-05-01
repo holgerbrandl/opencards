@@ -33,7 +33,7 @@ public class AdvancedSettings extends AbstractSettingsPanel {
     public static final String MARKDOWN_QA_SELECTOR = "md.selector";
     public static final String MARKDOWN_QA_SELECTOR_DEFAULT = "[?][ ]*</h";
 
-    public static final String MARKDOWN_REMOVE_SELECTOR = "md.selector";
+    public static final String MARKDOWN_REMOVE_SELECTOR = "md.remove_selector";
     public static final Boolean MARKDOWN_REMOVE_SELECTOR_DEFAULT = false;
 
     public static final String CUSTOM_CATTREE_LOCATION = "advncd.custcattreelocation";

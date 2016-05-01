@@ -70,7 +70,6 @@ public abstract class LearnProcessManager implements LearnMethodListener {
         assert procIt != null;
 
         if (cardFile == null) {
-            Utils.log("card file is null");
             if (!procIt.hasNext()) {
                 terminateProcess(false);
                 return;

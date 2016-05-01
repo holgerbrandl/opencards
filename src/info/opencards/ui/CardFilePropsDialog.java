@@ -105,7 +105,7 @@ public class CardFilePropsDialog extends JDialog {
         if (!cardFiles.get(0).getFileLocation().getName().endsWith(".md")) {
             useSelectorCheckbox.setEnabled(false);
         } else {
-            useSelectorCheckbox.setSelected(cardFiles.get(0).getFlashCards().useMarkdownSelector());
+            useSelectorCheckbox.setSelected(cardFiles.get(0).getProperties().useMarkdownSelector());
         }
 
         setIsLTMProps(isLTMProps);
@@ -152,9 +152,9 @@ public class CardFilePropsDialog extends JDialog {
                 // set the global value
                 FlashCardCollection cardCollection = cardFile.getFlashCards();
 
-                boolean changedMdSelectMode = useSelectorCheckbox.isSelected() != cardCollection.useMarkdownSelector();
+                boolean changedMdSelectMode = useSelectorCheckbox.isSelected() != cardFile.getProperties().useMarkdownSelector();
                 if (changedMdSelectMode) {
-                    cardCollection.setUseMarkdownSelector(useSelectorCheckbox.isSelected());
+                    cardFile.getProperties().useMarkdownSelector(useSelectorCheckbox.isSelected());
                 }
 
                 cardCollection.getProps().put(FlashCardCollection.REVERSE_POLICY, selectPolicy);

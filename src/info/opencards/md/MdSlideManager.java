@@ -13,8 +13,6 @@ import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.events.Event;
-import org.w3c.dom.events.EventListener;
 import org.w3c.dom.events.EventTarget;
 import org.w3c.dom.html.HTMLAnchorElement;
 
@@ -105,21 +103,18 @@ public class MdSlideManager extends AbstractSlideManager {
                         Node node = nodeList.item(i);
                         EventTarget eventTarget = (EventTarget) node;
 
-                        eventTarget.addEventListener("click", new EventListener() {
-                            @Override
-                            public void handleEvent(Event evt) {
-                                EventTarget target = evt.getCurrentTarget();
-                                HTMLAnchorElement anchorElement = (HTMLAnchorElement) target;
-                                String href = anchorElement.getHref();
+                        eventTarget.addEventListener("click", evt -> {
+                            EventTarget target = evt.getCurrentTarget();
+                            HTMLAnchorElement anchorElement = (HTMLAnchorElement) target;
+                            String href = anchorElement.getHref();
 
-                                //handle opening URL outside JavaFX WebView
-                                try {
-                                    Desktop.getDesktop().browse(new URI(href));
-                                } catch (IOException | URISyntaxException e) {
-                                    e.printStackTrace();
-                                }
-                                evt.preventDefault();
+                            //handle opening URL outside JavaFX WebView
+                            try {
+                                Desktop.getDesktop().browse(new URI(href));
+                            } catch (IOException | URISyntaxException e) {
+                                e.printStackTrace();
                             }
+                            evt.preventDefault();
                         }, false);
                     }
                 });
@@ -145,7 +140,7 @@ public class MdSlideManager extends AbstractSlideManager {
     public void openCardFile(CardFile cardFile) {
         cardFile.synchronize();
 
-        slides = MarkdownParserKt.parseMD(cardFile.getFileLocation(), cardFile.getFlashCards().useMarkdownSelector());
+        slides = MarkdownParserKt.parseMD(cardFile.getFileLocation(), cardFile.getProperties().useMarkdownSelector());
 
 
         jfxPanel = new JFXPanel();

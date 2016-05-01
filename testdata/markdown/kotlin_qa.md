@@ -39,11 +39,8 @@ final answer
 
 [OpenCards](http://opencards.info)
 
-## How does the kotlin icon look like?
+## How does the kotlin icon look like
 
 ![](.kotlin_qa.images/kotlin_250x250.png)
-
-
-
 
 

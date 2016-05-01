@@ -41,6 +41,9 @@ public class CardFile {
     private transient FlashCardCollection fileItems;
     private transient LearnStatusSerializer serializer = new PPTSerializer();
 
+    // just needed for mak
+    private CardFileProperties cfp = new CardFileProperties();
+
 
     public CardFile(File cardFileLocation) {
         assert cardFileLocation != null;
@@ -222,5 +225,12 @@ public class CardFile {
 
     private boolean wasModifiedAfterSync() {
         return lastSync != null && lastSync.after(new Date(getFileLocation().lastModified()));
+    }
+
+
+    public CardFileProperties getProperties() {
+        // legacy format support
+        if (cfp == null) cfp = new CardFileProperties();
+        return cfp;
     }
 }

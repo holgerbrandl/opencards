@@ -1,9 +1,11 @@
 package info.opencards.ui;
 
+import info.opencards.OpenCards;
 import info.opencards.core.CardFileCache;
 import info.opencards.core.categories.Category;
 import info.opencards.core.categories.CategoryUtils;
 
+import javax.swing.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -42,12 +44,30 @@ public class CardSetDndHandler extends DropTargetAdapter {
                     dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
 
                     // And add the list of file names to our text area
+
+                    boolean invalidDrop = false;
+
                     List<File> droppedFiles = (List<File>) tr.getTransferData(flavor);
                     for (File file : droppedFiles) {
-                        System.err.println("dropped a " + file);
+                        if (file.getName().endsWith(".ppt") || file.getName().endsWith(".md")) {
+                            Category curCat = CategoryUtils.getSelectedCategory();
+                            curCat.registerCardSet(CardFileCache.getCardFile(file));
+                        } else {
+                            invalidDrop = true;
+                        }
+                    }
 
-                        Category curCat = CategoryUtils.getSelectedCategory();
-                        curCat.registerCardSet(CardFileCache.getCardFile(file));
+                    if (invalidDrop) {
+                        Runnable task2 = () -> {
+                            JOptionPane.showMessageDialog(OpenCards.getInstance(),
+                                    "Just PowerPoint (ppt) and MarkDown (md) are supported as flashcard-sets by OpenCards",
+                                    "Invalid file format of dropped file",
+                                    JOptionPane.WARNING_MESSAGE)
+                            ;
+                        };
+
+// start the thread
+                        new Thread(task2).start();
                     }
 
                     // If we made it this far, everything worked.

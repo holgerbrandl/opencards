@@ -105,7 +105,7 @@ public class StartLearningAction extends AbstractAction implements CardFileSelec
         OpenCards.getInstance().getLearnPanel().setControls(itemValuater);
         OpenCards.showLearnView();
 
-        Utils.log("setuping schedule");
+//        Utils.log("setuping schedule");
         processManager.setupSchedule(curFiles);
 
         processManager.addLearnProcessManagerProcessListener(new LearnProcListener() {

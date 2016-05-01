@@ -24,8 +24,6 @@ public class FlashCardCollection extends ArrayList<FlashCard> {
 
     public static final String REVERSE_POLICY = "reversePolicy";
 
-    private boolean useMarkdownSelector = false;
-
     private HashMap<String, Object> properties = new HashMap<String, Object>();
 
     private final Map<Class<? extends Item>, ItemCollection> itColls = new HashMap<Class<? extends Item>, ItemCollection>();
@@ -231,16 +229,6 @@ public class FlashCardCollection extends ArrayList<FlashCard> {
         }
 
         return null;
-    }
-
-
-    public boolean useMarkdownSelector() {
-        return useMarkdownSelector;
-    }
-
-
-    public void setUseMarkdownSelector(Boolean useMarkdownSelector) {
-        this.useMarkdownSelector = useMarkdownSelector;
     }
 }
 
