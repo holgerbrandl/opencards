@@ -1,5 +1,6 @@
 package info.opencards.ui;
 
+import info.opencards.CardFileBackend;
 import info.opencards.OpenCards;
 import info.opencards.core.CardFileCache;
 import info.opencards.core.categories.Category;
@@ -49,7 +50,7 @@ public class CardSetDndHandler extends DropTargetAdapter {
 
                     List<File> droppedFiles = (List<File>) tr.getTransferData(flavor);
                     for (File file : droppedFiles) {
-                        if (file.getName().endsWith(".ppt") || file.getName().endsWith(".md")) {
+                        if (CardFileBackend.hasSupportedExtension(file)) {
                             Category curCat = CategoryUtils.getSelectedCategory();
                             curCat.registerCardSet(CardFileCache.getCardFile(file));
                         } else {
@@ -83,4 +84,6 @@ public class CardSetDndHandler extends DropTargetAdapter {
             dtde.rejectDrop();
         }
     }
+
+
 }

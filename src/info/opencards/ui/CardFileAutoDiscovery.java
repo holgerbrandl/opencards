@@ -4,6 +4,7 @@
 
 package info.opencards.ui;
 
+import info.opencards.CardFileBackend;
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
 import info.opencards.core.CardFileCache;
@@ -158,7 +159,7 @@ public class CardFileAutoDiscovery extends JDialog {
         // collect all odp-files in all directories
         for (File cardDirectory : cardDirectories) {
             for (File file : cardDirectory.listFiles()) {
-                if (file.getPath().endsWith(".odp")) {
+                if (CardFileBackend.hasSupportedExtension(file)) {
                     allODPs.add(file);
                 }
             }

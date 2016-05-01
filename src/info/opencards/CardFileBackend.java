@@ -7,6 +7,8 @@ import info.opencards.md.MdSlideManager;
 import info.opencards.pptintegration.PPTSerializer;
 import info.opencards.pptintegration.PPTSlideManager;
 
+import java.io.File;
+
 
 /**
  * A kind of hack which publishes the current OpenCards-components to interesed modules.
@@ -38,10 +40,18 @@ public class CardFileBackend {
     }
 
 
+    public static boolean hasSupportedExtension(File file) {
+        return file.getName().endsWith(".ppt") || file.getName().endsWith(".md");
+    }
+
+
     public SlideManager getSlideManager(CardFile cardFile) {
         if (presProxy != null) return presProxy; // to support mocking
 
-        return cardFile.getFileLocation().getName().endsWith(".ppt") ? new PPTSlideManager() : new MdSlideManager();
+        if (cardFile.getFileLocation().getName().endsWith(".ppt")) return new PPTSlideManager();
+        if (cardFile.getFileLocation().getName().endsWith(".md")) return new MdSlideManager();
+
+        throw new RuntimeException("Invalid Cardfile Extension: " + cardFile.getFileLocation());
     }
 
 

@@ -47,7 +47,7 @@ public class PPTSerializer implements LearnStatusSerializer {
                 }
 
 
-            } else {
+            } else if (cardFile.getFileLocation().getName().endsWith(".md")) {
                 boolean useSelector = cardFile.getProperties().useMarkdownSelector();
                 List<MarkdownFlashcard> flashcards = MarkdownParserKt.parseMD(cardFile.getFileLocation(), useSelector);
 
@@ -61,6 +61,8 @@ public class PPTSerializer implements LearnStatusSerializer {
                     fc.add(new FlashCard(question.hashCode(), question, i + 1));
 
                 }
+            } else {
+                throw new InvalidCardFileFormatException();
             }
 
         } catch (IOException e) {

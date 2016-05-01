@@ -111,9 +111,6 @@ public class CardSetTable extends JTable {
 
         ((CardTableModel) getModel()).fireTableDataChanged();
 
-
-        System.out.println("num rows is " + cardTableModel.getRowCount());
-
         if (numRowsBefore == cardTableModel.getRowCount()) {
 
             for (int aSel : sel) {

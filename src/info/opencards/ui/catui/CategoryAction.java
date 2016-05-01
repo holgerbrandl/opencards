@@ -1,5 +1,6 @@
 package info.opencards.ui.catui;
 
+import info.opencards.CardFileBackend;
 import info.opencards.OpenCards;
 import info.opencards.Utils;
 import info.opencards.core.CardFile;
@@ -139,7 +140,7 @@ class AddCardSetAction extends CategoryAction {
 
             public String getDescription() {
 //                return "Flashcard presentations (*.odp,  *.ppt)";
-                return "PowerPoint Presentations (*.ppt), Markdown (*.md";
+                return "PowerPoint Presentations (*.ppt), Markdown (*.md)";
             }
         });
 
@@ -157,7 +158,7 @@ class AddCardSetAction extends CategoryAction {
 
             List<CardFile> cardFilesBuffer = new ArrayList<CardFile>();
             for (File file : selectedFiles) {
-                if (file.isFile() && file.getName().endsWith(".ppt")) {
+                if (file.isFile() && CardFileBackend.hasSupportedExtension(file)) {
                     CardFile cardFile = getCard(allFiles, file);
 
                     if (cardFile == null) {
@@ -247,7 +248,10 @@ class PopulateSubCatTreeFromDirectoryAction extends CategoryAction {
 
 //        Category rootCategory = baseCategory.getOrCreateChildCategoryByName(rootDirectory.getName());
 
-        List<File> allFilesInSubDirectory = Utils.findFiles(rootDirectory, ".odp");
+        List<File> allFilesInSubDirectory = new ArrayList<>();
+        allFilesInSubDirectory.addAll(Utils.findFiles(rootDirectory, ".ppt"));
+        allFilesInSubDirectory.addAll(Utils.findFiles(rootDirectory, ".md"));
+
 
         // collect all already registered cardfiles and create new files only if necessary
         Set<CardFile> allFiles = new HashSet<CardFile>();
@@ -256,7 +260,7 @@ class PopulateSubCatTreeFromDirectoryAction extends CategoryAction {
 
         List<CardFile> newCardFiles = new ArrayList<CardFile>();
         for (File file : allFilesInSubDirectory) {
-            if (file.isFile() && file.getName().endsWith(".odp")) {
+            if (file.isFile() && CardFileBackend.hasSupportedExtension(file)) {
                 CardFile cardFile = getCard(allFiles, file);
 
                 if (cardFile == null) {
