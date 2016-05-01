@@ -1,5 +1,8 @@
 ﻿The release history of OpenCards.
 
+## OpenCards 2.5 (1.5.2016)
+* Markdown Integration Improvements
+
 ## OpenCards 2.4 (11.4.2016)
 * Preserve aspect ratio when rendering slides
 * Support for markdown files as flashcard sets (section titles are questions, section content are answers)

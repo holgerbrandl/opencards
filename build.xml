@@ -16,7 +16,7 @@
     <property name="bin.dir" location="${basedir}/bin"/>
 
     <property name="project.name" value="opencards"/>
-    <property name="project.version" value="2.4.0" />
+    <property name="project.version" value="2.5.0" />
 
 
     <path id="classpath">
