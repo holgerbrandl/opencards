@@ -1,6 +1,7 @@
 package info.opencards.md
 
 import info.opencards.Utils
+import info.opencards.core.CardFile
 import info.opencards.ui.preferences.AdvancedSettings.*
 import org.intellij.markdown.ast.ASTNode
 import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
@@ -99,3 +100,10 @@ internal fun readFile(path: String, encoding: Charset): String {
     return String(encoded, encoding)
 }
 
+class DefaultMarkdownParser : info.opencards.md.MarkdownParser {
+
+    override fun parse(cardFile: CardFile): List<MarkdownFlashcard> {
+        return parseMD(cardFile.fileLocation, cardFile.properties.isUseMarkdownSelector);
+    }
+
+}
