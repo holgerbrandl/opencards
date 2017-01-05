@@ -1,5 +1,10 @@
 ﻿The release history of OpenCards.
 
+## OpenCards 2.5.1 (5.1.2017)
+
+* Added [openfx package dependency](http://stackoverflow.com/questions/34243982/why-is-javafx-is-not-included-in-openjdk-8-on-ubuntu-wily-15-10) for Ubuntu/Debian
+
+
 ## OpenCards 2.5 (1.5.2016)
 * Markdown Integration Improvements
 
