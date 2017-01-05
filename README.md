@@ -17,6 +17,15 @@ Installation
 Just grab a binary package for your platform from http://opencards.info
 
 
+## Linux 
+
+To use OpenCards with Ubuntu/Debian, you need to install `openjdk-8-jre` and `openjfx`. You can do so with
+
+```bash
+sudo apt-get install openjdk-8-jreopenjfx 
+```
+When using the debian-installer those dependencies will be installed automatically.
+
 How to build and run it from the sources
 --------------------------------
 

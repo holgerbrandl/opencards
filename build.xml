@@ -16,7 +16,7 @@
     <property name="bin.dir" location="${basedir}/bin"/>
 
     <property name="project.name" value="opencards"/>
-    <property name="project.version" value="2.5.0" />
+    <property name="project.version" value="2.5.1" />
 
 
     <path id="classpath">
@@ -243,7 +243,7 @@
     <target name="deploy.debian" depends="create-jar" description="Creates a debian package">
         <deb package="opencards"
              todir="../oc-deployed" section="misc" priority="optional" homepage="http://opencards.info"
-             depends="openjdk-7-jre | openjdk-7-jdk">
+            depends="openjdk-8-jre | openjdk-8-jdk, openjfx">
             <version upstream="${project.version}"/>
             <maintainer name="Holger Brandl" email="support@opencards.info" />
             <description synopsis="OpenCards is a free flashcard learning software for ppt-files">

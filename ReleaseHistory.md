@@ -9,7 +9,7 @@
 * Improved rendering of Cards (using POI v3.14)
 
 
-## OpenCards 2.3 (18.9.2015)
+## OpenCards 2.3 (18.9.2017)
 * Added Dutch translation (thanks to  Rutger Scholtens)
 * Improved german translation
 * Fixed links to help
