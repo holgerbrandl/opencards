@@ -7,7 +7,8 @@ import info.opencards.core.FlashCard;
 import info.opencards.core.FlashCardCollection;
 import info.opencards.core.LearnStatusSerializer;
 import info.opencards.md.MarkdownFlashcard;
-import info.opencards.md.MarkdownParserKt;
+import info.opencards.md.MarkdownParser;
+import info.opencards.md.MarkdownParserFactory;
 import info.opencards.util.InvalidCardFileFormatException;
 import org.apache.poi.hslf.usermodel.HSLFSlide;
 import org.apache.poi.hslf.usermodel.HSLFSlideShow;
@@ -48,8 +49,8 @@ public class PPTSerializer implements LearnStatusSerializer {
 
 
             } else if (cardFile.getFileLocation().getName().endsWith(".md")) {
-                boolean useSelector = cardFile.getProperties().useMarkdownSelector();
-                List<MarkdownFlashcard> flashcards = MarkdownParserKt.parseMD(cardFile.getFileLocation(), useSelector);
+                MarkdownParser markdownParser = MarkdownParserFactory.create();
+                List<MarkdownFlashcard> flashcards = markdownParser.parse(cardFile);
 
                 for (int i = 0; i < flashcards.size(); i++) {
                     MarkdownFlashcard card = flashcards.get(i);

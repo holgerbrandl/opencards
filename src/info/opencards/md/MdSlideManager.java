@@ -140,7 +140,8 @@ public class MdSlideManager extends AbstractSlideManager {
     public void openCardFile(CardFile cardFile) {
         cardFile.synchronize();
 
-        slides = MarkdownParserKt.parseMD(cardFile.getFileLocation(), cardFile.getProperties().useMarkdownSelector());
+        MarkdownParser markdownParser = MarkdownParserFactory.create();
+        slides = markdownParser.parse(cardFile);
 
 
         jfxPanel = new JFXPanel();
