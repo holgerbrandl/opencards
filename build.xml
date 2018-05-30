@@ -78,9 +78,11 @@
     </target>
 
 
+    <!--https://github.com/ome/appbundler-->
     <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask">
         <classpath>
-            <pathelement location="${basedir}/deployment/appbundler-1.0ea.jar" />
+            <!--<pathelement location="${basedir}/deployment/appbundler-1.0ea.jar" />-->
+            <pathelement location="/Users/holger/projects/opencards/appbundler/appbundler/bin/appbundler-1.1.0.jar" />
         </classpath>
     </taskdef>
 
@@ -99,7 +101,7 @@
         <!--suppress AntResolveInspection -->
         <bundleapp outputdirectory="${dist.dir}" name="OpenCards" displayname="OpenCards"
             identifier="info.movito.opencards" shortversion="${project.version}" icon="deployment/opencards.icns"
-            applicationCategory="public.app-category.developer-tools"
+            applicationCategory="public.app-category.developer-tools" executableName="OpenCards"
             mainclassname="info/opencards/util/macos/OpenCardsWrapper4MacOSX">
             <!--<runtime dir="${env.JAVA_HOME}"/>-->
             <classpath refid="myjars" />
@@ -108,14 +110,31 @@
             <option value="-Dapple.laf.useScreenMenuBar=true" />
             <option value="-Dapple.awt.showGrowBox=true" />
             <option value="-Dapple.awt.graphics.EnableQ2DX=true" />
-            <option value="-Dcom.apple.mrj.application.apple.menu.about.name=OpenCARDS" />
+            <option value="-Dcom.apple.mrj.application.apple.menu.about.name=OpenCards" />
             <!--known to not work-->
             <option value="-DNSHighResolutionCapable=true" />
 
             <argument value="-Xmx512m" />
-            <argument value=" -Xms256m" />
-            <argument value="-Xdock:name=Movito" />
+            <argument value="-Xms256m" />
+            <argument value="-Xdock:name=OpenCards" />
         </bundleapp>
+
+        <!--<bundleapp-->
+        <!--jvmrequired="1.8"-->
+        <!--classpathref="myjars"-->
+        <!--outputdirectory="${dist.dir}"-->
+        <!--name="OpenCards"-->
+        <!--displayname="OpenCards"-->
+        <!--executableName="OpenCards"-->
+        <!--identifier="info.movito.opencards"-->
+        <!--shortversion="${project.version}"-->
+        <!--version="${project.version}"-->
+        <!--icon="deployment/opencards.icns"-->
+        <!--mainclassname="info/opencards/util/macos/OpenCardsWrapper4MacOSX"-->
+        <!--copyright="2018 Holger Brandl"-->
+        <!--applicationCategory="public.app-category.finance">-->
+        <!--<classpath refid="myjars" />-->
+        <!--</bundleapp>-->
 
         <exec executable="hdiutil" os="Mac OS X">
             <arg value="create" />

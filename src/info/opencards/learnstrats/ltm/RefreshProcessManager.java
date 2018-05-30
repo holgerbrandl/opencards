@@ -5,7 +5,10 @@ import info.opencards.core.Item;
 import info.opencards.core.ItemValuater;
 import info.opencards.core.LearnMethodFactory;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
 
 
 /**
@@ -26,7 +29,7 @@ public class RefreshProcessManager extends LTMProcessManager {
 
         // finally reorder files based on urgentness
         List<CardFile> presortFiles = new ArrayList<CardFile>(curFiles);
-        Collections.sort(presortFiles, new Comparator<CardFile>() {
+        presortFiles.sort(new Comparator<CardFile>() {
             public int compare(CardFile o1, CardFile o2) {
                 return (int) (ScheduleUtils.getUrgency(o1.getFlashCards().getLTMItems()) -
                         ScheduleUtils.getUrgency(o2.getFlashCards().getLTMItems()));

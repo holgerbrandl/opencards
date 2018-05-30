@@ -16,7 +16,7 @@ import java.nio.file.Paths
 
 
 fun main(args: Array<String>) {
-    parseMD(File("/Users/holger/projects/opencards/oc2/testdata/kotlin_qa.md"))
+    parseMD(File("/Users/holger/projects/opencards/oc2/testdata/markdown/kotlin_qa.md"))
 }
 
 
@@ -27,7 +27,6 @@ fun parseMD(file: File, useSelector: Boolean = false): List<MarkdownFlashcard> {
 
     val markdownParser = MarkdownParser(GFMFlavourDescriptor())
     val parsedTree = markdownParser.buildMarkdownTreeFromString(text)
-
 
     parsedTree.children[0]
 
