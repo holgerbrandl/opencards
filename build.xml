@@ -78,11 +78,13 @@
     </target>
 
 
-    <!--https://github.com/ome/appbundler-->
+    <!--old https://github.com/ome/appbundler-->
+    <!--new https://bitbucket.org/infinitekind/appbundler/overview-->
     <taskdef name="bundleapp" classname="com.oracle.appbundler.AppBundlerTask">
         <classpath>
             <!--<pathelement location="${basedir}/deployment/appbundler-1.0ea.jar" />-->
-            <pathelement location="/Users/holger/projects/opencards/appbundler/appbundler/bin/appbundler-1.1.0.jar" />
+            <pathelement location="${basedir}/deployment/appbundler-1.1.0.jar" />
+            <!--<pathelement location="/Users/holger/projects/opencards/appbundler/appbundler/bin/appbundler-1.1.0.jar" />-->
         </classpath>
     </taskdef>
 
