@@ -1,11 +1,11 @@
 package info.opencards.util.macos;
 
-import com.apple.eawt.Application;
-import com.apple.eawt.QuitStrategy;
 import info.opencards.OpenCards;
 import info.opencards.Utils;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.desktop.QuitStrategy;
 
 
 /**
@@ -35,13 +35,17 @@ public class OpenCardsWrapper4MacOSX {
 
         // create an instance of the Mac Application class, so i can handle the
         // mac quit event with the Mac ApplicationAdapter
-        Application macApplication = Application.getApplication();
+//        Application macApplication = Application.getApplication();
+
+        Desktop macApplication = Desktop.getDesktop();
+
 
         // need to enable the preferences option manually
         macApplication.setPreferencesHandler(macAppHandler);
         macApplication.setAboutHandler(macAppHandler);
         macApplication.setQuitHandler(macAppHandler);
         macApplication.setQuitStrategy(QuitStrategy.CLOSE_ALL_WINDOWS);
+
         macApplication.addAppEventListener(macAppHandler);
 
         // display the jframe

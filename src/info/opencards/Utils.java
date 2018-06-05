@@ -225,17 +225,22 @@ public class Utils {
 
 
     public static void sleep(final int timeMs) {
-        new Thread() {
-
-            public void run() {
-                try {
-                    sleep(timeMs);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                super.run();
-            }
-        }.start();
+        try {
+            Thread.sleep(timeMs);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+//        new Thread() {
+//
+//            public void run() {
+//                try {
+//                    sleep(timeMs);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                super.run();
+//            }
+//        }.start();
     }
 
 

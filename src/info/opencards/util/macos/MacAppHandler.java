@@ -1,9 +1,10 @@
 package info.opencards.util.macos;
 
-import com.apple.eawt.*;
 import info.opencards.OpenCards;
 import info.opencards.ui.actions.AboutAction;
 import info.opencards.ui.actions.SettingsAction;
+
+import java.awt.desktop.*;
 
 
 /**
@@ -11,7 +12,7 @@ import info.opencards.ui.actions.SettingsAction;
  */
 
 
-public class MacAppHandler implements AboutHandler, PreferencesHandler, QuitHandler, AppReOpenedListener {
+public class MacAppHandler implements AboutHandler, PreferencesHandler, QuitHandler, SystemEventListener {
 
     private final OpenCards oc;
 
@@ -21,27 +22,24 @@ public class MacAppHandler implements AboutHandler, PreferencesHandler, QuitHand
     }
 
 
+
     @Override
-    public void handleAbout(AppEvent.AboutEvent aboutEvent) {
+    public void handleAbout(AboutEvent e) {
         new AboutAction(oc).actionPerformed(null);
     }
 
 
     @Override
-    public void handlePreferences(AppEvent.PreferencesEvent preferencesEvent) {
+    public void handlePreferences(PreferencesEvent e) {
         new SettingsAction(oc).actionPerformed(null);
+
+
     }
 
 
     @Override
-    public void handleQuitRequestWith(AppEvent.QuitEvent quitEvent, QuitResponse quitResponse) {
+    public void handleQuitRequestWith(QuitEvent e, QuitResponse response) {
         OpenCards.saveCatTreeBeforeQuit(oc);
         System.exit(0);
-    }
-
-
-    @Override
-    public void appReOpened(AppEvent.AppReOpenedEvent appReOpenedEvent) {
-        oc.setVisible(true);
     }
 }
