@@ -80,9 +80,18 @@ public class MdSlideManager extends AbstractSlideManager {
 
 
     private void renderHtml(String content) {
+        String cssStyle = " ";
+
+//        String cssStyle = "  <style type='text/css'>\n" +
+//                "            p {size: 33em;}\n" +
+//                "            h1 {size: 33em;}\n" +
+//                "            h2 {size: 33em;}\n" +
+//                "            h3 {size: 33em;}\n" +
+//                "        </style>";
+
         // http://stackoverflow.com/questions/21083945/how-to-avoid-not-on-fx-application-thread-currentthread-javafx-application-th
         Platform.runLater(() -> {
-                    webEngine.loadContent("<body>" + content + "</body≈>");
+            webEngine.loadContent("<body>" + cssStyle + content + "</body≈>");
                     redirectLinksToBrowser(webEngine);
                 }
         );
@@ -190,6 +199,8 @@ public class MdSlideManager extends AbstractSlideManager {
 
             Group root = new Group();
             Scene scene = new Scene(root, 80, 20);
+//            scene.getStylesheets().add("equal_sizes.css");
+
             stage.setScene(scene);
 
             // Set up the embedded browser:
@@ -201,6 +212,8 @@ public class MdSlideManager extends AbstractSlideManager {
 //                ScrollPane scrollPane = new ScrollPane();
 //                scrollPane.setContent(browser);
             webEngine.loadContent("<b>asdf</b>");
+//            webEngine.setUserStyleSheetLocation("equal_sizes.css");
+
 
 //                root.getChildren().addAll(scrollPane);
 //                scene.setRoot(root);
