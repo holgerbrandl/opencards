@@ -1,7 +1,6 @@
 package info.opencards.util.macos;
 
 import info.opencards.OpenCards;
-import info.opencards.Utils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +17,7 @@ public class OpenCardsWrapper4MacOSX {
 
 
     public static void main(String[] args) {
-        Utils.resetAllSettings();
+//        Utils.resetAllSettings();
         new OpenCardsWrapper4MacOSX();
     }
 

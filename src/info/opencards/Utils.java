@@ -251,25 +251,5 @@ public class Utils {
             return Utils.class.getClassLoader().getResource("info/opencards/" + resourceName);
         }
     }
-
-
-    public static void main(String[] args) {
-//        try {
-//            for (String s : getPrefs().keys()) {
-//                System.out.println("pref is : " + s + " and its value is " + getPrefs().get(s, "foobar"));
-//            }
-//        } catch (BackingStoreException e) {
-//            e.printStackTrace();
-//        }
-
-        resetAllSettings();
-//        flushPreferences();
-        OpenCards.main(null);
-
-        // set pref for testing
-//        getPrefs().putDouble("lalelu", 56);
-    }
-
-
 }
 
