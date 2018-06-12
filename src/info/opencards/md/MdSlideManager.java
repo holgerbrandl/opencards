@@ -6,8 +6,8 @@ import info.opencards.Utils;
 import info.opencards.core.*;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -153,11 +153,16 @@ public class MdSlideManager extends AbstractSlideManager {
 
 
         jfxPanel = new JFXPanel();
+        jfxPanel.setBackground(Color.BLACK);
         createScene();
 
         JPanel renderContainer = OpenCards.getInstance().getLearnPanel().getSlideRenderPanel();
         renderContainer.removeAll();
+//        renderContainer.setLayout(new BorderLayout());
+//        renderContainer.add(jfxPanel, BorderLayout.CENTER);
         renderContainer.add(jfxPanel);
+
+//        renderContainer.setBackground(Color.BLACK);
         renderContainer.validate();
         renderContainer.repaint();
 
@@ -188,25 +193,40 @@ public class MdSlideManager extends AbstractSlideManager {
     }
 
 
+    class Browser extends StackPane {
+        final WebView browser = new WebView();
+        final WebEngine webEngine = browser.getEngine();
+
+
+        public Browser() {
+            webEngine.load("www.oracle.com");
+            getChildren().add(browser);
+        }
+    }
+
     private void createScene() {
         PlatformImpl.startup(() -> {
-            Stage stage;
-            WebView browser;
-            stage = new Stage();
+            Browser browser = new Browser();
+
+            Scene scene = new Scene(browser, 80, 20);
+//            scene.getStylesheets().add("equal_sizes.css");
+
+            Stage stage = new Stage();
 
             stage.setTitle("Hello Java FX");
             stage.setResizable(true);
-
-            Group root = new Group();
-            Scene scene = new Scene(root, 80, 20);
-//            scene.getStylesheets().add("equal_sizes.css");
-
             stage.setScene(scene);
 
+            webEngine = browser.webEngine;
+
+
             // Set up the embedded browser:
-            browser = new WebView();
-            webEngine = browser.getEngine();
+//            webEngine = browser.webEngine;
 //                webEngine.load("http://heise.de");
+
+            // https://stackoverflow.com/questions/38432698/webview-size-in-javafx-stage
+            browser.prefHeightProperty().bind(stage.heightProperty());
+            browser.prefWidthProperty().bind(stage.widthProperty());
 
 
 //                ScrollPane scrollPane = new ScrollPane();
@@ -220,7 +240,7 @@ public class MdSlideManager extends AbstractSlideManager {
 //                stage.setScene(scene);
 
 
-            root.getChildren().add(browser);
+//            root.getChildren().add(browser);
 //                children.add(browser);
 
             jfxPanel.setScene(scene);
