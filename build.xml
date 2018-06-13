@@ -119,7 +119,7 @@
             <!--known to not work-->
             <option value="-DNSHighResolutionCapable=true" />
 
-            <argument value="-Xmx512m" />
+            <argument value="-Xmx2g"/>
             <argument value="-Xms256m" />
             <argument value="-Xdock:name=OpenCards" />
             <argument value="--add-modules ALL-SYSTEM" />

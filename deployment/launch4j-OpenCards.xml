@@ -43,9 +43,9 @@
     </classPath>
     <jre>
         <path>path</path>
-        <minVersion>1.6.0</minVersion>
+        <minVersion>1.9.0</minVersion>
         <maxVersion></maxVersion>
         <jdkPreference>preferJre</jdkPreference>
-        <maxHeapSize>512</maxHeapSize>
+        <maxHeapSize>2000</maxHeapSize>
     </jre>
 </launch4jConfig>
