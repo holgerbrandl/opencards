@@ -82,6 +82,9 @@ public class MdSlideManager extends AbstractSlideManager {
     private void renderHtml(String content) {
         String cssStyle = " ";
 
+        // rescale too wide images to fit window
+        cssStyle += MarkdownCssKt.getDownscaleImg();
+
 //        String cssStyle = "  <style type='text/css'>\n" +
 //                "            p {size: 33em;}\n" +
 //                "            h1 {size: 33em;}\n" +
@@ -90,8 +93,10 @@ public class MdSlideManager extends AbstractSlideManager {
 //                "        </style>";
 
         // http://stackoverflow.com/questions/21083945/how-to-avoid-not-on-fx-application-thread-currentthread-javafx-application-th
+        String finalCssStyle = cssStyle;
+
         Platform.runLater(() -> {
-            webEngine.loadContent("<body>" + cssStyle + content + "</body≈>");
+            webEngine.loadContent("<body>" + finalCssStyle + content + "</body≈>");
                     redirectLinksToBrowser(webEngine);
                 }
         );
