@@ -84,6 +84,7 @@ public class MdSlideManager extends AbstractSlideManager {
 
         // rescale too wide images to fit window
         cssStyle += MarkdownCssKt.getDownscaleImg();
+        cssStyle += MarkdownCssKt.getBlockQuote();
 
 //        String cssStyle = "  <style type='text/css'>\n" +
 //                "            p {size: 33em;}\n" +

@@ -16,7 +16,24 @@ import java.nio.file.Paths
 
 
 fun main(args: Array<String>) {
-    parseMD(File("/Users/holger/projects/opencards/oc2/testdata/markdown/kotlin_qa.md"))
+    //    parseMD(File("/Users/holger/projects/opencards/oc2/testdata/markdown/kotlin_qa.md"))
+
+    val exampleMarkdown = """
+        ## This is a header
+
+        blabla
+
+        >  some citation
+
+    """.trimIndent()
+
+    val markdownParser = MarkdownParser(GFMFlavourDescriptor())
+    val parsedTree = markdownParser.buildMarkdownTreeFromString(exampleMarkdown)
+
+    val htmlGeneratingProviders = GFMFlavourDescriptor().createHtmlGeneratingProviders(LinkMap.buildLinkMap(parsedTree, exampleMarkdown), null)
+
+    val html = HtmlGenerator(exampleMarkdown, parsedTree, htmlGeneratingProviders, true).generateHtml()
+    print(html)
 }
 
 
