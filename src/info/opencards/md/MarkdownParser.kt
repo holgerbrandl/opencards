@@ -45,7 +45,7 @@ fun parseMD(file: File, useSelector: Boolean = false): List<MarkdownFlashcard> {
     val markdownParser = MarkdownParser(GFMFlavourDescriptor())
     val parsedTree = markdownParser.buildMarkdownTreeFromString(text)
 
-    parsedTree.children[0]
+    //    parsedTree.children[0]
 
 
     //    val html = makeHtml(parsedTree, text, file.toURI())
@@ -54,7 +54,7 @@ fun parseMD(file: File, useSelector: Boolean = false): List<MarkdownFlashcard> {
 
     var blockCounter = 0
     val sections = parsedTree.children.map { makeHtml(it, text, file.toURI()) }.groupBy {
-        if (it.startsWith("<h")) {
+        if (it.contains("^<h[123]{1}".toRegex())) {
             blockCounter += 1
         }
 
@@ -96,7 +96,10 @@ fun parseMD(file: File, useSelector: Boolean = false): List<MarkdownFlashcard> {
 
                 // normalize question size to be h2
                 question = question.replace("<h[1234]".toRegex(), "<h1").replace("h[1234]>".toRegex(), "h1>").trim()
-                MarkdownFlashcard(question, it.drop(1).joinToString("\n"))
+
+                val answer = it.drop(1).takeWhile { !it.startsWith("<hr") }.joinToString("\n")
+
+                MarkdownFlashcard(question, answer)
             }
 
     return cards
