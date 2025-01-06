@@ -12,3 +12,7 @@ opencards.jar
 hs_err_pid*
 .idea
 *.iml
+
+.gradle/
+build/*
+classes/*

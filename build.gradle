@@ -1,0 +1,81 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.1.0'
+    id 'application'
+    id 'java'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "21" // Adjust to your desired Java version
+    }
+}
+
+java {
+    sourceSets {
+        main {
+            java {
+                setSrcDirs(['src'])
+            }
+            resources {
+                setSrcDirs(['resources'])
+            }
+        }
+    }
+}
+
+javafx {
+    version = "21" // Adjust to your desired Java version
+    modules = [ 'javafx.controls' ]
+}
+
+dependencies {
+
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.1'
+
+    implementation 'org.apache.poi:poi:4.0.0'
+    implementation 'org.apache.poi:poi-scratchpad:4.0.0'
+    implementation 'org.apache.poi:poi-ooxml:4.0.0'
+
+    implementation 'com.thoughtworks.xstream:xstream:1.4.8'
+
+    implementation 'org.openjfx:javafx-controls:21'
+    implementation 'org.openjfx:javafx-web:21'
+    implementation 'org.openjfx:javafx-swing:21'
+    implementation 'org.openjfx:javafx-base:21'
+    implementation 'org.openjfx:javafx-graphics:21'
+
+    implementation 'org.jfree:jfreechart:1.0.14'
+
+    implementation 'org.jetbrains:markdown:0.4.0'
+
+    implementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    implementation 'org.junit.vintage:junit-vintage-engine:5.10.0'
+}
+
+tasks.withType(JavaExec) {
+    jvmArgs += [
+            '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.lang.reflect=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.text=ALL-UNNAMED',
+            '--add-opens', 'java.desktop/java.awt.font=ALL-UNNAMED',
+            '--add-opens', 'java.desktop/java.awt=ALL-UNNAMED'
+    ]
+}
+
+tasks.withType(Test) {
+    jvmArgs += [
+            '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.lang.reflect=ALL-UNNAMED',
+            '--add-opens', 'java.base/java.text=ALL-UNNAMED',
+            '--add-opens', 'java.desktop/java.awt.font=ALL-UNNAMED',
+            '--add-opens', 'java.desktop/java.awt=ALL-UNNAMED'
+    ]
+}
+
+mainClassName "info.opencards.OpenCards"
